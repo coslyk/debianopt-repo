@@ -64,7 +64,7 @@ if [ "$_source_host" = "github" ]; then
     fi
 
 elif [ "$_source_host" = "other" ]; then
-    eval "LATEST_VERSION=`${_source_get_version}`"
+    LATEST_VERSION=`bash -c "${_source_get_version}"`
     if [ "$_source_method" = "build" ]; then
         echo "Does not support building from other hosts."
         exit 1
