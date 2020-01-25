@@ -83,10 +83,15 @@ fi
 
 ## Step 8: Build package
 printf "Building "
-$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR
+$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR | while read LINE; do
+    printf "."
+done
+printf "\n"
 rm -f *-dbgsym_*.deb
+printf "Built: "
+ls *.deb
 
 # Step 9: Upload
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debiancn/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
 fi
