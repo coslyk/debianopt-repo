@@ -5,5 +5,4 @@ source:
   host: github
   repo: agalwood/Motrix
   method: copy
-  package_url: https://github.com/agalwood/Motrix/releases/download/v##VERSION/Motrix_##VERSION_amd64.deb
 

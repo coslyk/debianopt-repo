@@ -37,15 +37,23 @@ get_latest_version_github() {
     python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"
 }
 
+guess_package_url_github() {
+    curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64.deb\"" | sed 's/.*\"\(.*amd64\.deb\)\".*/\1/g'
+}
+
 if [ "$_source_host" = "github" ]; then
     LATEST_VERSION=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${LATEST_VERSION#v}"
     if [ "$_source_method" = "build" ]; then
         SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
         SOURCE_DIR="${_name}-${LATEST_VERSION}"
-    else
+
+    elif [ -n "${_source_package_url}" ]; then
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+
+    else
+        PACKAGE_URL=$(guess_package_url_github "$_source_repo")
     fi
 
 elif [ "$_source_host" = "other" ]; then

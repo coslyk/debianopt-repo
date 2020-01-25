@@ -5,5 +5,4 @@ source:
   host: github
   repo: trazyn/ieaseMusic
   method: copy
-  package_url: https://github.com/trazyn/ieaseMusic/releases/download/v##VERSION/ieaseMusic-##VERSION-linux-amd64.deb
 
