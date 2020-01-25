@@ -50,7 +50,7 @@ done
 
 shift $(($OPTIND - 1))
 srcdir=$1
-docker_args="-it "
+docker_args=""
 
 # Check that mandatory parameters are valid
 [[ !    "$outdir"        ]] && fatal "output directory was not given (-o DIR)"
@@ -80,7 +80,7 @@ docker_args+="--rm "
 # https://stackoverflow.com/a/52084936
 docker_args+="--security-opt seccomp:unconfined "
 
-cmd="docker run -it $docker_args $image /build-helper.sh"
+cmd="docker run $docker_args $image /build-helper.sh"
 
 echo "Running docker:"
 echo "$cmd"
