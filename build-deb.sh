@@ -1,8 +1,6 @@
 #!/bin/sh
 
 ## Build environments
-DEBIAN_RELEASE=buster
-DEBIAN_ARCH=amd64
 
 ## Step 1: Enter directory
 HERE="$(dirname "$(readlink -f "${0}")")"
@@ -30,7 +28,7 @@ parse_yaml() {
         }
     }' | sed 's/_=/+=/g'
 }
-
+parse_yaml recipe.yml "_"
 eval $(parse_yaml recipe.yml "_")
 
 
