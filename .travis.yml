@@ -1,0 +1,21 @@
+language: shell
+
+
+jobs:
+  include:
+    - name: Linux build (Debian 10 buster, amd64)
+      os: linux
+      sudo: required
+      env: 
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: amd64
+      services:
+        - docker
+        
+
+install:
+  - docker build -t docker-deb-builder:$DEBIAN_RELEASE -f travis/Dockerfile-debian-$DEBIAN_RELEASE .
+
+  
+script:
+  - ./scan_and_build.sh

@@ -1,0 +1,8 @@
+
+name: moonplayer
+
+source:
+  host: github
+  repo: coslyk/moonplayer
+  method: build
+
