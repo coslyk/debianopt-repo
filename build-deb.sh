@@ -32,12 +32,16 @@ eval $(parse_yaml recipe.yml "_")
 
 ## Step 3: Check if we need to skip this build
 if [ -n "${_only_arches[@]}" ]; then
+    SKIP_BUILD=true
     for BUILD_ARCH in "${_only_arches[@]}" ; do
         if [ "$BUILD_ARCH" = "$DEBIAN_ARCH" ]; then
-            echo "\e[32m *** Skip build for $_name *** \e[0m"
-            exit 0
+            SKIP_BUILD=false
         fi
     done
+    if [ "$SKIP_BUILD" = "true" ]; then
+        echo "\e[32m *** Skip build for $_name *** \e[0m"
+        exit 0
+    fi
 fi
 
 
