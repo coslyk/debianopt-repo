@@ -1,9 +1,0 @@
-
-name: wps-office
-
-source:
-  host: other
-  get_version: curl -s http://linux.wps.com/js/meta.js | grep 'var version' | sed 's/.*version = \"\(.*\)\".*/\1/g'
-  method: copy
-  package_url: https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/9080/wps-office_##VERSION_amd64.deb
-
