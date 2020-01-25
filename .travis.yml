@@ -13,9 +13,9 @@ jobs:
         - docker
         
 
-install:
+before_install:
   - docker build -t docker-deb-builder:$DEBIAN_RELEASE -f travis/Dockerfile-debian-$DEBIAN_RELEASE .
 
   
-script:
+install:
   - ./scan-and-build.sh
