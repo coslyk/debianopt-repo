@@ -50,29 +50,21 @@ fi
 
 
 ## Step 4: Check if the package of latest version exists
-PACKAGE_URL="https://dl.bintray.com/coslyk/debiancn/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
+PACKAGE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
 if curl --output /dev/null --silent --head --fail "$PACKAGE_URL"; then
     exit 0
 else
-    echo "Detect update for $_name: $LATEST_VERSION"
+    echo -e "\e[32m *** Detect update for $_name: $LATEST_VERSION *** \e[0m"
 fi
 
 
-## Step 5: Check if the current version is the latest
-if [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
-    exit 0
-else
-    echo "Detect update for $_name: ($CURRENT_VERSION) => ($LATEST_VERSION)"
-fi
-
-
-## Step 6: Download source code
+## Step 5: Download source code
 echo "Downloading source code from $SOURCE_URL"
 curl -L -o source.tar.gz "$SOURCE_URL"
 tar xzf source.tar.gz
 
 
-## Step 7: Create debian directory
+## Step 6: Create debian directory
 if [ "$_source_method" = "build" ]; then
     [ -d $SOURCE_DIR/debian ] && rm -rf $SOURCE_DIR/debian
     cp -r debian-template $SOURCE_DIR/debian
@@ -81,7 +73,7 @@ if [ "$_source_method" = "build" ]; then
 fi
 
 
-## Step 8: Build package
+## Step 7: Build package
 printf "Building "
 $HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR | while read LINE; do
     printf "."
@@ -92,6 +84,8 @@ printf "Built: "
 ls *.deb
 
 # Step 9: Upload
+echo "Uploading ..."
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debiancn/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
+    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
 fi
+printf "\n\n"
