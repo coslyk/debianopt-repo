@@ -1,0 +1,12 @@
+
+name: wps-office
+
+only_arches:
+  - amd64
+
+source:
+  host: other
+  get_version: curl -s http://linux.wps.com/js/meta.js | grep "var version" | sed 's/.*version = \"\(.*\)\".*/\1/g'
+  method: copy
+  package_url: http://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/9080/wps-office_##VERSION.XA_amd64.deb
+

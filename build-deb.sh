@@ -62,6 +62,16 @@ if [ "$_source_host" = "github" ]; then
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
     fi
+
+elif [ "$_source_host" = "other" ]; then
+    eval "LATEST_VERSION=`${_source_get_version}`"
+    if [ "$_source_method" = "build" ]; then
+        echo "Does not support building from other hosts."
+        exit 1
+    else
+        PACKAGE_URL="${_source_package_url}"
+        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+    fi
 else
     echo "Error: unsupported host: $_source_host" > /dev/stderr
     exit 1
