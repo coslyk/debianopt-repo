@@ -1,0 +1,7 @@
+
+name: codium
+
+source:
+  host: github
+  repo: VSCodium/vscodium
+  method: copy
