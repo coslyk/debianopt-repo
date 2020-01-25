@@ -1,0 +1,12 @@
+
+name: ieasemusic
+
+only_arches:
+  - amd64
+
+source:
+  host: github
+  repo: trazyn/ieaseMusic
+  method: copy
+  package_url: https://github.com/trazyn/ieaseMusic/releases/download/v${LATEST_VERSION}/ieaseMusic-${LATEST_VERSION}-linux-amd64.deb
+
