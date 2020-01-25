@@ -31,7 +31,7 @@ eval $(parse_yaml recipe.yml "_")
 
 
 ## Step 3: Check if we need to skip this build
-if [ -n "${_only_arches[@]}" ]; then
+if [ -n "${_only_arches}" ]; then
     SKIP_BUILD=true
     for BUILD_ARCH in "${_only_arches[@]}" ; do
         if [ "$BUILD_ARCH" = "$DEBIAN_ARCH" ]; then
@@ -39,7 +39,7 @@ if [ -n "${_only_arches[@]}" ]; then
         fi
     done
     if [ "$SKIP_BUILD" = "true" ]; then
-        echo "\e[32m *** Skip build for $_name *** \e[0m"
+        echo -e "\e[32m *** Skip build for $_name *** \e[0m"
         exit 0
     fi
 fi
@@ -91,8 +91,7 @@ fi
 if [ "$_source_method" = "build" ]; then
 
     # Copy debian folder
-    [ -d $SOURCE_DIR/debian ] && rm -rf $SOURCE_DIR/debian
-    cp -r debian-template $SOURCE_DIR/debian
+    cp -rf debian-template $SOURCE_DIR/debian
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     
@@ -105,6 +104,14 @@ if [ "$_source_method" = "build" ]; then
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb
+
+elif [ -d "debian-template" ]; then
+    # Repack deb
+    dpkg-deb -x package.deb temp
+    dpkg-deb -e package.deb temp/debian
+    cp -rf debian-template temp/debian
+    dpkg-deb -b temp repack.deb
+    rm -f package.deb
 fi
 
 # Step 9: Upload
