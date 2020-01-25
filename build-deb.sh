@@ -59,7 +59,8 @@ if [ "$_source_host" = "github" ]; then
         SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
         SOURCE_DIR="${_name}-${LATEST_VERSION}"
     else
-        eval "PACKAGE_URL=${_source_package_url}"
+        PACKAGE_URL="${_source_package_url}"
+        PACKAGE_URL=`echo $PACKAGE_URL | sed "s|##VERSION|$LATEST_VERSION|g"`
     fi
 else
     echo "Error: unsupported host: $_source_host" > /dev/stderr
