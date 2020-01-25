@@ -51,7 +51,7 @@ fi
 
 ## Step 4: Check if the package of latest version exists
 PACKAGE_URL="https://dl.bintray.com/coslyk/debiancn/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
-if curl --output /dev/null --silent --head --fail "$url"; then
+if curl --output /dev/null --silent --head --fail "$PACKAGE_URL"; then
     exit 0
 else
     echo "Detect update for $_name: $LATEST_VERSION"
@@ -83,9 +83,7 @@ fi
 
 ## Step 8: Build package
 printf "Building "
-$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR | while read LINE; do
-    printf "."
-done
+$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR
 rm -f *-dbgsym_*.deb
 
 # Step 9: Upload
