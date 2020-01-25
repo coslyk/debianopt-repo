@@ -61,6 +61,7 @@ if [ "$_source_host" = "github" ]; then
     else
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##ARCH|$DEBIAN_ARCH|g"`
     fi
 
 elif [ "$_source_host" = "other" ]; then
@@ -71,6 +72,7 @@ elif [ "$_source_host" = "other" ]; then
     else
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##ARCH|$DEBIAN_ARCH|g"`
     fi
 else
     echo "Error: unsupported host: $_source_host" > /dev/stderr
@@ -108,7 +110,7 @@ if [ "$_source_method" = "build" ]; then
     
     # Build package
     printf "Building "
-    $HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR | while read LINE; do
+    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR | while read LINE; do
         printf "."
     done
     printf "\n"

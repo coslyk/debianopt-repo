@@ -3,12 +3,42 @@ language: shell
 
 jobs:
   include:
-    - name: Linux build (Debian 10 buster, amd64)
+    - name: Debian 10 buster (amd64)
       os: linux
       sudo: required
       env: 
         - DEBIAN_RELEASE: buster
         - DEBIAN_ARCH: amd64
+      services:
+        - docker
+
+    - name: Debian 10 buster (i386)
+      os: linux
+      arch: i386
+      sudo: required
+      env: 
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: i386
+      services:
+        - docker
+
+    - name: Debian 10 buster (arm64)
+      os: linux
+      arch: arm64
+      sudo: required
+      env: 
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: arm64
+      services:
+        - docker
+
+    - name: Debian 10 buster (armhf)
+      os: linux
+      arch: armhf
+      sudo: required
+      env: 
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: armhf
       services:
         - docker
         
