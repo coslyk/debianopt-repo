@@ -1,0 +1,8 @@
+
+name: wiznote
+
+source:
+  host: github
+  repo: WizTeam/WizQTClient
+  method: build
+
