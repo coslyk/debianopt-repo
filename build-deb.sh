@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ## Build environments
 
@@ -28,7 +28,6 @@ parse_yaml() {
         }
     }' | sed 's/_=/+=/g'
 }
-parse_yaml recipe.yml "_"
 eval $(parse_yaml recipe.yml "_")
 
 
@@ -83,7 +82,10 @@ fi
 
 
 ## Step 8: Build package
-$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR
+printf "Building "
+$HERE/travis/build -i docker-deb-builder:buster -o . $SOURCE_DIR | while read LINE; do
+    printf "."
+done
 rm -f *-dbgsym_*.deb
 
 # Step 9: Upload
