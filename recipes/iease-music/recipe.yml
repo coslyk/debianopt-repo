@@ -1,9 +1,6 @@
 
 name: iease-music
 
-only_arches:
-  - amd64
-
 source:
   host: github
   repo: trazyn/ieaseMusic

@@ -1,9 +1,6 @@
 
 name: motrix
 
-only_arches:
-  - amd64
-
 source:
   host: github
   repo: agalwood/Motrix

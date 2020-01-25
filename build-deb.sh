@@ -30,21 +30,6 @@ parse_yaml() {
 eval $(parse_yaml recipe.yml "_")
 
 
-## Step 3: Check if we need to skip this build
-if [ -n "${_only_arches}" ]; then
-    SKIP_BUILD=true
-    for BUILD_ARCH in "${_only_arches[@]}" ; do
-        if [ "$BUILD_ARCH" = "$DEBIAN_ARCH" ]; then
-            SKIP_BUILD=false
-        fi
-    done
-    if [ "$SKIP_BUILD" = "true" ]; then
-        echo -e "\e[32m *** Skip build for $_name *** \e[0m"
-        exit 0
-    fi
-fi
-
-
 ## Step 3: Get latest version and source url
 get_latest_version_github() {
     export PYTHONIOENCODING=utf8
@@ -61,7 +46,6 @@ if [ "$_source_host" = "github" ]; then
     else
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
-        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##ARCH|$DEBIAN_ARCH|g"`
     fi
 
 elif [ "$_source_host" = "other" ]; then
@@ -72,7 +56,6 @@ elif [ "$_source_host" = "other" ]; then
     else
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
-        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##ARCH|$DEBIAN_ARCH|g"`
     fi
 else
     echo "Error: unsupported host: $_source_host" > /dev/stderr
@@ -81,7 +64,7 @@ fi
 
 
 ## Step 4: Check if the package of latest version exists
-REMOTE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
+REMOTE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
 if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
     exit 0
 else
@@ -130,6 +113,6 @@ fi
 # Step 9: Upload
 echo "Uploading ..."
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
+    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
 fi
 printf "\n\n"
