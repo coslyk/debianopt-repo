@@ -1,0 +1,9 @@
+
+name: netease-cloud-music-gtk
+
+source:
+  host: github
+  repo: gmg137/netease-cloud-music-gtk
+  method: copy
+  package_url: https://github.com/gmg137/netease-cloud-music-gtk/releases/download/##VERSION/netease-cloud-music-gtk_##VERSION_amd64.deb
+
