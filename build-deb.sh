@@ -41,33 +41,39 @@ guess_package_url_github() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64.deb\"" | sed 's/.*\"\(.*amd64\.deb\)\".*/\1/g'
 }
 
+# Download infos from Github
 if [ "$_source_host" = "github" ]; then
     LATEST_VERSION=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${LATEST_VERSION#v}"
     if [ "$_source_method" = "build" ]; then
         if [ -n "${_source_source_url}" ]; then
-            SOURCE_URL="${_source_source_url}"
-            SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+            SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
             SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
         fi
     else
         if [ -n "${_source_package_url}" ]; then
-            PACKAGE_URL="${_source_package_url}"
-            PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+            PACKAGE_URL=`echo "${_source_package_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
             PACKAGE_URL=$(guess_package_url_github "$_source_repo")
         fi
     fi
 
+# Download infos from others
 elif [ "$_source_host" = "other" ]; then
     LATEST_VERSION=`bash -c "${_source_get_version}"`
     if [ "$_source_method" = "build" ]; then
-        SOURCE_URL="${_source_source_url}"
-        SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        if [ -n "${_source_get_source_url}" ]; then
+            SOURCE_URL=`bash -c "${_source_get_source_url}"`
+        else
+            SOURCE_URL=`echo ""${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        fi
     else
-        PACKAGE_URL="${_source_package_url}"
-        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        if [ -n "${_source_get_package_url}" ]; then
+            PACKAGE_URL=`bash -c "${_source_get_package_url}"`
+        else
+            PACKAGE_URL=`echo "${_source_package_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        fi
     fi
 else
     echo "Error: unsupported host: $_source_host" > /dev/stderr

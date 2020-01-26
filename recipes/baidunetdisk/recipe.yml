@@ -1,0 +1,8 @@
+
+name: baidunetdisk
+
+source:
+  host: other
+  get_version: curl -s 'http://pan.baidu.com/disk/cmsdata?do=client' | sed 's/.*baidunetdisk_linux_\(.*\)\.deb.*/\1/g'
+  method: copy
+  get_package_url: curl -s 'http://pan.baidu.com/disk/cmsdata?do=client' | sed 's/.*\(http:.*\.deb\).*/\1/g' | sed 's/\\\\\//\//g'
