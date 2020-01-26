@@ -66,7 +66,7 @@ elif [ "$_source_host" = "other" ]; then
         if [ -n "${_source_get_source_url}" ]; then
             SOURCE_URL=`bash -c "${_source_get_source_url}"`
         else
-            SOURCE_URL=`echo ""${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
+            SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         fi
     else
         if [ -n "${_source_get_package_url}" ]; then
