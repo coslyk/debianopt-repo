@@ -98,7 +98,7 @@ fi
 ## Step 6: Build package if needed
 if [ "$_source_method" = "build" ]; then
 
-    SOURCE_DIR=`ls --ignore=debian-template --ignore=recipe.yml`
+    SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
 
     # Copy debian folder
     cp -rf debian-template $SOURCE_DIR/debian
