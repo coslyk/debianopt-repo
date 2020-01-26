@@ -78,9 +78,10 @@ fi
 ## Step 4: Check if the package of latest version exists
 REMOTE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
 if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
+    echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
     exit 0
 else
-    echo -e "\e[32m *** Detect update for $_name: $LATEST_VERSION *** \e[0m"
+    echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
 fi
 
 
@@ -106,11 +107,8 @@ if [ "$_source_method" = "build" ]; then
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     
     # Build package
-    printf "Building "
-    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR | while read LINE; do
-        printf "."
-    done
-    printf "\n"
+    printf "Building..."
+    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb
