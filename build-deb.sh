@@ -45,8 +45,8 @@ if [ "$_source_host" = "github" ]; then
     LATEST_VERSION=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${LATEST_VERSION#v}"
     if [ "$_source_method" = "build" ]; then
-        if [ -n "${_source_url}" ]; then
-            SOURCE_URL="${_source_url}"
+        if [ -n "${_source_source_url}" ]; then
+            SOURCE_URL="${_source_source_url}"
             SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
             SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
@@ -63,7 +63,7 @@ if [ "$_source_host" = "github" ]; then
 elif [ "$_source_host" = "other" ]; then
     LATEST_VERSION=`bash -c "${_source_get_version}"`
     if [ "$_source_method" = "build" ]; then
-        SOURCE_URL="${_source_url}"
+        SOURCE_URL="${_source_source_url}"
         SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
     else
         PACKAGE_URL="${_source_package_url}"
