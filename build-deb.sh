@@ -107,8 +107,11 @@ if [ "$_source_method" = "build" ]; then
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     
     # Build package
-    printf "Building..."
-    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
+    printf "Building "
+    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR | while read LINE; do
+        printf "."
+    done
+    printf "\n"
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb

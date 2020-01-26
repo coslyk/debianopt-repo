@@ -1,0 +1,9 @@
+
+name: youdao-dict
+
+source:
+  host: other
+  get_version: curl -s http://cidian.youdao.com/multi.html | grep ubuntu-amd64.deb | sed 's/.*youdao-dict_\(.*\)-ubuntu-amd64.*/\1/g'
+  method: copy
+  package_url: http://codown.youdao.com/cidian/linux/youdao-dict_##VERSION-ubuntu-amd64.deb
+
