@@ -88,11 +88,11 @@ fi
 ## Step 5: Download source code or package
 if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
-    curl -L -o source.tar.gz "$SOURCE_URL"
+    curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
     tar xzf source.tar.gz
 else
     echo "Downloading $PACKAGE_URL"
-    curl -L -o package.deb "$PACKAGE_URL"
+    curl -L -o package.deb "$PACKAGE_URL" || exit 1
 fi
 
 
@@ -114,7 +114,7 @@ if [ "$_source_method" = "build" ]; then
     printf "\n"
     rm -f *-dbgsym_*.deb
     printf "Built: "
-    ls *.deb
+    ls *.deb || exit 1
 
 elif [ -d "debian-template" ]; then
     # Repack deb
@@ -125,9 +125,23 @@ elif [ -d "debian-template" ]; then
     rm -f package.deb
 fi
 
-# Step 9: Upload
-echo "Uploading ..."
+## Step 7: Upload
+PACKAGE_INFO="{
+  \"name\": \"${_name}\",
+  \"licenses\": [\"MIT\"],
+  \"vcs_url\": \"https://github.com/coslyk/debianzh-repo.git\",
+  \"public_download_numbers\": false
+}"
+
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    echo "Uploading ..."
+
+    # Create package folder on server
+    curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/coslyk/debianzh"
+    echo ""
+
+    # Upload files
     curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
 fi
+
 printf "\n\n"
