@@ -2,7 +2,7 @@
 name: wiznote
 
 source:
-  host: github
-  repo: WizTeam/WizQTClient
+  host: other
+  get_version: curl -s 'https://www.wiz.cn/as/blogs/macchangelog.html' | sed 's/.*"为知笔记 Mac 版 *\([^"]*\)".*/\1/g'
   method: build
-
+  source_url: https://github.com/WizTeam/WizQTClient/archive/##VERSION.tar.gz

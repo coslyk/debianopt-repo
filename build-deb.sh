@@ -45,22 +45,26 @@ if [ "$_source_host" = "github" ]; then
     LATEST_VERSION=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${LATEST_VERSION#v}"
     if [ "$_source_method" = "build" ]; then
-        SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
-        SOURCE_DIR="${_name}-${LATEST_VERSION}"
-
-    elif [ -n "${_source_package_url}" ]; then
-        PACKAGE_URL="${_source_package_url}"
-        PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
-
+        if [ -n "${_source_url}" ]; then
+            SOURCE_URL="${_source_url}"
+            SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        else
+            SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
+        fi
     else
-        PACKAGE_URL=$(guess_package_url_github "$_source_repo")
+        if [ -n "${_source_package_url}" ]; then
+            PACKAGE_URL="${_source_package_url}"
+            PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
+        else
+            PACKAGE_URL=$(guess_package_url_github "$_source_repo")
+        fi
     fi
 
 elif [ "$_source_host" = "other" ]; then
     LATEST_VERSION=`bash -c "${_source_get_version}"`
     if [ "$_source_method" = "build" ]; then
-        echo "Does not support building from other hosts."
-        exit 1
+        SOURCE_URL="${_source_url}"
+        SOURCE_URL=`echo "$SOURCE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
     else
         PACKAGE_URL="${_source_package_url}"
         PACKAGE_URL=`echo "$PACKAGE_URL" | sed "s|##VERSION|$LATEST_VERSION|g"`
@@ -93,6 +97,8 @@ fi
 
 ## Step 6: Build package if needed
 if [ "$_source_method" = "build" ]; then
+
+    SOURCE_DIR=`ls --ignore=debian-template --ignore=recipe.yml`
 
     # Copy debian folder
     cp -rf debian-template $SOURCE_DIR/debian
