@@ -14,7 +14,5 @@ RUN set -ex \
     && rm -rf /tmp/* /var/tmp/*
 
 # install Rust toolchain
-RUN curl https://sh.rustup.rs -s | \
+RUN RUSTUP_HOME=/usr CARGO_HOME=/usr curl https://sh.rustup.rs -s | \
     sh -s -- --default-toolchain stable -y
-
-ENV PATH=$HOME/.cargo/bin:$PATH
