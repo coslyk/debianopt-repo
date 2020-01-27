@@ -9,4 +9,6 @@ override_dh_auto_clean:
 	cargo clean
 
 override_dh_auto_build:
+	curl -Lo rustup-init.sh https://sh.rustup.rs
+	sh rustup-init.sh -y
 	cargo build --release
