@@ -43,13 +43,13 @@ guess_package_url_github() {
 
 # Download infos from Github
 if [ "$_source_host" = "github" ]; then
-    LATEST_VERSION=$(get_latest_version_github "$_source_repo")
-    LATEST_VERSION="${LATEST_VERSION#v}"
+    TAG_NAME=$(get_latest_version_github "$_source_repo")
+    LATEST_VERSION="${TAG_NAME#v}"
     if [ "$_source_method" = "build" ]; then
         if [ -n "${_source_source_url}" ]; then
             SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
-            SOURCE_URL="https://github.com/$_source_repo/archive/v$LATEST_VERSION.tar.gz"
+            SOURCE_URL="https://github.com/$_source_repo/archive/$TAG_NAME.tar.gz"
         fi
     else
         if [ -n "${_source_package_url}" ]; then
@@ -113,11 +113,8 @@ if [ "$_source_method" = "build" ]; then
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     
     # Build package
-    printf "Building "
-    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR | while read LINE; do
-        printf "."
-    done
-    printf "\n"
+    echo "Building..."
+    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb || exit 1
