@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+export DH_QUIET=1
+
+%:
+	dh ${@}
+
+override_dh_auto_clean:
+	cargo clean
+
+override_dh_auto_build:
+	cargo build --release

@@ -1,0 +1,8 @@
+
+name: netease-cloud-music-gtk
+
+source:
+  host: github
+  repo: gmg137/netease-cloud-music-gtk
+  method: build
+
