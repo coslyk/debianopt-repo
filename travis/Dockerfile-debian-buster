@@ -17,4 +17,4 @@ RUN set -ex \
 RUN curl https://sh.rustup.rs -s | \
     sh -s -- --default-toolchain stable -y
 
-ENV PATH=/root/.cargo/bin:$PATH
+ENV PATH=$HOME/.cargo/bin:$PATH
