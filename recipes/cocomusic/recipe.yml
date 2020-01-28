@@ -1,0 +1,8 @@
+
+name: cocomusic
+
+source:
+  host: github
+  repo: xtuJSer/CoCoMusic
+  method: copy
+
