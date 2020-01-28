@@ -1,0 +1,8 @@
+
+name: balena-etcher-electron
+
+source:
+  host: github
+  repo: balena-io/etcher
+  method: copy
+
