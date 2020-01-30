@@ -1,0 +1,8 @@
+
+name: stacer
+
+source:
+  host: github
+  repo: oguzhaninan/Stacer
+  method: build
+
