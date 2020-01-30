@@ -17,9 +17,15 @@ cp -a /source-ro /build/source
 cd /build/source
 
 # Install build dependencies
-mk-build-deps -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends"
+printf "Installing dependencies "
+mk-build-deps -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends" | while read LINE; do
+    printf "."
+done
+printf "\n"
 
 # Build packages
+export DH_QUIET=1
+echo "Building ..."
 debuild -b -uc -us
 
 # Copy packages to output dir with user's permissions
