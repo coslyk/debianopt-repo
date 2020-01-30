@@ -24,8 +24,6 @@ done
 printf "\n"
 
 # Build packages
-export DH_QUIET=1
-echo "Building ..."
 debuild -b -uc -us
 
 # Copy packages to output dir with user's permissions

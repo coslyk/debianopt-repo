@@ -108,7 +108,8 @@ if [ "$_source_method" = "build" ]; then
     SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
 
     # Copy debian folder
-    cp -rf debian-template $SOURCE_DIR/debian
+    [ -d $SOURCE_DIR/debian ] || mkdir $SOURCE_DIR/debian
+    cp -rf debian-template/* $SOURCE_DIR/debian/
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     
@@ -123,7 +124,7 @@ elif [ -d "debian-template" ]; then
     # Repack deb
     dpkg-deb -x package.deb temp
     dpkg-deb -e package.deb temp/debian
-    cp -rf debian-template temp/debian
+    cp -rf debian-template/* temp/debian/
     dpkg-deb -b temp repack.deb
     rm -f package.deb
 fi
