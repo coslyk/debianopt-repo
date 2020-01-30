@@ -114,7 +114,7 @@ if [ "$_source_method" = "build" ]; then
     
     # Build package
     echo "Building..."
-    $HERE/travis/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
+    $HERE/docker-deb-builder/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb || exit 1
