@@ -33,8 +33,14 @@ eval $(parse_yaml recipe.yml "_")
 ## Step 3: Get latest version and source url
 get_latest_version_github() {
     export PYTHONIOENCODING=utf8
-    curl -s "https://api.github.com/repos/$1/releases/latest" | \
-    python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"
+    # Travis CI always fails to get version info from Github...
+    RETRY_TIMES=3
+    while [ -z "$VERSION" ] && [ $RETRY_TIMES != 0 ]; do
+        sleep 3
+        VERSION=`curl -s "https://api.github.com/repos/$1/releases/latest" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"`
+        ((RETRY_TIMES -= 1))
+    done
+    echo "$VERSION"
 }
 
 guess_package_url_github() {
@@ -82,6 +88,11 @@ fi
 
 
 ## Step 4: Check if the package of latest version exists
+if [ -z "$LATEST_VERSION" ]; then
+    echo -e "\e[32m *** Cannot get the latest version of $_name, skip. *** \e[0m"
+    exit 0
+fi
+
 REMOTE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
 if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
     echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
