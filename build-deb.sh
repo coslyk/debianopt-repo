@@ -51,7 +51,7 @@ if [ "$_source_host" = "github" ]; then
         else
             SOURCE_URL="https://github.com/$_source_repo/archive/$TAG_NAME.tar.gz"
         fi
-    else
+    elif [ "$_source_method" = "copy" ]; then
         if [ -n "${_source_package_url}" ]; then
             PACKAGE_URL=`echo "${_source_package_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
@@ -68,7 +68,7 @@ elif [ "$_source_host" = "other" ]; then
         else
             SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         fi
-    else
+    elif [ "$_source_method" = "copy" ]; then
         if [ -n "${_source_get_package_url}" ]; then
             PACKAGE_URL=`bash -c "${_source_get_package_url}"`
         else
@@ -96,14 +96,14 @@ if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
     curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
     tar xzf source.tar.gz
-else
+elif [ "$_source_method" = "copy" ]; then
     echo "Downloading $PACKAGE_URL"
     curl -L -o package.deb "$PACKAGE_URL" || exit 1
 fi
 
 
 ## Step 6: Build package if needed
-if [ "$_source_method" = "build" ]; then
+if [ "$_source_method" = "build" ] || [ "$_source_method" = "metapackage" ]; then
 
     SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
 

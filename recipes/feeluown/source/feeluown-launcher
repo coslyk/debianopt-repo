@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export PATH=/opt/feeluown/bin/:"$PATH"
+export PYTHONPATH=/opt/feeluown/lib/python3/:"$PYTHONPATH"
+
+python3 -m feeluown
