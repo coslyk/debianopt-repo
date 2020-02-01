@@ -11,10 +11,6 @@ RUN set -ex \
                fakeroot \
                curl \
     && apt-get clean \
-    && rm -rf /tmp/* /var/tmp/*
-
-# install Rust toolchain
-RUN curl https://sh.rustup.rs -s | \
-    sh -s -- --default-toolchain stable -y
-
-RUN cp $HOME/.cargo/bin/* /usr/bin/
+    && rm -rf /tmp/* /var/tmp/* \
+    && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
+    && cp $HOME/.cargo/bin/* /usr/bin/

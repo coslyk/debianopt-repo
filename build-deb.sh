@@ -44,7 +44,7 @@ get_latest_version_github() {
 }
 
 guess_package_url_github() {
-    curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64.deb\"" | sed 's/.*\"\(.*amd64\.deb\)\".*/\1/g'
+    curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64" | grep ".deb\"" | sed 's/.*\"\(.*\.deb\)\".*/\1/g'
 }
 
 # Download infos from Github
