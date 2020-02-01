@@ -1,8 +1,0 @@
-
-name: electron-xiami
-
-source:
-  host: github
-  repo: eNkru/electron-xiami
-  method: copy
-
