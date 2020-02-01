@@ -4,5 +4,5 @@ license: Apache-2.0
 
 source:
   host: github
-  repo: jgraph/drawio
+  repo: jgraph/drawio-desktop
   method: copy
