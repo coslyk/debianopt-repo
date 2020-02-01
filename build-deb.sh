@@ -157,6 +157,18 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
     # Upload files
     curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
+
+    # Delete old versions
+    VERSIONS=`curl -s "https://api.bintray.com/packages/coslyk/debianzh/${_name}" | \
+    python3 -c "import sys, json; print('\n'.join(json.load(sys.stdin)['versions']))"`
+
+    for VERSION in $VERSIONS; do
+        if [ "$VERSION" != "$LATEST_VERSION" ]; then
+            echo "Remove old version: $VERSION"
+            curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/coslyk/debianzh/${_name}/versions/${VERSION}"
+            echo ""
+        fi
+    done
 fi
 
 printf "\n\n"
