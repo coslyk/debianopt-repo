@@ -1,5 +1,6 @@
 
 name: codium
+license: MIT
 
 source:
   host: github

@@ -1,5 +1,6 @@
 
 name: iease-music
+license: MIT
 
 source:
   host: github

@@ -1,5 +1,6 @@
 
 name: balena-etcher-electron
+license: Apache-2.0
 
 source:
   host: github

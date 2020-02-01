@@ -1,5 +1,6 @@
 
 name: netease-cloud-music-gtk
+license: GPL-3.0
 
 source:
   host: github

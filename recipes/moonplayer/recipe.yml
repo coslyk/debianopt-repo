@@ -1,5 +1,6 @@
 
 name: moonplayer
+license: GPL-3.0
 
 source:
   host: github

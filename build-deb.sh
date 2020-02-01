@@ -93,7 +93,7 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 0
 fi
 
-REMOTE_URL="https://dl.bintray.com/coslyk/debianzh/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
+REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
 if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
     echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
     exit 0
@@ -143,8 +143,8 @@ fi
 ## Step 7: Upload
 PACKAGE_INFO="{
   \"name\": \"${_name}\",
-  \"licenses\": [\"MIT\"],
-  \"vcs_url\": \"https://github.com/coslyk/debianzh-repo.git\",
+  \"licenses\": [\"${_license}\"],
+  \"vcs_url\": \"https://github.com/debianopt/debianopt-repo.git\",
   \"public_download_numbers\": false
 }"
 
@@ -152,20 +152,20 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     echo "Uploading ..."
 
     # Create package folder on server
-    curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/coslyk/debianzh"
+    curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt"
     echo ""
 
     # Upload files
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/coslyk/debianzh/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
+    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
 
     # Delete old versions
-    VERSIONS=`curl -s "https://api.bintray.com/packages/coslyk/debianzh/${_name}" | \
+    VERSIONS=`curl -s "https://api.bintray.com/packages/debianopt/debianopt/${_name}" | \
     python3 -c "import sys, json; print('\n'.join(json.load(sys.stdin)['versions']))"`
 
     for VERSION in $VERSIONS; do
         if [ "$VERSION" != "$LATEST_VERSION" ]; then
             echo "Remove old version: $VERSION"
-            curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/coslyk/debianzh/${_name}/versions/${VERSION}"
+            curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt/${_name}/versions/${VERSION}"
             echo ""
         fi
     done

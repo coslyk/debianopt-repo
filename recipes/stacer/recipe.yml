@@ -1,5 +1,6 @@
 
 name: stacer
+license: GPL-3.0
 
 source:
   host: github
