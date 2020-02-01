@@ -8,13 +8,13 @@ All packages are updated and built automatically using our automation scripts, s
 
 ## How to use
 ```
-echo "deb https://dl.bintray.com/coslyk/debianzh buster main" | sudo tee -a /etc/apt/sources.list
+echo "deb https://dl.bintray.com/debianopt/debianopt buster main" | sudo tee -a /etc/apt/sources.list
 curl -o bintray-public.key.asc https://bintray.com/user/downloadSubjectPublicKey?username=bintray
 sudo apt-key add bintray-public.key.asc
 ```
 
 ## Package list
-You can obtain a list of packages from [recipes](https://github.com/coslyk/debianzh-repo/tree/master/recipes).
+You can obtain a list of packages from [package list](https://github.com/coslyk/debianopt-repo/wiki/Package-lists) as well as [recipes](https://github.com/coslyk/debianopt-repo/tree/master/recipes).
 
 ## For Developer: How to publish
-Packages are maintained automatically using scripts. You only need to write a YAML config file. Please see [Wiki](https://github.com/coslyk/debianzh-repo/wiki) for details.
+Packages are maintained automatically using scripts. You only need to write a YAML config file. Please see [Wiki](https://github.com/coslyk/debianopt-repo/wiki) for details.
