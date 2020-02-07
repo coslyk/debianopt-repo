@@ -1,0 +1,9 @@
+
+name: electron-netease-cloud-music
+license: MIT
+
+source:
+  host: github
+  repo: Rocket1184/electron-netease-cloud-music
+  method: metapackage
+

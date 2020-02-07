@@ -1,0 +1,5 @@
+app.asar /opt/electron-netease-cloud-music
+electron-netease-cloud-music /usr/bin
+electron-netease-cloud-music.svg /usr/share/icons/hicolor/scalable/apps
+electron-netease-cloud-music.desktop /usr/share/applications
+
