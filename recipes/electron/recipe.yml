@@ -1,0 +1,9 @@
+
+name: electron
+license: MIT
+
+source:
+  host: github
+  repo: electron/electron
+  method: metapackage
+

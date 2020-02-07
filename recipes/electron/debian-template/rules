@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export DH_QUIET=1
+
+%:
+	dh ${@}
+
+override_dh_auto_build:
+	curl -Lo electron.zip https://github.com/electron/electron/releases/download/v##VERSION/electron-v##VERSION-linux-x64.zip
+	unzip electron.zip -d electron
