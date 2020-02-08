@@ -1,0 +1,9 @@
+
+name: notes-up
+license: GPL-2.0
+
+source:
+  host: github
+  repo: Philip-Scott/Notes-up
+  method: build
+
