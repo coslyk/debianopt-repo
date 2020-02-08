@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=LXMusic
+Name[zh_CN]=洛雪音乐助手
+Comment=Music player based on Electron and Vue
+Comment[zh_CN]=一个基于 Electron + Vue 开发的音乐软件
+Icon=lx-music-desktop
+Exec=/usr/bin/lx-music-desktop
+Categories=AudioVideo;Player;

@@ -1,0 +1,9 @@
+
+name: lx-music-desktop
+license: Apache-2.0
+
+source:
+  host: github
+  repo: lyswhut/lx-music-desktop
+  method: metapackage
+
