@@ -6,5 +6,5 @@ export DH_QUIET=1
 	dh ${@}
 
 override_dh_auto_build:
-	curl -Lo lxmusic.7z https://github.com/lyswhut/lx-music-desktop/releases/download/v0.15.0/lx-music-desktop-v0.15.0-win_x86-green.7z
+	curl -Lo lxmusic.7z https://github.com/lyswhut/lx-music-desktop/releases/download/v##VERSION/lx-music-desktop-v##VERSION-win_x86-green.7z
 	p7zip -d lxmusic.7z
