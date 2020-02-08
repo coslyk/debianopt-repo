@@ -1,0 +1,9 @@
+
+name: manta
+license: LGPL-3.0
+
+source:
+  host: github
+  repo: hql287/Manta
+  method: copy
+
