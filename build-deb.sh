@@ -149,14 +149,16 @@ PACKAGE_INFO="{
 }"
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    echo "Uploading ..."
 
     # Create package folder on server
+    echo "Uploading package info ..."
     curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt"
-    echo ""
+    printf "\n\n"
 
     # Upload files
+    echo "Uploading package file ..."
     curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
+    printf "\n\n"
 
     # Delete old versions
     VERSIONS=`curl -s "https://api.bintray.com/packages/debianopt/debianopt/${_name}" | \
@@ -166,7 +168,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
         if [ "$VERSION" != "$LATEST_VERSION" ]; then
             echo "Remove old version: $VERSION"
             curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt/${_name}/versions/${VERSION}"
-            echo ""
+            printf "\n\n"
         fi
     done
 fi
