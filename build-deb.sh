@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
 
+## Step 0: Set up environments
+# Make sure the Date format is English
+export LANG=en
+
+# If no DEBIAN_RELEASE is set, use "buster"
+if [ -z "${DEBIAN_RELEASE}" ]; then
+    DEBIAN_RELEASE=buster
+fi
+
 ## Step 1: Enter directory
 HERE="$(dirname "$(readlink -f "${0}")")"
 cd $1
@@ -117,12 +126,13 @@ fi
 if [ "$_source_method" = "build" ] || [ "$_source_method" = "metapackage" ]; then
 
     SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
+    BUILD_DATE=`date "+%a, %d %b %Y %T %z"`
 
     # Copy debian folder
     [ -d $SOURCE_DIR/debian ] || mkdir $SOURCE_DIR/debian
     cp -rf debian-template/* $SOURCE_DIR/debian/
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
-    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
+    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##DATE|$BUILD_DATE|g" {} \;
     
     # Build package
     echo "Building..."
