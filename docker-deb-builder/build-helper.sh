@@ -17,6 +17,7 @@ cp -a /source-ro /build/source
 cd /build/source
 
 # Install build dependencies
+apt-get update
 printf "Installing dependencies "
 mk-build-deps -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends" | while read LINE; do
     printf "."
