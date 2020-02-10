@@ -1,0 +1,12 @@
+Source: draw.io
+Section: graphics
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/jgraph/drawio-desktop
+Build-Depends: debhelper (>= 9)
+
+Package: draw.io
+Architecture: all
+Depends: electron, libappindicator3-1, libindicator3-7
+Description: drawio-desktop is a draw.io desktop app based on Electron.
+

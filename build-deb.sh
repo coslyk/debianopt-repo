@@ -114,8 +114,23 @@ fi
 ## Step 5: Download source code or package
 if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
-    curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
-    tar xzf source.tar.gz
+
+    if [[ "$SOURCE_URL" == *.tar.gz ]]; then
+        curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
+        tar xzf source.tar.gz
+        rm -f source.tar.gz
+
+    elif [[ "$SOURCE_URL" == *.zip ]]; then
+        curl -L -o source.zip "$SOURCE_URL" || exit 1
+        unzip source.zip
+        rm -f source.zip
+
+    elif [[ "$SOURCE_URL" == *.deb ]]; then
+        curl -L -o source.deb "$SOURCE_URL" || exit 1
+        dpkg-deb -x source.deb source
+        rm -f source.deb
+    fi
+
 elif [ "$_source_method" = "copy" ]; then
     echo "Downloading $PACKAGE_URL"
     curl -L -o package.deb "$PACKAGE_URL" || exit 1
@@ -132,6 +147,7 @@ if [ "$_source_method" = "build" ] || [ "$_source_method" = "metapackage" ]; the
     [ -d $SOURCE_DIR/debian ] || mkdir $SOURCE_DIR/debian
     cp -rf debian-template/* $SOURCE_DIR/debian/
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
+    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##DATE|$BUILD_DATE|g" {} \;
     
     # Build package
