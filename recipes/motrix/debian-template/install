@@ -1,0 +1,6 @@
+dist /opt/Motrix/app
+node_modules /opt/Motrix/app
+package.json /opt/Motrix/app
+extra/linux/engine/aria2.conf /opt/Motrix/engine
+debian/motrix.desktop /usr/share/applications
+motrix.png /usr/share/icons

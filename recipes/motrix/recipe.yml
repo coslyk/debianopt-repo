@@ -5,5 +5,5 @@ license: MIT
 source:
   host: github
   repo: agalwood/Motrix
-  method: copy
+  method: build
 

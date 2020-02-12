@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+rm -f /opt/Motrix/engine/aria2c
+rm -f /usr/bin/motrix
