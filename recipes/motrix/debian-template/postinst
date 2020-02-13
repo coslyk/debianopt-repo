@@ -7,6 +7,6 @@ ln -s /usr/bin/aria2c /opt/Motrix/engine/aria2c
 cat << EOF > /usr/bin/motrix
 #!/bin/bash
 export ELECTRON_IS_DEV=0
-electron /opt/Motrix/app
+electron /opt/Motrix/app "$1"
 EOF
 chmod a+x /usr/bin/motrix
