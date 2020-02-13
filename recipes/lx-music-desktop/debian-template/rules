@@ -3,3 +3,20 @@
 %:
 	dh ${@}
 
+
+override_dh_auto_build:
+	# Remove Electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	sed -i '/"electron-debug":/d' package.json
+	sed -i '/"electron-devtools-installer":/d' package.json
+	rm -vf package-lock.json
+
+	# Build
+	npm_config_cache=./npm_cache npm install
+	npm run build
+	npm prune --production
+	cp resources/icons/512x512.png lx-music-desktop.png
+
+	# Remove absolute paths in node modules
+	find . -name package.json -print0 | xargs -r -0 sed -i '/_where/d'

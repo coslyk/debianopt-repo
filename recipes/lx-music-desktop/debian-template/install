@@ -1,4 +1,6 @@
-opt/lx-music-desktop/resources/app.asar /opt/lx-music-desktop
-usr/share/icons /usr/share
-usr/share/applications /usr/share
-
+dist /opt/lx-music-desktop
+node_modules /opt/lx-music-desktop
+package.json /opt/lx-music-desktop
+lx-music-desktop.png /usr/share/icons
+debian/extras/lx-music-desktop /usr/bin
+debian/extras/lx-music-desktop.desktop /usr/share/applications

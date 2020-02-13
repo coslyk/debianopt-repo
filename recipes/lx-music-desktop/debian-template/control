@@ -3,7 +3,7 @@ Section: sound
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/lyswhut/lx-music-desktop
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9), npm
 
 Package: lx-music-desktop
 Architecture: all
