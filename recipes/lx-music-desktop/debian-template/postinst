@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo '#!/bin/sh' > /usr/bin/lx-music-desktop
+echo 'electron /opt/lx-music-desktop/app.asar "$1"' >> /usr/bin/lx-music-desktop
+chmod a+x /usr/bin/lx-music-desktop

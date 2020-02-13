@@ -1,0 +1,4 @@
+opt/lx-music-desktop/resources/app.asar /opt/lx-music-desktop
+usr/share/icons /usr/share
+usr/share/applications /usr/share
+
