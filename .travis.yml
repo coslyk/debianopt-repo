@@ -19,3 +19,6 @@ before_install:
   
 install:
   - ./scan-and-build.sh
+
+script:
+  - ./summary.sh

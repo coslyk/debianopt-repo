@@ -199,4 +199,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     done
 fi
 
+## Step 8: Write log
+echo "$_name" >> $HERE/success.txt
+
 printf "\n\n"
