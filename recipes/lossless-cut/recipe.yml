@@ -1,0 +1,9 @@
+
+name: lossless-cut
+license: MIT
+
+source:
+  host: github
+  repo: mifi/lossless-cut
+  method: build
+

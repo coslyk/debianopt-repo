@@ -1,0 +1,12 @@
+Source: lossless-cut
+Section: net
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/mifi/lossless-cut
+Build-Depends: debhelper (>= 9), npm
+
+Package: lossless-cut
+Architecture: any
+Depends: electron, ffmpeg
+Description: Save space by quickly and losslessly trimming video and audio files.
+

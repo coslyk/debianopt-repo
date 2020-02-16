@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Link ffmpeg
+mkdir -p /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/x64
+ln -s /usr/bin/ffmpeg /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/x64/
+mkdir -p /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/x64
+ln -s /usr/bin/ffprobe /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/x64/
+
+# Launch script
+cat << EOF > /usr/bin/lossless-cut
+#!/bin/sh
+export ELECTRON_IS_DEV=0
+cd /opt/lossless-cut
+electron build "$@"
+EOF
+chmod a+x /usr/bin/lossless-cut

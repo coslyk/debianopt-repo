@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Remove Electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	sed -i '/"electron-notarize":/d' package.json
+	
+	# Remove ffmpeg dependencies, use the system one
+	sed -i '/"ffmpeg-static":/d' package.json
+	sed -i '/"ffprobe-static":/d' package.json
+	
+	# Do not generate png icon because system supports svg one
+	sed -i 's/yarn icon-gen && //g' package.json
+	
+	# Do not install dependencies, we install it with apt
+	sed -i '/"postinstall":/d' package.json
+	
+	rm -vf package-lock.json
+	
+	# Build
+	npm_config_cache=./npm_cache npm install
+	npm run build
+	npm prune --production
+	cp src/icon.svg lossless-cut.svg

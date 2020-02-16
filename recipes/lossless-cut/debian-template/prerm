@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+rm -rf /opt/lossless-cut/node_modules/ffmpeg-static
+rm -rf /opt/lossless-cut/node_modules/ffprobe-static
+rm -f /usr/bin/lossless-cut

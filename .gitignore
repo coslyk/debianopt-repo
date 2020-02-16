@@ -1,3 +1,7 @@
-summary.txt
+success.txt
 failure.txt
 *.deb
+recipes/*/*
+!recipes/*/debian-template
+!recipes/*/source
+!recipes/*/recipe.yml
