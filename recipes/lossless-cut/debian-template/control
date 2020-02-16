@@ -1,5 +1,5 @@
 Source: lossless-cut
-Section: net
+Section: utils
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/mifi/lossless-cut
