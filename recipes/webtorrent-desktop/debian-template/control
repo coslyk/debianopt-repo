@@ -1,0 +1,12 @@
+Source: webtorrent-desktop
+Section: utils
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://webtorrent.io
+Build-Depends: debhelper (>= 9), npm, git
+
+Package: webtorrent-desktop
+Architecture: any
+Depends: electron
+Description: WebTorrent, the streaming torrent client. For Mac, Windows, and Linux.
+ WebTorrent, the streaming torrent client. For Mac, Windows, and Linux.

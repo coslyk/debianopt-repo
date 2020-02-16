@@ -1,0 +1,26 @@
+[Desktop Entry]
+Type=Application
+Version=0.21.0
+Name=WebTorrent
+GenericName=WebTorrent
+Comment=WebTorrent, the streaming torrent client. For Mac, Windows, and Linux.
+Icon=WebTorrent
+Exec=webtorrent-desktop %U
+Terminal=false
+Actions=CreateNewTorrent;OpenTorrentFile;OpenTorrentAddress;
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;x-scheme-handler/stream-magnet;
+Categories=Network;FileTransfer;P2P;
+StartupNotify=true
+StartupWMClass=webtorrent-desktop 
+
+[Desktop Action CreateNewTorrent]
+Name=Create New Torrent...
+Exec=webtorrent-desktop -n 
+
+[Desktop Action OpenTorrentFile]
+Name=Open Torrent File...
+Exec=webtorrent-desktop -o 
+
+[Desktop Action OpenTorrentAddress]
+Name=Open Torrent Address...
+Exec=webtorrent-desktop -u 

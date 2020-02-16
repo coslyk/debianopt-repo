@@ -1,0 +1,8 @@
+build /opt/webtorrent-desktop
+node_modules /opt/webtorrent-desktop
+static /opt/webtorrent-desktop
+index.js /opt/webtorrent-desktop
+package.json /opt/webtorrent-desktop
+static/WebTorrent.png /usr/share/icons
+debian/extras/webtorrent-desktop /usr/bin
+debian/extras/webtorrent-desktop.desktop /usr/share/applications

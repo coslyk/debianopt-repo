@@ -1,0 +1,8 @@
+
+name: webtorrent-desktop
+license: MIT
+
+source:
+  host: github
+  repo: webtorrent/webtorrent-desktop
+  method: build
