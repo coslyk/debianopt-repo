@@ -1,10 +1,21 @@
 #!/bin/sh
 
+# Set arch name, "##ARCH" will be replaced by the building script
+if [ "##ARCH" = "amd64" ]; then
+    ARCH_NAME=x64
+elif [ "##ARCH" = "i386" ]; then
+    ARCH_NAME=ia32
+elif [ "##ARCH" = "armhf" ]; then
+    ARCH_NAME=arm
+elif [ "##ARCH" = "arm64" ]; then
+    ARCH_NAME=arm64
+fi
+
 # Link ffmpeg
-mkdir -p /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/x64
-ln -s /usr/bin/ffmpeg /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/x64/
-mkdir -p /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/x64
-ln -s /usr/bin/ffprobe /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/x64/
+mkdir -p /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/$ARCH_NAME
+ln -s /usr/bin/ffmpeg /opt/lossless-cut/node_modules/ffmpeg-static/bin/linux/$ARCH_NAME/
+mkdir -p /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/$ARCH_NAME
+ln -s /usr/bin/ffprobe /opt/lossless-cut/node_modules/ffprobe-static/bin/linux/$ARCH_NAME/
 
 # Launch script
 cat << EOF > /usr/bin/lossless-cut

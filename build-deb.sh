@@ -7,7 +7,12 @@ export LANG=en
 
 # If no DEBIAN_RELEASE is set, use "buster"
 if [ -z "${DEBIAN_RELEASE}" ]; then
-    DEBIAN_RELEASE=buster
+    export DEBIAN_RELEASE=buster
+fi
+
+# If no DEBIAN_ARCH is set, use "amd64"
+if [ -z "${DEBIAN_ARCH}" ]; then
+    export DEBIAN_ARCH=amd64
 fi
 
 ## Step 1: Enter directory
@@ -53,7 +58,7 @@ get_latest_version_github() {
 }
 
 guess_package_url_github() {
-    curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64" | grep ".deb\"" | sed 's/.*\"\(.*\.deb\)\".*/\1/g'
+    curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "$DEBIAN_ARCH" | grep ".deb\"" | sed 's/.*\"\(.*\.deb\)\".*/\1/g'
 }
 
 # Fetch infos from Github
@@ -103,7 +108,7 @@ if [ -z "$LATEST_VERSION" ]; then
 fi
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
-    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
+    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
     if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
         exit 0
@@ -154,6 +159,7 @@ if [ "$_source_method" = "build" ]; then
     cp -rf debian-template/* $SOURCE_DIR/debian/
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
+    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##ARCH|$DEBIAN_ARCH|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##DATE|$BUILD_DATE|g" {} \;
     
     # Build package
@@ -189,7 +195,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
     # Upload files
     echo "Uploading package file ..."
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=amd64;publish=1"
+    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
     printf "\n\n"
 
     # Delete old versions

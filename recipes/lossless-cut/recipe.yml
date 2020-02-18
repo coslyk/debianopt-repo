@@ -2,6 +2,12 @@
 name: lossless-cut
 license: MIT
 
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
 source:
   host: github
   repo: mifi/lossless-cut

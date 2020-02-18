@@ -2,6 +2,10 @@
 name: balena-etcher-electron
 license: Apache-2.0
 
+only_arches:
+  - amd64
+  - i386
+
 source:
   host: github
   repo: balena-io/etcher

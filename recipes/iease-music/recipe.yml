@@ -2,6 +2,9 @@
 name: iease-music
 license: MIT
 
+only_arches:
+  - amd64
+
 source:
   host: github
   repo: trazyn/ieaseMusic
