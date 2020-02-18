@@ -56,7 +56,7 @@ guess_package_url_github() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "amd64" | grep ".deb\"" | sed 's/.*\"\(.*\.deb\)\".*/\1/g'
 }
 
-# Download infos from Github
+# Fetch infos from Github
 if [ "$_source_host" = "github" ]; then
     TAG_NAME=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${TAG_NAME#v}"
@@ -74,7 +74,7 @@ if [ "$_source_host" = "github" ]; then
         fi
     fi
 
-# Download infos from others
+# Fetch infos from others
 elif [ "$_source_host" = "other" ]; then
     LATEST_VERSION=`bash -c "${_source_get_version}"`
     if [ "$_source_method" = "build" ]; then
@@ -102,14 +102,17 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 0
 fi
 
-REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
-if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
-    echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
-    exit 0
-else
-    echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
+if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
+    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_amd64.deb"
+    if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
+        echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
+        exit 0
+    else
+        echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
+    fi
+else   # Pull request, always build
+    echo -e "\e[32m *** Test build for $_name $LATEST_VERSION *** \e[0m"
 fi
-
 
 ## Step 5: Download source code or package
 if [ "$_source_method" = "build" ]; then
@@ -129,6 +132,9 @@ if [ "$_source_method" = "build" ]; then
         curl -L -o source.deb "$SOURCE_URL" || exit 1
         dpkg-deb -x source.deb source
         rm -f source.deb
+
+    elif [ "$SOURCE_URL" = "empty" ]; then
+        mkdir source
     fi
 
 elif [ "$_source_method" = "copy" ]; then
@@ -138,7 +144,7 @@ fi
 
 
 ## Step 6: Build package if needed
-if [ "$_source_method" = "build" ] || [ "$_source_method" = "metapackage" ]; then
+if [ "$_source_method" = "build" ]; then
 
     SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
     BUILD_DATE=`date "+%a, %d %b %Y %T %z"`

@@ -6,7 +6,7 @@ Homepage: https://github.com/lyswhut/lx-music-desktop
 Build-Depends: debhelper (>= 9), npm
 
 Package: lx-music-desktop
-Architecture: all
+Architecture: any
 Depends: electron
 Description: Music player based on Electron and Vue.
 

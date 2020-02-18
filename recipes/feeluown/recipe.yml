@@ -5,5 +5,6 @@ license: GPL-3.0
 source:
   host: other
   get_version: curl -s https://pypi.org/pypi/feeluown/json | python3 -c \"import sys, json; print(json.load(sys.stdin)['info']['version'])\"
-  method: metapackage
+  method: build
+  source_url: empty
 
