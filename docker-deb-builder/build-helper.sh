@@ -16,16 +16,20 @@ mkdir -p /build
 cp -a /source-ro /build/source
 cd /build/source
 
+
+# Cross build?
+if [ -n "${CROSS_TRIPLE}" ]; then
+    CROSS_ARGS="--host-arch armhf"
+fi
+
 # Install build dependencies
 apt-get update
 printf "Installing dependencies "
-mk-build-deps -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends" | while read LINE; do
-    printf "."
-done
+mk-build-deps $CROSS_ARGS -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends"
 printf "\n"
 
 # Build packages
-debuild -b -uc -us
+dpkg-buildpackage -b -uc -us $CROSS_ARGS
 
 # Copy packages to output dir with user's permissions
 chown -R $USER:$GROUP /build

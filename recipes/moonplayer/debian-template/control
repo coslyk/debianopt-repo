@@ -3,7 +3,7 @@ Section: sound
 Priority: extra
 Maintainer: YK Liu <cos.lyk@gmail.com>
 Build-Depends: debhelper (>= 8.0.0),
- build-essential, cmake, qtbase5-dev, qtbase5-private-dev, qtdeclarative5-dev, qttools5-dev, libqt5x11extras5-dev, libmpv-dev
+ cmake, qtbase5-dev, qtbase5-private-dev, qtdeclarative5-dev, qttools5-dev, libqt5x11extras5-dev, libmpv-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/coslyk/moonplayer
 #Vcs-Git: git://git.debian.org/collab-maint/moonplayer.git
