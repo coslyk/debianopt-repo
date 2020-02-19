@@ -9,7 +9,7 @@ RUN set -ex \
                devscripts \
                equivs \
                fakeroot \
-               wget \
+               curl \
     && apt-get clean \
     && rm -rf /tmp/* /var/tmp/* \
     && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \

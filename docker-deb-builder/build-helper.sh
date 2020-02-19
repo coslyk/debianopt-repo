@@ -6,10 +6,6 @@
 # succesful build.  These directories are mounted as docker volumes to
 # allow files to be exchanged between the host and the container.
 
-# Install extra dependencies that were provided for the build (if any)
-#   Note: dpkg can fail due to dependencies, ignore errors, and use
-#   apt-get to install those afterwards
-[[ -d /dependencies ]] && dpkg -i /dependencies/*.deb || apt-get -f install -y --no-install-recommends
 
 # Make read-write copy of source code
 mkdir -p /build
@@ -20,12 +16,21 @@ cd /build/source
 # Cross build?
 if [ -n "${CROSS_TRIPLE}" ]; then
     CROSS_ARGS="--host-arch armhf"
+
+    # dpkg cannot resolve cross dependency for npm, workaround:
+    if cat debian/control | grep npm > /dev/null; then
+	    sed -i 's/,*\s*npm\s*//g' debian/control
+	    sed -i 's/:,/:/g' debian/control
+        apt-get install npm
+    fi
 fi
 
 # Install build dependencies
 apt-get update
 printf "Installing dependencies "
-mk-build-deps $CROSS_ARGS -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends"
+mk-build-deps $CROSS_ARGS -ir -t "apt-get -o Debug::pkgProblemResolver=yes -y --no-install-recommends" | while read LINE; do
+    printf "."
+done
 printf "\n"
 
 # Build packages
