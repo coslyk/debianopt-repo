@@ -2,6 +2,9 @@
 name: netease-cloud-music-gtk
 license: GPL-3.0
 
+only_arches:
+  - amd64
+
 source:
   host: github
   repo: gmg137/netease-cloud-music-gtk
