@@ -21,6 +21,7 @@ RUN set -ex \
         libtool                                        \
         llvm                                           \
         multistrap                                     \
+        npm                                            \
         qemu                                           \
         qemu-user-static                               \
         wget                                           \

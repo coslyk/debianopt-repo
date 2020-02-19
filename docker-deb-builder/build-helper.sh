@@ -21,7 +21,7 @@ if [ -n "${CROSS_TRIPLE}" ]; then
     if cat debian/control | grep npm > /dev/null; then
 	    sed -i 's/,*\s*npm\s*//g' debian/control
 	    sed -i 's/:,/:/g' debian/control
-        apt-get install npm
+        # (npm in Docker image pre-installed)
     fi
 fi
 
