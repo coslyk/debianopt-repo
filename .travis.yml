@@ -5,16 +5,24 @@ jobs:
   include:
     - name: Debian 10 buster (amd64)
       os: linux
-      sudo: required
-      env: 
+      env:
         - DEBIAN_RELEASE: buster
         - DEBIAN_ARCH: amd64
+      services:
+        - docker
+
+    - name: Debian 10 buster (armhf)
+      os: linux
+      env:
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: armhf
       services:
         - docker
         
 
 before_install:
-  - docker build -t docker-deb-builder:$DEBIAN_RELEASE -f docker-deb-builder/Dockerfile-debian-$DEBIAN_RELEASE .
+  - if [ "$DEBIAN_ARCH" != amd64 ]; then docker run --rm --privileged multiarch/qemu-user-static:register --reset; fi
+  - docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
 
   
 install:

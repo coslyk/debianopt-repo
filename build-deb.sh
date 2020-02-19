@@ -44,7 +44,22 @@ parse_yaml() {
 eval $(parse_yaml recipe.yml "_")
 
 
-## Step 3: Get latest version and source url
+## Step 3: Check if we need to skip this build
+if [ -n "${_only_arches}" ]; then
+    SKIP_BUILD=true
+    for BUILD_ARCH in "${_only_arches[@]}" ; do
+        if [ "$BUILD_ARCH" = "$DEBIAN_ARCH" ]; then
+            SKIP_BUILD=false
+        fi
+    done
+    if [ "$SKIP_BUILD" = "true" ]; then
+        echo -e "\e[32m *** Skip build for $_name *** \e[0m"
+        exit 0
+    fi
+fi
+
+
+## Step 4: Get latest version and source url
 get_latest_version_github() {
     export PYTHONIOENCODING=utf8
     # Travis CI always fails to get version info from Github...
@@ -101,7 +116,7 @@ else
 fi
 
 
-## Step 4: Check if the package of latest version exists
+## Step 5: Check if the package of latest version exists
 if [ -z "$LATEST_VERSION" ]; then
     echo -e "\e[32m *** Cannot get the latest version of $_name, skip. *** \e[0m"
     exit 0
@@ -119,7 +134,7 @@ else   # Pull request, always build
     echo -e "\e[32m *** Test build for $_name $LATEST_VERSION *** \e[0m"
 fi
 
-## Step 5: Download source code or package
+## Step 6: Download source code or package
 if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
 
@@ -148,7 +163,7 @@ elif [ "$_source_method" = "copy" ]; then
 fi
 
 
-## Step 6: Build package if needed
+## Step 7: Build package if needed
 if [ "$_source_method" = "build" ]; then
 
     SOURCE_DIR=`ls -d */ | sed 's/debian-template\///g' | sed 's/\///g'`
@@ -164,7 +179,7 @@ if [ "$_source_method" = "build" ]; then
     
     # Build package
     echo "Building..."
-    $HERE/docker-deb-builder/build -i docker-deb-builder:$DEBIAN_RELEASE -o . $SOURCE_DIR
+    $HERE/docker-deb-builder/build -i docker-deb-builder:$DEBIAN_RELEASE-$DEBIAN_ARCH -o . $SOURCE_DIR
     rm -f *-dbgsym_*.deb
     printf "Built: "
     ls *.deb || exit 1
@@ -178,7 +193,7 @@ elif [ -d "debian-template" ]; then
     rm -f package.deb
 fi
 
-## Step 7: Upload
+## Step 8: Upload
 PACKAGE_INFO="{
   \"name\": \"${_name}\",
   \"licenses\": [\"${_license}\"],
@@ -211,7 +226,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     done
 fi
 
-## Step 8: Write log
+## Step 9: Write log
 echo "$_name" >> $HERE/success.txt
 
 printf "\n\n"
