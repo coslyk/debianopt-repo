@@ -4,9 +4,6 @@ license: MIT
 
 only_arches:
   - amd64
-  - i386
-  - arm64
-  - armhf
 
 source:
   host: github

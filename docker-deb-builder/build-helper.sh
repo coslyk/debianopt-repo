@@ -15,7 +15,29 @@ cd /build/source
 
 # Cross build?
 if [ -n "${CROSS_TRIPLE}" ]; then
-    CROSS_ARGS="--host-arch armhf"
+
+    case "${CROSS_TRIPLE}" in
+        arm-linux-gnueabihf)
+            CROSS_ARGS="--host-arch armhf"
+            ;;
+        aarch64-linux-gnu)
+            CROSS_ARGS="--host-arch arm64"
+            ;;
+        mipsel-linux-gnu)
+            CROSS_ARGS="--host-arch mipsel"
+            ;;
+        mips64el-linux-gnuabi64)
+            CROSS_ARGS="--host-arch mips64el"
+            ;;
+        powerpc64le-linux-gnu)
+            CROSS_ARGS="--host-arch ppc64el"
+            ;;
+        i386-linux-gnu)
+            CROSS_ARGS="--host-arch i386"
+            ;;
+        *)
+            echo "${CROSS_TRIPLE} not yet implemented." && exit 1 ;;
+    esac
 
     # dpkg cannot resolve cross dependency for npm, workaround:
     if cat debian/control | grep npm > /dev/null; then
