@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Download submodule
+	wget -qO api.zip https://github.com/trazyn/NeteaseCloudMusicApi/archive/master.zip
+	unzip api.zip
+	mv NeteaseCloudMusicApi-master/* NeteaseCloudMusicApi/
+	
+	# Remove Electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	rm -vf package-lock.json
+	
+	# Build
+	npm_config_cache=./npm_cache npm install
+	npm run build
+	npm prune --production
+	cp resource/256x256.png iease-music.png
