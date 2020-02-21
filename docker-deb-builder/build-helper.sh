@@ -17,11 +17,20 @@ cd /build/source
 if [ -n "${CROSS_TRIPLE}" ]; then
 
     case "${CROSS_TRIPLE}" in
+        i686-linux-gnu)
+            CROSS_ARGS="--host-arch i386"
+            export npm_config_arch=ia32
+            export npm_config_target_arch=ia32
+            ;;
         arm-linux-gnueabihf)
             CROSS_ARGS="--host-arch armhf"
+            export npm_config_arch=armv7l
+            export npm_config_target_arch=armv7l
             ;;
         aarch64-linux-gnu)
             CROSS_ARGS="--host-arch arm64"
+            export npm_config_arch=arm64
+            export npm_config_target_arch=arm64
             ;;
         mipsel-linux-gnu)
             CROSS_ARGS="--host-arch mipsel"
@@ -32,9 +41,6 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         powerpc64le-linux-gnu)
             CROSS_ARGS="--host-arch ppc64el"
             ;;
-        i686-linux-gnu)
-            CROSS_ARGS="--host-arch i386"
-            ;;
         *)
             echo "${CROSS_TRIPLE} not yet implemented." && exit 1 ;;
     esac
@@ -44,6 +50,9 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 	    sed -i 's/,*\s*npm\s*//g' debian/control
 	    sed -i 's/:,/:/g' debian/control
         # (npm in Docker image pre-installed)
+        # set CC, CXX for npm to cross compile
+        export CC=/usr/bin/${CROSS_TRIPLE}-gcc
+        export CXX=/usr/bin/${CROSS_TRIPLE}-g++
     fi
 fi
 

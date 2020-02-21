@@ -10,6 +10,7 @@ override_dh_auto_build:
 	sed -i '/"electron-osx-sign":/d' package.json
 	sed -i '/"electron-packager":/d' package.json
 	sed -i '/"electron-winstaller":/d' package.json
+	rm -f package-lock.json
 
 	# Build
 	npm_config_cache=./npm_cache npm install

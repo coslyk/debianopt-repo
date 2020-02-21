@@ -3,7 +3,7 @@ Section: utils
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://webtorrent.io
-Build-Depends: debhelper (>= 9), npm, git
+Build-Depends: debhelper (>= 9), npm, git, libnode-dev
 
 Package: webtorrent-desktop
 Architecture: any
