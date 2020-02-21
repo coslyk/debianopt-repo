@@ -15,6 +15,9 @@ override_dh_auto_build:
 	sed -i '/"electron-builder":/d' package.json
 	rm -vf package-lock.json
 	
+	# Reduce output of webpack
+	sed -i 's|node_modules/webpack/bin/webpack|node_modules/webpack/bin/webpack --no-info|g' package.json
+	
 	# Build
 	npm_config_cache=./npm_cache npm install
 	npm run build
