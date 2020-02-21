@@ -32,7 +32,7 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         powerpc64le-linux-gnu)
             CROSS_ARGS="--host-arch ppc64el"
             ;;
-        i386-linux-gnu)
+        i686-linux-gnu)
             CROSS_ARGS="--host-arch i386"
             ;;
         *)

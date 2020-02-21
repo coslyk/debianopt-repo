@@ -1,6 +1,5 @@
 language: shell
 
-
 jobs:
   include:
     - name: Debian 10 buster (amd64)
@@ -8,6 +7,14 @@ jobs:
       env:
         - DEBIAN_RELEASE: buster
         - DEBIAN_ARCH: amd64
+      services:
+        - docker
+
+    - name: Debian 10 buster (i386)
+      os: linux
+      env:
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: i386
       services:
         - docker
 
