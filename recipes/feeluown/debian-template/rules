@@ -6,6 +6,11 @@ export DH_QUIET=1
 	dh ${@}
 
 override_dh_auto_build:
-	pip3 install --ignore-installed --system --prefix=./opt/feeluown feeluown[battery]
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown feeluown
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown fuo-local
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown fuo-xiami
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown fuo-netease
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown fuo-qqmusic
+	pip3 install --ignore-installed --system --no-deps --prefix=./opt/feeluown janus
 	mkdir ./opt/feeluown/lib/python3
 	mv ./opt/feeluown/lib/python3.*/site-packages/* ./opt/feeluown/lib/python3/
