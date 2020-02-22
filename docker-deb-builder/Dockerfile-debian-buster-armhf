@@ -24,6 +24,7 @@ RUN set -ex \
         meson                                          \
         multistrap                                     \
         npm                                            \
+        python3-pip                                    \
         qemu                                           \
         qemu-user-static                               \
     && apt-get install -y libc6:armhf                  \

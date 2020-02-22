@@ -4,17 +4,18 @@ RUN set -ex \
     && sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+               autoconf \
+               automake \
                build-essential \
                cdbs \
+               cmake \
+               curl \
                devscripts \
                equivs \
                fakeroot \
-               curl \
-               autoconf \
-               automake \
-               cmake \
                meson \
                npm \
+               python3-pip \
     && apt-get clean \
     && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
     && cp $HOME/.cargo/bin/* /usr/bin/ \
