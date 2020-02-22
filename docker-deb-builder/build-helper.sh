@@ -54,13 +54,6 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         export CC=/usr/bin/${CROSS_TRIPLE}-gcc
         export CXX=/usr/bin/${CROSS_TRIPLE}-g++
     fi
-
-    # dpkg cannot resolve cross dependency for pip, workaround:
-    if cat debian/control | grep python3-pip > /dev/null; then
-	    sed -i 's/,*\s*python3-pip\s*//g' debian/control
-	    sed -i 's/:,/:/g' debian/control
-        # (python3-pip in Docker image pre-installed)
-    fi
 fi
 
 # Install build dependencies
