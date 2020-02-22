@@ -6,7 +6,7 @@
 
 override_dh_auto_build:
 	# Download submodule
-	wget -qO api.zip https://github.com/trazyn/NeteaseCloudMusicApi/archive/master.zip
+	curl -Lo api.zip https://github.com/trazyn/NeteaseCloudMusicApi/archive/master.zip
 	unzip api.zip
 	mv NeteaseCloudMusicApi-master/* NeteaseCloudMusicApi/
 	
@@ -16,7 +16,7 @@ override_dh_auto_build:
 	rm -vf package-lock.json
 	
 	# Reduce output of webpack
-	sed -i 's|webpack |webpack --display minimal |g' package.json
+	sed -i 's|webpack |webpack --display errors-only |g' package.json
 	
 	# Build
 	npm_config_cache=./npm_cache npm install

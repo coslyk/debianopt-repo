@@ -13,7 +13,7 @@ override_dh_auto_build:
 	rm -vf package-lock.json
 	
 	# Reduce output of webpack
-	sed -i 's|webpack |webpack --display minimal |g' package.json
+	sed -i 's|webpack |webpack --display errors-only |g' package.json
 	
 	# Build
 	npm_config_cache=./npm_cache npm install

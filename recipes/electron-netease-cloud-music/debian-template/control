@@ -3,7 +3,7 @@ Section: sound
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/Rocket1184/electron-netease-cloud-music
-Build-Depends: debhelper (>= 9), wget
+Build-Depends: debhelper (>= 9), curl
 
 Package: electron-netease-cloud-music
 Architecture: any

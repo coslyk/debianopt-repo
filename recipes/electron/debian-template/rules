@@ -20,5 +20,5 @@ endif
 	dh ${@}
 
 override_dh_auto_build:
-	wget -O electron.zip "https://github.com/electron/electron/releases/download/v##VERSION/electron-v##VERSION-linux-$(ARCH_NAME).zip"
+	curl -Lo electron.zip "https://github.com/electron/electron/releases/download/v##VERSION/electron-v##VERSION-linux-$(ARCH_NAME).zip"
 	unzip electron.zip -d electron
