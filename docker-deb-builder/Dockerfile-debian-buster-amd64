@@ -10,7 +10,12 @@ RUN set -ex \
                equivs \
                fakeroot \
                curl \
+               autoconf \
+               automake \
+               cmake \
+               meson \
+               npm \
     && apt-get clean \
-    && rm -rf /tmp/* /var/tmp/* \
     && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
-    && cp $HOME/.cargo/bin/* /usr/bin/
+    && cp $HOME/.cargo/bin/* /usr/bin/ \
+    && rm -rf /tmp/* /var/tmp/*

@@ -13,18 +13,19 @@ RUN set -ex \
         binutils-multiarch-dev                         \
         build-essential                                \
         cdbs                                           \
+        cmake                                          \
         crossbuild-essential-armhf                     \
+        curl                                           \
         devscripts                                     \
         equivs                                         \
         fakeroot                                       \
-        gdb                                            \
         libtool                                        \
         llvm                                           \
+        meson                                          \
         multistrap                                     \
         npm                                            \
         qemu                                           \
         qemu-user-static                               \
-        wget                                           \
     && apt-get install -y libc6:armhf                  \
     && apt-get clean
 

@@ -13,18 +13,19 @@ RUN set -ex \
         binutils-multiarch-dev                         \
         build-essential                                \
         cdbs                                           \
+        cmake                                          \
         crossbuild-essential-i386                      \
+        curl                                           \
         devscripts                                     \
         equivs                                         \
         fakeroot                                       \
-        gdb                                            \
         libtool                                        \
         llvm                                           \
+        meson                                          \
         multistrap                                     \
         npm                                            \
         qemu                                           \
         qemu-user-static                               \
-        wget                                           \
     && apt-get install -y libc6:i386                   \
     && apt-get clean
 
