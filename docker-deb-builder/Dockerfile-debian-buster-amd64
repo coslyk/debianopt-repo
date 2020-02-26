@@ -14,9 +14,11 @@ RUN set -ex \
                equivs \
                fakeroot \
                meson \
-               npm \
-               python3-pip \
+    # Install the same Node.js version as the latest Electron uses
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs \
     && apt-get clean \
+    # Install Rust toolchains
     && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
     && cp $HOME/.cargo/bin/* /usr/bin/ \
     && rm -rf /tmp/* /var/tmp/*

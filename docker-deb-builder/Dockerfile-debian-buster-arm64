@@ -1,33 +1,34 @@
 FROM debian:buster
 
 RUN set -ex \
-    && dpkg --add-architecture arm64                   \
-    && apt-get update                                  \
-    && apt-get install -y --no-install-recommends      \
-        autoconf                                       \
-        automake                                       \
-        autotools-dev                                  \
-        bc                                             \
-        binfmt-support                                 \
-        binutils-multiarch                             \
-        binutils-multiarch-dev                         \
-        build-essential                                \
-        cdbs                                           \
-        cmake                                          \
-        crossbuild-essential-arm64                     \
-        curl                                           \
-        devscripts                                     \
-        equivs                                         \
-        fakeroot                                       \
-        libtool                                        \
-        llvm                                           \
-        meson                                          \
-        multistrap                                     \
-        npm                                            \
-        python3-pip                                    \
-        qemu                                           \
-        qemu-user-static                               \
-    && apt-get install -y libc6:arm64                  \
+    && dpkg --add-architecture arm64                           \
+    && apt-get update                                          \
+    && apt-get install -y --no-install-recommends              \
+        autoconf                                               \
+        automake                                               \
+        autotools-dev                                          \
+        bc                                                     \
+        binfmt-support                                         \
+        binutils-multiarch                                     \
+        binutils-multiarch-dev                                 \
+        build-essential                                        \
+        cdbs                                                   \
+        cmake                                                  \
+        crossbuild-essential-arm64                             \
+        curl                                                   \
+        devscripts                                             \
+        equivs                                                 \
+        fakeroot                                               \
+        libtool                                                \
+        llvm                                                   \
+        meson                                                  \
+        multistrap                                             \
+        qemu                                                   \
+        qemu-user-static                                       \
+    && apt-get install -y libc6:arm64                          \
+    # Install the same Node.js version as the latest Electron uses
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs                               \
     && apt-get clean
 
 
