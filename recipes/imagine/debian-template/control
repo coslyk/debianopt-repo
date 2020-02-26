@@ -1,0 +1,12 @@
+Source: imagine
+Section: graphics
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/meowtec/Imagine
+Build-Depends: debhelper (>= 9), npm
+
+Package: imagine
+Architecture: any
+Depends: electron, imagemagick
+Description: PNG/JPEG optimization app for macOS, Windows and Linux.
+

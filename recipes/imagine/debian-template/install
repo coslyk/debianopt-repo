@@ -1,0 +1,9 @@
+bin /opt/imagine
+es /opt/imagine
+htdocs /opt/imagine
+node_modules /opt/imagine
+dev-app-update.yml /opt/imagine
+package.json /opt/imagine
+imagine.png /usr/share/icons
+debian/extras/imagine /usr/bin
+debian/extras/imagine.desktop /usr/share/applications

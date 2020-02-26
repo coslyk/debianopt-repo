@@ -1,0 +1,11 @@
+
+name: imagine
+license: MIT
+
+only_arches:
+  - amd64
+
+source:
+  host: github
+  repo: meowtec/Imagine
+  method: build

@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Build
+	npm_config_cache=./npm_cache npm install
+	npm run build
+	npm prune --production
+	cp build/icon.png imagine.png
+
+override_dh_shlibdeps:
+	

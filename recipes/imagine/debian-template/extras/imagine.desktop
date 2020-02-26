@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Imagine
+Exec=imagine %U
+Terminal=false
+Type=Application
+Icon=imagine
+StartupWMClass=Imagine
+Comment=PNG/JPEG optimization app
+Categories=Graphics;
