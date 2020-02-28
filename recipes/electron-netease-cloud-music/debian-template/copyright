@@ -1,9 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: wiznote
-Source: https://github.com/WizTeam/WizQTClient
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: electron-netease-cloud-music
+Upstream-Contact: Rocket1184 <i@rocka.me>
+Source: https://github.com/Rocket1184/electron-netease-cloud-music
 
 Files: *
-Copyright: 2009-2020, Beijing Wozhi Co. Ltd
+Copyright: 2017-2020, Rocket1184 <i@rocka.me>
 License: GPL-3+
 
 License: GPL-3+

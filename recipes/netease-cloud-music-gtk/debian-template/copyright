@@ -1,9 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: wiznote
-Source: https://github.com/WizTeam/WizQTClient
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: netease-cloud-music-gtk
+Upstream-Contact: gmg137
+Source: https://github.com/gmg137/netease-cloud-music-gtk
 
 Files: *
-Copyright: 2009-2020, Beijing Wozhi Co. Ltd
+Copyright: 2019-2020, gmg137
 License: GPL-3+
 
 License: GPL-3+

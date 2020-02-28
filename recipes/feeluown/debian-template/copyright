@@ -1,9 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: wiznote
-Source: https://github.com/WizTeam/WizQTClient
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: feeluown
+Upstream-Contact: cosven
+Source: https://github.com/feeluown/FeelUOwn
 
 Files: *
-Copyright: 2009-2020, Beijing Wozhi Co. Ltd
+Copyright: 2015-2020, cosven
 License: GPL-3+
 
 License: GPL-3+
