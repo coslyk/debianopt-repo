@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Build
+	npm_config_cache=./npm_cache npm install
+	npm run electron:build
+	cp build/icons/256x256.png picgo.png

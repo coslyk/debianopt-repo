@@ -1,0 +1,4 @@
+dist_electron/linux-unpacked/resources/app.asar /opt/picgo
+picgo.png /usr/share/icons
+debian/extras/picgo /usr/bin
+debian/extras/picgo.desktop /usr/share/applications

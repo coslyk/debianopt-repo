@@ -1,0 +1,12 @@
+Source: picgo
+Section: net
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/Molunerfinn/PicGo
+Build-Depends: debhelper (>= 9), npm
+
+Package: picgo
+Architecture: any
+Depends: electron
+Description: A simple & beautiful tool for pictures uploading.
+
