@@ -84,9 +84,9 @@ guess_package_url_github() {
 
 # Fetch infos from Github
 if [ "$_source_host" = "github" ]; then
-    TAG_NAME=$(get_latest_version_github "$_source_repo")
+    TAG_NAME=`get_latest_version_github "$_source_repo" 2> /dev/null`
     LATEST_VERSION="${TAG_NAME#v}"
-    LATEST_VERSION="${TAG_NAME#V}"
+    LATEST_VERSION="${LATEST_VERSION#V}"
     if [ "$_source_method" = "build" ]; then
         if [ -n "${_source_source_url}" ]; then
             SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
