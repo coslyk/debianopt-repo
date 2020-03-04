@@ -67,7 +67,11 @@ get_latest_version_github() {
     DELAY_TIME=0
     while [ -z "$VERSION" ] && [ $RETRY_TIMES != 0 ]; do
         sleep $DELAY_TIME
-        VERSION=`curl -s "https://api.github.com/repos/$1/releases/latest" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"`
+        if [ "$_source_pre_release" = "true" ]; then
+            VERSION=`curl -s "https://api.github.com/repos/$1/releases" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)[0]['tag_name'])"`
+        else
+            VERSION=`curl -s "https://api.github.com/repos/$1/releases/latest" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"`
+        fi
         ((RETRY_TIMES -= 1))
         ((DELAY_TIME += 3))
     done
@@ -82,6 +86,7 @@ guess_package_url_github() {
 if [ "$_source_host" = "github" ]; then
     TAG_NAME=$(get_latest_version_github "$_source_repo")
     LATEST_VERSION="${TAG_NAME#v}"
+    LATEST_VERSION="${TAG_NAME#V}"
     if [ "$_source_method" = "build" ]; then
         if [ -n "${_source_source_url}" ]; then
             SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
