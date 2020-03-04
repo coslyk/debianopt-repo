@@ -54,6 +54,16 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         export CC=/usr/bin/${CROSS_TRIPLE}-gcc
         export CXX=/usr/bin/${CROSS_TRIPLE}-g++
     fi
+
+    # dpkg cannot resolve cross dependency for yarn, workaround:
+    if cat debian/control | grep yarn > /dev/null; then
+	    sed -i 's/,*\s*yarn\s*//g' debian/control
+	    sed -i 's/:,/:/g' debian/control
+        # (yarn in Docker image pre-installed)
+        # set CC, CXX for yarn to cross compile
+        export CC=/usr/bin/${CROSS_TRIPLE}-gcc
+        export CXX=/usr/bin/${CROSS_TRIPLE}-g++
+    fi
 fi
 
 # Install build dependencies
