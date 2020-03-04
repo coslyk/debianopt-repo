@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Remove Electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	sed -i '/"electron-debug":/d' package.json
+	sed -i '/"electron-devtools-installer":/d' package.json
+	
+	# Reduce output of webpack
+	sed -i 's|webpack |webpack --display minimal |g' package.json
+	sed -i 's| --progress||g' package.json
+	
+	# Set Electron version for building native modules
+	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
+	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
+	echo "runtime \"electron\"" >> .yarnrc
+	
+	# Build
+	yarn
+	npm run pack
+	yarn install --production --ignore-scripts --prefer-offline
+	cp build/icons/256x256.png cocomusic.png
+

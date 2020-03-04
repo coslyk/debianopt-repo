@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=CocoMusic
+Comment=a simple music player.
+Exec=cocomusic %U
+Terminal=false
+Type=Application
+Icon=cocomusic
+StartupWMClass=CocoMusic
+Categories=AudioVideo;Audio;Player;Music;

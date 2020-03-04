@@ -1,0 +1,6 @@
+dist /opt/CocoMusic
+node_modules /opt/CocoMusic
+package.json /opt/CocoMusic
+cocomusic.png /usr/share/icons
+debian/extras/cocomusic /usr/bin
+debian/extras/cocomusic.desktop /usr/share/applications
