@@ -51,8 +51,16 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 	    sed -i 's/:,/:/g' debian/control
         # (npm in Docker image pre-installed)
         # set CC, CXX for npm to cross compile
+        export AR=/usr/bin/${CROSS_TRIPLE}-ar
         export CC=/usr/bin/${CROSS_TRIPLE}-gcc
         export CXX=/usr/bin/${CROSS_TRIPLE}-g++
+        export LINK="${CXX}"
+        export RANLIB=/usr/bin/${CROSS_TRIPLE}-ranlib
+        if [ "${CROSS_TRIPLE}" = "i686-linux-gnu" ]; then
+            export PKG_CONFIG_PATH=/usr/lib/i386-linux-gnu/pkgconfig
+        else
+            export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
+        fi
     fi
 
     # dpkg cannot resolve cross dependency for yarn, workaround:
@@ -61,8 +69,16 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 	    sed -i 's/:,/:/g' debian/control
         # (yarn in Docker image pre-installed)
         # set CC, CXX for yarn to cross compile
+        export AR=/usr/bin/${CROSS_TRIPLE}-ar
         export CC=/usr/bin/${CROSS_TRIPLE}-gcc
         export CXX=/usr/bin/${CROSS_TRIPLE}-g++
+        export LINK="${CXX}"
+        export RANLIB=/usr/bin/${CROSS_TRIPLE}-ranlib
+        if [ "${CROSS_TRIPLE}" = "i686-linux-gnu" ]; then
+            export PKG_CONFIG_PATH=/usr/lib/i386-linux-gnu/pkgconfig
+        else
+            export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
+        fi
     fi
 fi
 
