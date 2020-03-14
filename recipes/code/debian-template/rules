@@ -37,7 +37,8 @@ override_dh_auto_build:
 	sed -i 's|inode/directory;||' resources/linux/code.*
 	
 	# Patch completitions with correct names
-	sed -i 's|@@APPNAME@@|code|g' resources/completions/{bash/code,zsh/_code}
+	sed -i 's|@@APPNAME@@|code|g' resources/completions/bash/code
+	sed -i 's|@@APPNAME@@|code|g' resources/completions/zsh/_code
 	
 	# Fix bin path
 	sed -i "s|return path.join(path.dirname(execPath), 'bin', \`\${product.applicationName}\`);|return '/usr/bin/code';|g" src/vs/platform/environment/node/environmentService.ts
