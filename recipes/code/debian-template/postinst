@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Link aria2c
+ln -sf /usr/bin/rg /usr/share/code/node_modules.asar.unpacked/vscode-ripgrep/bin/rg

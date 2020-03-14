@@ -33,7 +33,10 @@ jobs:
         - DEBIAN_ARCH: armhf
       services:
         - docker
-        
+
+branches:
+  only:
+    - master    
 
 before_install:
   - if [ "$DEBIAN_ARCH" != amd64 ]; then docker run --rm --privileged multiarch/qemu-user-static:register --reset; fi

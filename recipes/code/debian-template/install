@@ -1,0 +1,9 @@
+VSCode-linux/resources/app/* /usr/share/code
+debian/extras/code.js /usr/share/code
+debian/extras/code-oss /usr/bin
+resources/completions/bash/code /usr/share/bash-completion/completions
+resources/completions/zsh/_code /usr/share/zsh/site-functions
+resources/linux/code.appdata.xml /usr/share/metainfo
+resources/linux/code.desktop /usr/share/applications
+resources/linux/code-url-handler.desktop /usr/share/applications
+VSCode-linux/resources/app/resources/linux/code.png /usr/share/icons

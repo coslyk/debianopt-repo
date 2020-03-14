@@ -1,0 +1,52 @@
+#!/usr/bin/make -f
+
+ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
+
+ifeq (##ARCH, amd64)
+	_vscode_arch = x64
+endif
+ifeq (##ARCH, i386)
+	_vscode_arch = ia32
+endif
+ifeq (##ARCH, arm64)
+	_vscode_arch = arm64
+endif
+ifeq (##ARCH, armhf)
+	_vscode_arch = arm
+endif
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Build native modules for system electron
+	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
+	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
+	echo "runtime \"electron\"" >> .yarnrc
+	
+	# Patch appdata and desktop file
+	sed -i 's|/usr/share/@@NAME@@/@@NAME@@|@@NAME@@|g
+	s|@@NAME_SHORT@@|Code|g
+	s|@@NAME_LONG@@|Code|g
+	s|@@NAME@@|code|g
+	s|@@ICON@@|code|g
+	s|@@EXEC@@|/usr/bin/code|g
+	s|@@LICENSE@@|MIT|g
+	s|@@URLPROTOCOL@@|vscode|g
+	s|inode/directory;||' resources/linux/code{.appdata.xml,.desktop,-url-handler.desktop}
+	
+	# Patch completitions with correct names
+	sed -i 's|@@APPNAME@@|code|g' resources/completions/{bash/code,zsh/_code}
+	
+	# Fix bin path
+	sed -i "s|return path.join(path.dirname(execPath), 'bin', \`\${product.applicationName}\`);|return '/usr/bin/code';|g
+	s|return path.join(appRoot, 'scripts', 'code-cli.sh');|return '/usr/bin/code';|g" \
+	src/vs/platform/environment/node/environmentService.ts
+	
+	# Build
+	yarn install --arch=$(_vscode_arch)
+	yarn run gulp vscode-linux-$(_vscode_arch)-min
+	mv VSCode-linux-$(_vscode_arch) VSCode-linux
+	rm -f VSCode-linux/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg
+

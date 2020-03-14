@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ELECTRON_RUN_AS_NODE=1 exec electron /usr/share/code/out/cli.js /usr/share/code/code.js "$@"

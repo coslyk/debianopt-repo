@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+rm -f /usr/share/code/node_modules.asar.unpacked/vscode-ripgrep/bin/rg
