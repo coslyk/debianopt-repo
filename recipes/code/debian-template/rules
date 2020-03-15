@@ -20,29 +20,13 @@ endif
 
 
 override_dh_auto_build:
+	# Patches
+	./debian/extras/prepare.sh
+	
 	# Build native modules for system electron
 	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
 	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
 	echo "runtime \"electron\"" >> .yarnrc
-	
-	# Patch appdata and desktop file
-	sed -i 's|/usr/share/@@NAME@@/@@NAME@@|@@NAME@@|g' resources/linux/code.*
-	sed -i 's|@@NAME_SHORT@@|Code|g' resources/linux/code.*
-	sed -i 's|@@NAME_LONG@@|Code|g' resources/linux/code.*
-	sed -i 's|@@NAME@@|code|g' resources/linux/code.*
-	sed -i 's|@@ICON@@|code|g' resources/linux/code.*
-	sed -i 's|@@EXEC@@|/usr/bin/code|g' resources/linux/code.*
-	sed -i 's|@@LICENSE@@|MIT|g' resources/linux/code.*
-	sed -i 's|@@URLPROTOCOL@@|vscode|g' resources/linux/code.*
-	sed -i 's|inode/directory;||' resources/linux/code.*
-	
-	# Patch completitions with correct names
-	sed -i 's|@@APPNAME@@|code|g' resources/completions/bash/code
-	sed -i 's|@@APPNAME@@|code|g' resources/completions/zsh/_code
-	
-	# Fix bin path
-	sed -i "s|return path.join(path.dirname(execPath), 'bin', \`\${product.applicationName}\`);|return '/usr/bin/code';|g" src/vs/platform/environment/node/environmentService.ts
-	sed -i "s|return path.join(appRoot, 'scripts', 'code-cli.sh');|return '/usr/bin/code';|g" src/vs/platform/environment/node/environmentService.ts
 	
 	# Build
 	yarn install --arch=$(_vscode_arch)
