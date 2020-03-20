@@ -33,6 +33,14 @@ jobs:
         - DEBIAN_ARCH: armhf
       services:
         - docker
+
+    - name: Debian 10 buster (mips64el)
+      os: linux
+      env:
+        - DEBIAN_RELEASE: buster
+        - DEBIAN_ARCH: mips64el
+      services:
+        - docker
         
 
 before_install:
