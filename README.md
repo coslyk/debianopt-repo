@@ -15,7 +15,7 @@ sudo apt-key add bintray-public.key.asc
 Or see [Wiki](https://github.com/coslyk/debianopt-repo/wiki/Add-the-repo) for details.
 
 ## Package list
-You can obtain a list of packages from [package list](https://github.com/coslyk/debianopt-repo/wiki/Package-lists) as well as [recipes](https://github.com/coslyk/debianopt-repo/tree/master/recipes).
+You can obtain a list of packages from [package list](https://github.com/coslyk/debianopt-repo/wiki/Package-list) as well as [recipes](https://github.com/coslyk/debianopt-repo/tree/master/recipes).
 
 ## For Developer: How to publish
 Packages are maintained automatically using scripts. You only need to write a YAML config file. Please see [Wiki](https://github.com/coslyk/debianopt-repo/wiki) for details.
