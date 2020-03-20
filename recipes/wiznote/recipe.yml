@@ -2,6 +2,12 @@
 name: wiznote
 license: GPL-3.0
 
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
 source:
   host: other
   get_version: curl -s 'https://www.wiz.cn/as/blogs/macchangelog.html' | sed 's/.*为知笔记 Mac 版 *\([0-9\.]*\).*/\1/g'
