@@ -1,0 +1,35 @@
+--- a/src/ffmpeg.js
++++ b/src/ffmpeg.js
+@@ -25,30 +25,11 @@
+ }
+ 
+ function getFfmpegPath() {
+-  const platform = os.platform();
+-
+-  const exeName = platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg';
+-  return isDev
+-    ? `node_modules/ffmpeg-static/${exeName}`
+-    : join(window.process.resourcesPath, `node_modules/ffmpeg-static/${exeName}`);
++  return 'ffmpeg';
+ }
+ 
+ function getFfprobePath() {
+-  const platform = os.platform();
+-
+-  const map = {
+-    darwin: 'darwin/x64/ffprobe',
+-    win32: 'win32/x64/ffprobe.exe',
+-    linux: 'linux/x64/ffprobe',
+-  };
+-
+-  const subPath = map[platform];
+-
+-  if (!subPath) throw new Error(`${i18n.t('Unsupported platform')} ${platform}`);
+-
+-  return isDev
+-    ? `node_modules/ffprobe-static/bin/${subPath}`
+-    : join(window.process.resourcesPath, `node_modules/ffprobe-static/bin/${subPath}`);
++  return 'ffprobe';
+ }
+ 
+ async function runFfprobe(args) {
