@@ -20,10 +20,8 @@ override_dh_auto_build:
 	# Do not install dependencies, we install it with apt
 	sed -i '/"postinstall":/d' package.json
 	
-	rm -vf package-lock.json
-	
 	# Build
-	npm_config_cache=./npm_cache npm install
-	npm run build
-	npm prune --production
+	yarn
+	yarn run build
+	yarn install --production --ignore-scripts --prefer-offline
 	cp src/icon.svg lossless-cut.svg

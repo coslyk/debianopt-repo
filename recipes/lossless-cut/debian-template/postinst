@@ -22,6 +22,6 @@ cat << 'EOF' > /usr/bin/lossless-cut
 #!/bin/sh
 export ELECTRON_IS_DEV=0
 cd /opt/lossless-cut
-electron build "$@"
+electron build/electron.js "$@"
 EOF
 chmod a+x /usr/bin/lossless-cut
