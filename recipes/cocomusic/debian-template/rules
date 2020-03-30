@@ -2,6 +2,19 @@
 
 ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
 
+ifeq (##ARCH, amd64)
+	_arch = x64
+endif
+ifeq (##ARCH, i386)
+	_arch = ia32
+endif
+ifeq (##ARCH, arm64)
+	_arch = arm64
+endif
+ifeq (##ARCH, armhf)
+	_arch = arm
+endif
+
 %:
 	dh ${@}
 
@@ -23,8 +36,8 @@ override_dh_auto_build:
 	echo "runtime \"electron\"" >> .yarnrc
 	
 	# Build
-	yarn
+	yarn install --arch=$(_arch)
 	npm run pack
-	yarn install --production --ignore-scripts --prefer-offline
+	yarn install --arch=$(_arch) --production --ignore-scripts --prefer-offline
 	cp build/icons/256x256.png cocomusic.png
 

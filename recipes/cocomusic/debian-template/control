@@ -7,6 +7,6 @@ Build-Depends: debhelper (>= 9), npm, yarn, libdbus-1-dev
 
 Package: cocomusic
 Architecture: any
-Depends: electron
+Depends: ${shlibs:Depends}, ${misc:Depends}, electron
 Description: A simple music player built by electron and vue.
 
