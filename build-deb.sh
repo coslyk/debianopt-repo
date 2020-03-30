@@ -63,7 +63,7 @@ fi
 get_latest_version_github() {
     export PYTHONIOENCODING=utf8
     # Travis CI always fails to get version info from Github...
-    RETRY_TIMES=3
+    RETRY_TIMES=5
     DELAY_TIME=0
     while [ -z "$VERSION" ] && [ $RETRY_TIMES != 0 ]; do
         sleep $DELAY_TIME
@@ -73,7 +73,7 @@ get_latest_version_github() {
             VERSION=`curl -s "https://api.github.com/repos/$1/releases/latest" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"`
         fi
         ((RETRY_TIMES -= 1))
-        ((DELAY_TIME += 3))
+        ((DELAY_TIME += 1))
     done
     echo "$VERSION"
 }
