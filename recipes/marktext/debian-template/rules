@@ -1,0 +1,64 @@
+#!/usr/bin/make -f
+
+ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
+
+ifeq (##ARCH, amd64)
+	_arch = x64
+endif
+ifeq (##ARCH, i386)
+	_arch = ia32
+endif
+ifeq (##ARCH, arm64)
+	_arch = arm64
+endif
+ifeq (##ARCH, armhf)
+	_arch = arm
+endif
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Do not rebuild node modules
+	sed -i '/"postinstall":/d' package.json
+	
+	# Reduce output of webpack
+	sed -i 's|webpack |webpack --display minimal |g' package.json
+	sed -i 's| --progress||g' package.json
+	
+	# Set Electron version for building native modules
+	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
+	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
+	echo "runtime \"electron\"" >> .yarnrc
+	
+	# Build
+	yarn install --arch=$(_arch)
+	yarn run pack
+	yarn install --arch=$(_arch) --production --ignore-scripts --prefer-offline
+	
+	# Delete unused files according to electron-builder.yml
+	rm -f node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}
+	rm -f node_modules/dagre-layout/dist/dagre-layout*.js.map
+	rm -rf node_modules/dragula/resources
+	rm -f node_modules/mermaid/dist/mermaid*.js.map
+	rm -f node_modules/terser/dist/bundle.min.js.map
+	rm -f node_modules/vega-lite/build/vega-lite*.js.map
+	rm -rf node_modules/@felixrieseberg/spellchecker/bin
+	rm -rf node_modules/@hfelix/spellchecker/bin
+	rm -rf node_modules/ced/bin
+	rm -rf node_modules/ced/vendor
+	rm -rf node_modules/cld/bin
+	rm -rf node_modules/cld/deps
+	rm -rf node_modules/fontmanager-redux/bin
+	rm -rf node_modules/keyboard-layout/bin
+	rm -rf node_modules/keytar/bin
+	rm -rf node_modules/vscode-windows-registry/bin
+	rm -rf node_modules/@felixrieseberg/spellchecker/vendor
+	rm -rf node_modules/@hfelix/spellchecker/vendor
+	
+	# Delete build files
+	rm -rf node_modules/**/build/Release/obj.target
+	rm -rf node_modules/@hfelix/spellchecker/build/Release/obj.target
+	rm -rf node_modules/.cache
+
