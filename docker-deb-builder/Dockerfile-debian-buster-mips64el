@@ -25,7 +25,7 @@ RUN set -ex \
         multistrap                                             \
         qemu                                                   \
         qemu-user-static                                       \
-    && apt-get install -y libc6:mips64el                       \
+    && apt-get install -y libc6:mips64el  libstdc++6:mips64el  \
     && apt-get clean
 
 

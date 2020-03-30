@@ -25,7 +25,7 @@ RUN set -ex \
         multistrap                                             \
         qemu                                                   \
         qemu-user-static                                       \
-    && apt-get install -y libc6:arm64                          \
+    && apt-get install -y libc6:arm64 libstdc++6:arm64         \
     # Install the same Node.js version as the latest Electron uses
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list \
