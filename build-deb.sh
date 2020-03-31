@@ -70,7 +70,8 @@ get_latest_version_github() {
         if [ "$_source_pre_release" = "true" ]; then
             VERSION=`curl -s "https://api.github.com/repos/$1/releases" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)[0]['tag_name'])"`
         else
-            VERSION=`curl -s "https://api.github.com/repos/$1/releases/latest" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)['tag_name'])"`
+            VERSION=`curl -Ls -o /dev/null -w %{url_effective} "https://github.com/$1/releases/latest"`
+            VERSION="${VERSION##*/}"
         fi
         ((RETRY_TIMES -= 1))
         ((DELAY_TIME += 1))
