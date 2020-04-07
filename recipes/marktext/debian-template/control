@@ -7,6 +7,6 @@ Build-Depends: debhelper (>= 9), yarn, libx11-dev, libxkbfile-dev, libsecret-1-d
 
 Package: marktext
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, electron
+Depends: ${shlibs:Depends}, ${misc:Depends}, electron, ripgrep
 Description: A simple and elegant markdown editor.
 

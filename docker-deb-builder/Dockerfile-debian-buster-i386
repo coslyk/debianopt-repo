@@ -28,7 +28,7 @@ RUN set -ex \
     && apt-get install -y libc6:i386 libstdc++6:i386           \
     # Install the same Node.js version as the latest Electron uses
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list \
+    && echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs yarn                          \
     && apt-get clean

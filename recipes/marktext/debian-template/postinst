@@ -3,7 +3,7 @@
 set -e
 
 # Link ripgrep
-ln -sf /usr/bin/rp /opt/marktext/node_modules/vscode-ripgrep/bin/
+ln -sf /usr/bin/rg /opt/marktext/node_modules/vscode-ripgrep/bin/
 
 # Update icons
 if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ] || [ "$1" = "abort-deconfigure" ] || [ "$1" = "abort-remove" ] ; then
