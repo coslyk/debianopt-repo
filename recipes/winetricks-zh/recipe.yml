@@ -1,0 +1,13 @@
+
+name: winetricks-zh
+license: LGPL-2.1
+
+only_arches:
+  - amd64
+  - i386
+
+source:
+  host: github
+  repo: hillwoodroc/winetricks-zh
+  method: build
+

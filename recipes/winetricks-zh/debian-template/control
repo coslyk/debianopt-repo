@@ -1,0 +1,18 @@
+Source: winetricks-zh
+Section: utils
+Priority: extra
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), cmake
+Standards-Version: 3.9.2
+Homepage: https://github.com/hillwoodroc/winetricks-zh
+
+Package: winetricks-zh
+Architecture: any
+Depends: wine | wine-development | wine-staging
+Recommends: zenity | kde-baseapps-bin
+Description: package manager for Wine to install Chinese-related software easily
+ A shell script 'package manager' for Wine to install some
+ Chinese-related Windows software easily.
+ .
+ The list contains some important Chinese-oriented applications like
+ wechat, qq, TM, etc.
