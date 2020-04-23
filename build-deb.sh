@@ -76,6 +76,11 @@ get_latest_version_github() {
         ((RETRY_TIMES -= 1))
         ((DELAY_TIME += 1))
     done
+
+    # Redirection fails?
+    if [ "$VERSION" = "latest" ]; then
+        exit 1
+    fi
     echo "$VERSION"
 }
 
