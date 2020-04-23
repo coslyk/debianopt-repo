@@ -1,0 +1,10 @@
+
+name: wxformbuilder
+license: GPL-2.0
+
+source:
+  host: github
+  repo: wxFormBuilder/wxFormBuilder
+  method: build
+  git: true
+

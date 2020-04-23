@@ -1,0 +1,10 @@
+Source: wxformbuilder
+Section: devel
+Priority: optional
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper, libwxgtk3.0-gtk3-dev, libwxgtk-media3.0-gtk3-dev, meson
+
+Package: wxformbuilder
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: RAD tool for wxWidgets GUI design.
