@@ -4,6 +4,6 @@
  const electron = require('electron'); // eslint-disable-line
 -const isDev = require('electron-is-dev');
 +const isDev = false;
- const path = require('path');
- 
- const menu = require('./menu');
+ const { join } = require('path');
+ const os = require('os');
+ const unhandled = require('electron-unhandled');
