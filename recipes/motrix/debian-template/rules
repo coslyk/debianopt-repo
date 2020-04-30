@@ -11,7 +11,6 @@ override_dh_auto_build:
 	sed -i '/"electron-devtools-installer":/d' package.json
 	sed -i '/"electron-notarize":/d' package.json
 	sed -i '/"electron-osx-sign":/d' package.json
-	rm -vf package-lock.json
 	
 	# Reduce output of webpack
 	sed -i 's|webpack |webpack --display minimal |g' package.json
