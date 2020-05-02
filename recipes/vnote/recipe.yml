@@ -1,0 +1,10 @@
+
+name: vnote
+license: MIT
+
+source:
+  host: github
+  repo: tamlok/vnote
+  method: build
+  git: true
+
