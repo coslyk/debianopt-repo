@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+export DH_QUIET=1
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	# Disable OpenCV since qimgv requires OpenCV >= 4.0 but Debian 10's OpenCV is not new enough
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DOPENCV_SUPPORT=OFF

@@ -1,0 +1,9 @@
+
+name: qimgv
+license: GPL-3.0
+
+source:
+  host: github
+  repo: easymodo/qimgv
+  method: build
+
