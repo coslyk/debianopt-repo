@@ -1,0 +1,15 @@
+
+name: listen1
+license: MIT
+
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
+source:
+  host: github
+  repo: listen1/listen1_desktop
+  method: build
+
