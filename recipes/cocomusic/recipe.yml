@@ -11,6 +11,5 @@ only_arches:
 source:
   host: github
   repo: xtuJSer/CoCoMusic
-  pre_release: true
   method: build
 
