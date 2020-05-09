@@ -1,0 +1,12 @@
+Source: textadept
+Section: text
+Priority: optional
+Maintainer: coslyk <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 9), libgtk2.0-dev, libncurses-dev, wget, unzip
+Standards-Version: 3.9.5
+Homepage: https://foicica.com/textadept/
+
+Package: textadept
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A fast, minimalist, and remarkably extensible cross-platform text editor

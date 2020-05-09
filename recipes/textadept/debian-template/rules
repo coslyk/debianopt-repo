@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+
+ifeq (##ARCH, amd64)
+    export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+else ifeq (##ARCH, i386)
+    CROSS = i686-linux-gnu-
+    export PKG_CONFIG_PATH=/usr/lib/i386-linux-gnu/pkgconfig
+else ifeq (##ARCH, arm64)
+    CROSS = aarch64-linux-gnu-
+    export PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
+else ifeq (##ARCH, armhf)
+    CROSS = arm-linux-gnueabihf-
+    export PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig
+else ifeq (##ARCH, mips64el)
+    CROSS = mips64el-linux-gnuabi64-
+    export PKG_CONFIG_PATH=/usr/lib/mips64el-linux-gnuabi64/pkgconfig
+endif
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	cd src && make clean
+
+override_dh_auto_build:
+	# Build
+	cd src && make CROSS=$(CROSS) deps && make CROSS=$(CROSS) && make CROSS=$(CROSS) curses
+	
+	# Download modules
+	wget https://foicica.com/textadept/download/textadept_LATEST.modules.zip
+	unzip textadept_LATEST.modules.zip
+	mv textadept_##VERSION.modules/modules/* modules/
+	
+	# Rebuild yaml modules
+	rm -f modules/yaml/libyaml*
+	sed -i -e 's|ta_src = .*/src|ta_src = ../../../src|g' modules/yaml/src/Makefile
+	cd modules/yaml/src && make CROSS=$(CROSS)
+	cd modules/yaml && ln -s libyaml.so libyaml64.so && rm -rf src
+	
+
+override_dh_auto_install:
+	cd src && make CROSS=$(CROSS) PREFIX=/usr DESTDIR=../debian/textadept install
+	rm ./debian/textadept/usr/share/pixmaps/textadept*
+	cd src && make curses CROSS=$(CROSS) PREFIX=/usr DESTDIR=../debian/textadept install
+

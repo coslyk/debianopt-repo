@@ -154,7 +154,7 @@ if [ "$_source_method" = "build" ]; then
     if [ "$_source_git" = "true" ]; then
         git clone --recursive --branch "$TAG_NAME" "https://github.com/$_source_repo.git"
 
-    elif [[ "$SOURCE_URL" == *.tar.gz ]]; then
+    elif [[ "$SOURCE_URL" == *.tar.gz ]] || [[ "$SOURCE_URL" == *.tgz ]]; then
         curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
         tar xzf source.tar.gz
         rm -f source.tar.gz
