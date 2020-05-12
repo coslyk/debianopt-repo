@@ -1,0 +1,11 @@
+
+name: albert
+license: GPL-3.0
+
+source:
+  host: github
+  repo: albertlauncher/albert
+  get_version_from: latest_tag
+  method: build
+  git: true
+

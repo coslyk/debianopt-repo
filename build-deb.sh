@@ -67,8 +67,10 @@ get_latest_version_github() {
     DELAY_TIME=0
     while [ -z "$VERSION" ] && [ $RETRY_TIMES != 0 ]; do
         sleep $DELAY_TIME
-        if [ "$_source_pre_release" = "true" ]; then
+        if [ "$_source_get_version_from" = "prerelease" ]; then
             VERSION=`curl -s "https://api.github.com/repos/$1/releases" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)[0]['tag_name'])"`
+        elif [ "$_source_get_version_from" = "latest_tag" ]; then
+            VERSION=`curl -s "https://api.github.com/repos/$1/tags" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)[0]['name'])"`
         else
             VERSION=`curl -Ls -o /dev/null -w %{url_effective} "https://github.com/$1/releases/latest"`
             VERSION="${VERSION##*/}"
