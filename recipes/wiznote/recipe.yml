@@ -10,6 +10,6 @@ only_arches:
 
 source:
   host: other
-  get_version: curl -s 'https://www.wiz.cn/as/blogs/macchangelog.html' | sed 's/.*为知笔记 Mac 版 *\([0-9\.]*\).*/\1/g'
+  get_version: curl -s 'https://www.wiz.cn/as/blogs/wiznote-linux.html' | sed 's/.*建议分支： *\([0-9\.]*\).*/\1/g'
   method: build
   source_url: https://github.com/WizTeam/WizQTClient/archive/##VERSION.tar.gz
