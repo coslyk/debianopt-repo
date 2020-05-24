@@ -3,3 +3,4 @@ node_modules /opt/lossless-cut
 lossless-cut.svg /usr/share/icons/hicolor/scalable/apps
 debian/extras/lossless-cut /usr/bin
 debian/extras/lossless-cut.desktop /usr/share/applications
+debian/extras/package.json /opt/lossless-cut

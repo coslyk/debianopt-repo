@@ -1,0 +1,14 @@
+{
+  "name": "lossless-cut",
+  "productName": "LosslessCut",
+  "description": "The swiss army knife of lossless video/audio editing",
+  "copyright": "Copyright © 2020 ${author}",
+  "version": "##VERSION",
+  "main": "build/electron.js",
+  "author": {
+    "name": "Mikael Finstad",
+    "email": "finstaden@gmail.com",
+    "url": "https://mifi.no/losslesscut/"
+  },
+  "license": "MIT"
+}

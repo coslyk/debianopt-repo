@@ -1,9 +1,0 @@
---- a/public/electron.js
-+++ b/public/electron.js
-@@ -1,5 +1,5 @@
- const electron = require('electron'); // eslint-disable-line
--const isDev = require('electron-is-dev');
-+const isDev = false;
- const { join } = require('path');
- const os = require('os');
- const unhandled = require('electron-unhandled');

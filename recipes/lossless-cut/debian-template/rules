@@ -25,3 +25,7 @@ override_dh_auto_build:
 	yarn run build
 	yarn install --production --ignore-scripts --prefer-offline
 	cp src/icon.svg lossless-cut.svg
+	
+	# Patch electron-is-dev
+	echo 'module.exports = false;' > node_modules/electron-is-dev/index.js
+
