@@ -10,7 +10,6 @@ override_dh_auto_build:
 	sed -i '/"electron-builder":/d' package.json
 	sed -i '/"electron-debug":/d' package.json
 	sed -i '/"electron-devtools-installer":/d' package.json
-	rm -vf package-lock.json
 	
 	# Reduce output of webpack
 	sed -i 's|webpack |webpack --display minimal |g' package.json
@@ -24,3 +23,8 @@ override_dh_auto_build:
 	
 	# Remove absolute paths in node modules
 	find . -name package.json -print0 | xargs -r -0 sed -i '/_where/d'
+	
+	# Delete unused files
+	rm -f node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}
+	rm -rf node_modules/.cache
+

@@ -10,6 +10,11 @@ override_dh_auto_build:
 	npm run build
 	npm prune --production
 	cp build/icon.png imagine.png
+	
+	# Delete unused files
+	rm -f node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}
+	rm -rf node_modules/.cache
+
 
 override_dh_shlibdeps:
 	
