@@ -3,7 +3,7 @@ Section: devel
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/electron/electron
-Build-Depends: debhelper (>= 9), unzip, curl, libgtk-3-0, libxss1, libnss3, libasound2, libxtst6, libx11-xcb1
+Build-Depends: debhelper (>= 9), unzip, curl, libgtk-3-0, libxss1, libnss3, libasound2, libxtst6, libx11-xcb1, libxcb-dri3-0, libdrm2, libgbm1
 
 Package: electron
 Architecture: any
