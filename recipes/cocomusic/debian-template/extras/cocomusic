@@ -1,3 +1,4 @@
 #!/bin/sh
 export ELECTRON_IS_DEV=0
-electron /opt/CocoMusic "$@"
+cd /opt/CocoMusic/dist/electron
+electron main.js "$@"
