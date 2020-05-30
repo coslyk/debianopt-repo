@@ -1,3 +1,4 @@
+build /opt/CocoMusic
 dist /opt/CocoMusic
 node_modules /opt/CocoMusic
 package.json /opt/CocoMusic
