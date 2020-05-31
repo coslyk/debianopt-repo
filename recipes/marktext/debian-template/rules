@@ -32,18 +32,23 @@ override_dh_auto_build:
 	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
 	echo "runtime \"electron\"" >> .yarnrc
 	
+	
 	# Build
 	yarn install --arch=$(_arch)
+	
+	# Temporary fix for building on Node 12.16
+	yarn upgrade @babel/core
+	yarn upgrade @babel/preset-env
+	
 	yarn run pack
 	yarn install --arch=$(_arch) --production --ignore-scripts --prefer-offline
 	
 	# Delete unused files according to electron-builder.yml
-	rm -f node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}
-	rm -f node_modules/dagre-layout/dist/dagre-layout*.js.map
+	rm -f node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}
+	rm -rf node_modules/dagre-d3-renderer/dist/demo
 	rm -rf node_modules/dragula/resources
-	rm -f node_modules/mermaid/dist/mermaid*.js.map
-	rm -f node_modules/terser/dist/bundle.min.js.map
-	rm -f node_modules/vega-lite/build/vega-lite*.js.map
+	rm -f node_modules/**/*.js.map
+	rm -f node_modules/**/*.ts.map
 	rm -rf node_modules/@felixrieseberg/spellchecker/bin
 	rm -rf node_modules/@hfelix/spellchecker/bin
 	rm -rf node_modules/ced/bin
@@ -56,6 +61,8 @@ override_dh_auto_build:
 	rm -rf node_modules/vscode-windows-registry/bin
 	rm -rf node_modules/@felixrieseberg/spellchecker/vendor
 	rm -rf node_modules/@hfelix/spellchecker/vendor
+	rm -f node_modules/@hfelix/spellchecker/build/Release/hunspell.a
+	rm -f node_modules/ced/build/Release/compact_enc_det.a
 	
 	# Delete build files
 	rm -rf node_modules/**/build/Release/obj.target
