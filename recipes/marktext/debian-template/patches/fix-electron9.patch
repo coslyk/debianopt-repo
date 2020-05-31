@@ -1,0 +1,12 @@
+--- a/src/main/index.js
++++ b/src/main/index.js
+@@ -42,6 +42,9 @@
+   app.disableHardwareAcceleration()
+ }
+ 
++// Workaround for Electron 9
++app.allowRendererProcessReuse = false
++
+ // Make Mark Text a single instance application.
+ if (!process.mas && process.env.NODE_ENV !== 'development') {
+   const gotSingleInstanceLock = app.requestSingleInstanceLock()
