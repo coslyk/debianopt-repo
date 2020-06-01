@@ -1,0 +1,10 @@
+
+name: trelby
+license: GPL-2.0
+
+source:
+  host: github
+  repo: oskusalerma/trelby
+  get_version_from: latest_tag
+  method: build
+

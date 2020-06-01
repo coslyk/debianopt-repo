@@ -1,0 +1,66 @@
+From 50c46f2249ca5b094c5e712a872e1dadbd8dfdfa Mon Sep 17 00:00:00 2001
+From: Osku Salerma <osku.salerma@gmail.com>
+Date: Sun, 2 Aug 2015 14:39:01 +0100
+Subject: [PATCH] Upgrade to wxPython 3.0. Fixes #354.
+
+---
+ src/cfgdlg.py | 2 +-
+ src/config.py | 4 ----
+ src/trelby.py | 4 ++--
+ 3 files changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/src/cfgdlg.py b/src/cfgdlg.py
+index 356bb44..9b50130 100644
+--- a/src/cfgdlg.py
++++ b/src/cfgdlg.py
+@@ -1224,7 +1224,7 @@ class ElementsGlobalPanel(wx.Panel):
+ 
+         vsizer.Add(wx.StaticLine(self, -1), 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 10)
+ 
+-        gsizer = wx.FlexGridSizer(2, 2, 5, 0)
++        gsizer = wx.FlexGridSizer(0, 2, 5, 0)
+ 
+         self.addTypeCombo("newEnter", "Enter creates", self, gsizer)
+         self.addTypeCombo("newTab", "Tab creates", self, gsizer)
+diff --git a/src/config.py b/src/config.py
+index ede0738..803e6d3 100644
+--- a/src/config.py
++++ b/src/config.py
+@@ -1355,7 +1355,6 @@ class ConfigGui:
+             if s:
+                 nfi = wx.NativeFontInfo()
+                 nfi.FromString(s)
+-                nfi.SetEncoding(wx.FONTENCODING_ISO8859_1)
+ 
+                 fi.font = wx.FontFromNativeInfo(nfi)
+ 
+@@ -1363,9 +1362,6 @@ class ConfigGui:
+                 # something equally silly, resulting in an
+                 # invalid/non-existent font. on wxGTK2 and wxMSW we can
+                 # detect this by checking the point size of the font.
+-                # wxGTK1 chooses some weird chinese font and I can't find
+-                # a way to detect that, but it's irrelevant since we'll
+-                # rip out support for it in a few months.
+                 if fi.font.GetPointSize() == 0:
+                     fi.font = None
+ 
+diff --git a/src/trelby.py b/src/trelby.py
+index 08e36fc..ac43e23 100644
+--- a/src/trelby.py
++++ b/src/trelby.py
+@@ -2594,10 +2594,10 @@ class MyApp(wx.App):
+     def OnInit(self):
+         global cfgGl, mainFrame, gd
+ 
+-        if (wx.MAJOR_VERSION != 2) or (wx.MINOR_VERSION != 8):
++        if (wx.MAJOR_VERSION != 3) or (wx.MINOR_VERSION != 0):
+             wx.MessageBox("You seem to have an invalid version\n"
+                           "(%s) of wxWidgets installed. This\n"
+-                          "program needs version 2.8." %
++                          "program needs version 3.0." %
+                           wx.VERSION_STRING, "Error", wx.OK)
+             sys.exit()
+ 
+-- 
+2.20.1
+
