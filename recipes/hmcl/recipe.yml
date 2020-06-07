@@ -1,0 +1,10 @@
+
+name: hmcl
+license: GPL-3.0
+
+source:
+  host: github
+  repo: huanghongxun/HMCL
+  method: build
+  source_url: empty
+

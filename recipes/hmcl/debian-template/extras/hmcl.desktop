@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=HMCL
+Comment=The Minecraft Launcher
+Icon=hmcl
+Terminal=false
+StartupWMClass=HMCL
+Exec=/usr/bin/hmcl
+Categories=Game;

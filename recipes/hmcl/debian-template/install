@@ -1,0 +1,5 @@
+HMCL.jar /opt/HMCL
+debian/extras/hmcl /usr/bin
+debian/extras/hmcl.png /usr/share/icons
+debian/extras/hmcl.desktop /usr/share/applications
+

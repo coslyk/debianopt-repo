@@ -1,0 +1,13 @@
+Source: hmcl
+Section: games
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/huanghongxun/HMCL
+Build-Depends: debhelper (>= 9), curl
+
+Package: hmcl
+Architecture: any
+Depends: default-jre, openjfx
+Description: A Minecraft Launcher
+ A Minecraft Launcher which is multi-functional, cross-platform and popular.
+

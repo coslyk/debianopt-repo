@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export DH_QUIET=1
+
+%:
+	dh ${@}
+
+override_dh_auto_build:
+	curl -Lo HMCL.jar https://github.com/huanghongxun/HMCL/releases/download/v##VERSION/HMCL-##VERSION.jar
+
