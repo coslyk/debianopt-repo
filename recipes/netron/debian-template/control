@@ -1,0 +1,12 @@
+Source: netron
+Section: devel
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/lutzroeder/netron
+Build-Depends: debhelper (>= 9), npm, git
+
+Package: netron
+Architecture: any
+Depends: electron
+Description: Visualizer for neural network, deep learning and machine learning models.
+

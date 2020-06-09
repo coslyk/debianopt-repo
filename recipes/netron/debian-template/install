@@ -1,0 +1,6 @@
+src /opt/netron
+node_modules /opt/netron
+package.json /opt/netron
+netron.svg /usr/share/icons/hicolor/scalable/apps
+debian/extras/netron /usr/bin
+debian/extras/netron.desktop /usr/share/applications
