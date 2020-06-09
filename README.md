@@ -11,7 +11,7 @@ It uses scripts to check updates and build packages automatically, so we can ens
 ## How to use
 
 ```bash
-sudo bash -c "echo "deb https://dl.bintray.com/debianopt/debianopt buster main" >> /etc/apt/sources.list.d/debianopt.list"
+sudo bash -c "echo 'deb https://dl.bintray.com/debianopt/debianopt buster main' >> /etc/apt/sources.list.d/debianopt.list"
 curl -o bintray-public.key.asc https://bintray.com/user/downloadSubjectPublicKey?username=bintray
 sudo apt-key add bintray-public.key.asc
 ```
