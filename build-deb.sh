@@ -205,8 +205,8 @@ if [ "$_source_method" = "build" ]; then
 elif [ -d "debian-template" ]; then
     # Repack deb
     dpkg-deb -x package.deb temp
-    dpkg-deb -e package.deb temp/debian
-    cp -rf debian-template/* temp/debian/
+    dpkg-deb -e package.deb temp/DEBIAN
+    cp -rf debian-template/* temp/DEBIAN/
     dpkg-deb -b temp repack.deb
     rm -f package.deb
 fi
