@@ -1,0 +1,12 @@
+
+name: copytranslator
+license: GPL-2.0
+
+only_arches:
+  - amd64
+
+source:
+  host: github
+  repo: CopyTranslator/CopyTranslator
+  method: copy
+

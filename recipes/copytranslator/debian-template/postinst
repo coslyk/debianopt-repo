@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Link to the binary
+ln -sf '/opt/copytranslator/copytranslator' '/usr/bin/copytranslator'
+
+update-mime-database /usr/share/mime || true
+update-desktop-database /usr/share/applications || true
+
+# Fix permission for SUID sandbox
+chown root /opt/copytranslator/chrome-sandbox
+chmod 4755 /opt/copytranslator/chrome-sandbox
