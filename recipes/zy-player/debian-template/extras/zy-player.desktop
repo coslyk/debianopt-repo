@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ZY Player
+Comment=ZY Player 资源播放器
+Exec=zy-player %U
+Terminal=false
+Type=Application
+Icon=zy-player
+StartupWMClass=ZY Player
+Categories=Network;

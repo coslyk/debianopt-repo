@@ -1,0 +1,4 @@
+dist_electron/linux-unpacked/resources/app.asar /opt/zy-player
+zy-player.png /usr/share/icons
+debian/extras/zy-player /usr/bin
+debian/extras/zy-player.desktop /usr/share/applications

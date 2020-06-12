@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export ELECTRON_IS_DEV=0
+
+electron /opt/zy-player/app.asar
