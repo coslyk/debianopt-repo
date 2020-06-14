@@ -1,0 +1,9 @@
+
+name: vocal
+license: GPL-3.0
+
+source:
+  host: github
+  repo: needle-and-thread/vocal
+  method: build
+
