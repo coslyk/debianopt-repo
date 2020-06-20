@@ -1,0 +1,12 @@
+Source: petal
+Section: sound
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/xtuJSer/CoCoMusic
+Build-Depends: debhelper (>= 9), yarn
+
+Package: petal
+Architecture: any
+Depends: electron
+Description: Douban.FM Client With Extra.
+

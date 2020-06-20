@@ -1,0 +1,4 @@
+build /opt/petal
+petal.png /usr/share/icons
+debian/extras/petal /usr/bin
+debian/extras/petal.desktop /usr/share/applications
