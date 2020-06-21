@@ -2,6 +2,12 @@
 name: qv2ray
 license: GPL-3.0
 
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
 source:
   host: github
   repo: Qv2ray/Qv2ray
