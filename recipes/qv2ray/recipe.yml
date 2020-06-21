@@ -1,0 +1,10 @@
+
+name: qv2ray
+license: GPL-3.0
+
+source:
+  host: github
+  repo: Qv2ray/Qv2ray
+  method: build
+  git: true
+
