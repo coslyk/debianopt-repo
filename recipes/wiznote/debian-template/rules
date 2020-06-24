@@ -9,7 +9,7 @@ include /usr/share/dpkg/default.mk
 export DH_QUIET=1
 
 %:
-	dh $@ --parallel
+	dh $@ --buildsystem=cmake
 
 override_dh_auto_configure:
 	dh_auto_configure -- -DWIZNOTE_USE_QT5=YES -DCMAKE_BUILD_TYPE=Release
