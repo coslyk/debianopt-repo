@@ -1,0 +1,14 @@
+Source: flacon
+Section: sound
+Priority: extra
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 8.0.0),
+ cmake, pkg-config, qtbase5-dev, qttools5-dev, qttools5-dev-tools, libuchardet-dev
+Standards-Version: 3.9.2
+Homepage: https://flacon.github.io/
+
+Package: flacon
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Audio File Encoder
+ Extracts audio tracks from an audio CD image to separate tracks.

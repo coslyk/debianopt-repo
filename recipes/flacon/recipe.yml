@@ -1,0 +1,9 @@
+
+name: flacon
+license: LGPL-2.1
+
+source:
+  host: github
+  repo: flacon/flacon
+  method: build
+
