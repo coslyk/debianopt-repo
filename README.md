@@ -2,7 +2,7 @@
 
 ## Description
 
-DebianOpt Repository provides a wide range of open-source softwares. It aims to improve the user experience of Debian Linux as well as providing a way for developers to distribute their awesome projects.
+DebianOpt is an additional repository for Debian users. It provides packages of many interesting open-source softwares. It aims to make it easier to install softwares in Debian as well as providing a way for developers to distribute their awesome projects.
 
 This repository focuses on the latest stable Debian version. Currently `Debian 10 (Buster)` is supported. Supported CPU architectures are: `amd64` `i386` `arm64` `armhf` `mips64el`.
 
