@@ -1,0 +1,11 @@
+--- a/meson.build
++++ b/meson.build
+@@ -8,7 +8,7 @@
+ prefix = get_option('prefix')
+ bindir = get_option('bindir')
+ datadir = get_option('datadir')
+-pymdir = import('python').find_installation().get_install_dir()
++pymdir = 'dist-packages'.join(import('python').find_installation().get_install_dir().split('site-packages'))
+ resourcesdir = join_paths(datadir, 'Setzer')
+ localedir = get_option('localedir')
+ mandir = get_option('mandir')

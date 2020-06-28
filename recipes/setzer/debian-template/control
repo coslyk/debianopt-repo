@@ -1,0 +1,12 @@
+Source: setzer
+Section: text
+Priority: optional
+Maintainer: coslyk <cos.lyk@gmail.com>
+Build-Depends: meson
+Standards-Version: 4.4.0
+Homepage: https://github.com/cvfosammmm/Setzer
+
+Package: setzer
+Architecture: all
+Depends: python3-gi, gir1.2-gtk-3.0, gir1.2-gtksource-4, gir1.2-gspell-1, gir1.2-pango-1.0, gir1.2-poppler-0.18, gir1.2-webkit2-4.0, python3-xdg, gettext, xdg-utils
+Description: LaTeX editor written in Python with Gtk.
