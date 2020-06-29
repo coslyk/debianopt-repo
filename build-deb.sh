@@ -63,8 +63,8 @@ fi
 get_latest_version_github() {
     export PYTHONIOENCODING=utf8
     # Travis CI always fails to get version info from Github...
-    RETRY_TIMES=5
-    DELAY_TIME=0
+    local RETRY_TIMES=5
+    local DELAY_TIME=0
     while [ -z "$VERSION" ] && [ $RETRY_TIMES != 0 ]; do
         sleep $DELAY_TIME
         if [ "$_source_get_version_from" = "prerelease" ]; then
@@ -86,6 +86,14 @@ get_latest_version_github() {
     echo "$VERSION"
 }
 
+get_latest_version_gitlab() {
+    export PYTHONIOENCODING=utf8
+    local HOST=`echo "$1" | sed 's|https://\([^/]*\)/.*|\1|g'`
+    local ID=`curl -sL "$1" | grep data-project-id | sed 's|.*data-project-id="\([^"]*\)".*|\1|g'`
+    local VERSION=`curl -sL "https://$HOST/api/v4/projects/$ID/releases?per_page=1" | python -c "import sys, json; sys.stdout.write(json.load(sys.stdin)[0]['tag_name'])"`
+    echo "$VERSION"
+}
+
 guess_package_url_github() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | grep "browser_download_url" | grep "$DEBIAN_ARCH" | grep ".deb\"" | sed 's/.*\"\(.*\.deb\)\".*/\1/g'
 }
@@ -100,6 +108,7 @@ if [ "$_source_host" = "github" ]; then
             SOURCE_URL=`echo "${_source_source_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
         else
             SOURCE_URL="https://github.com/$_source_repo/archive/$TAG_NAME.tar.gz"
+            GIT_CLONE_URL="https://github.com/$_source_repo.git"
         fi
     elif [ "$_source_method" = "copy" ]; then
         if [ -n "${_source_package_url}" ]; then
@@ -107,6 +116,18 @@ if [ "$_source_host" = "github" ]; then
         else
             PACKAGE_URL=$(guess_package_url_github "$_source_repo")
         fi
+    fi
+
+# Fetch infos from Gitlab
+elif [ "$_source_host" = "gitlab" ]; then
+    TAG_NAME=`get_latest_version_gitlab "$_source_repo"`
+    LATEST_VERSION="${TAG_NAME#v}"
+    LATEST_VERSION="${LATEST_VERSION#V}"
+    if [ "$_source_method" = "build" ]; then
+        SOURCE_URL="$_source_repo/-/archive/$TAG_NAME/$_name-$TAG_NAME.tar.gz"
+        GIT_CLONE_URL="$_source_repo.git"
+    elif [ "$_source_method" = "copy" ]; then
+        PACKAGE_URL=`echo "${_source_package_url}" | sed "s|##VERSION|$LATEST_VERSION|g"`
     fi
 
 # Fetch infos from others
@@ -154,7 +175,7 @@ if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
 
     if [ "$_source_git" = "true" ]; then
-        git clone --recursive --branch "$TAG_NAME" "https://github.com/$_source_repo.git"
+        git clone --recursive --branch "$TAG_NAME" "$GIT_CLONE_URL"
 
     elif [[ "$SOURCE_URL" == *.tar.gz ]] || [[ "$SOURCE_URL" == *.tgz ]]; then
         curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
