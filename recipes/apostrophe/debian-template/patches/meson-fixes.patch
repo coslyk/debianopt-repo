@@ -1,0 +1,19 @@
+--- a/meson.build
++++ b/meson.build
+@@ -1,7 +1,6 @@
+ project(
+   'apostrophe',
+-  version: '2.2.0.2',
+-  meson_version: '>= 0.50.0'
++  version: '2.2.0.2'
+ )
+ 
+ if get_option('profile') == 'development'
+@@ -44,6 +43,7 @@
+ gettext_package = meson.project_name()
+ localedir = get_option('prefix') / get_option('localedir')
+ pythondir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
++pythondir = 'dist-packages'.join(pythondir.split('site-packages'))
+ datadir = get_option('prefix') / get_option('datadir')
+ bindir = join_paths(get_option('prefix'), get_option('bindir'))
+ pkgdatadir = datadir / meson.project_name()

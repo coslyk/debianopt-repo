@@ -1,0 +1,13 @@
+Source: apostrophe
+Section: text
+Priority: optional
+Maintainer: coslyk <cos.lyk@gmail.com>
+Build-Depends: meson, pkg-config, libgtk-3-dev, libgirepository1.0-dev
+Standards-Version: 4.4.0
+Homepage: https://gitlab.gnome.org/somas/apostrophe
+
+Package: apostrophe
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-regex, python3-levenshtein, python3-enchant, python3-gi, python3-cairo, python3-pypandoc, gir1.2-webkit2-4.0, gir1.2-gspell-1, gettext
+Recommends: texlive, texlie-latex-extra, libjs-mathjax
+Description: A distraction free Markdown editor for GNU/Linux made with GTK+.

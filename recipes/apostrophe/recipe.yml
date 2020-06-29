@@ -1,0 +1,9 @@
+
+name: apostrophe
+license: GPL-3.0
+
+source:
+  host: gitlab
+  repo: https://gitlab.gnome.org/somas/apostrophe
+  method: build
+
