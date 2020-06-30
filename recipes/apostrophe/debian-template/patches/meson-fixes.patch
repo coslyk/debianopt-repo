@@ -9,7 +9,18 @@
  )
  
  if get_option('profile') == 'development'
-@@ -44,6 +43,7 @@
+@@ -32,10 +31,6 @@
+ i18n   = import('i18n')
+ 
+ 
+-dependency('glib-2.0')
+-dependency('gobject-2.0')
+-dependency('gobject-introspection-1.0')
+-dependency('gtk+-3.0')
+ 
+ find_program('glib-compile-schemas', required: true)
+ find_program('gtk-update-icon-cache', required: false)
+@@ -44,6 +39,7 @@
  gettext_package = meson.project_name()
  localedir = get_option('prefix') / get_option('localedir')
  pythondir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
