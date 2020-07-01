@@ -10,15 +10,12 @@ This repository focuses on the latest stable Debian version. Currently `Debian 1
 
 It uses scripts to check updates and build packages automatically, so we can ensure that all packages here are up-to-date!
 
-## How to use
+## Add this repo
 
 ```bash
-sudo bash -c "echo 'deb https://dl.bintray.com/debianopt/debianopt buster main' >> /etc/apt/sources.list.d/debianopt.list"
-curl -o bintray-public.key.asc https://bintray.com/user/downloadSubjectPublicKey?username=bintray
-sudo apt-key add bintray-public.key.asc
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/master/add-repo.sh)"
 ```
 
-Or see [Wiki](https://github.com/coslyk/debianopt-repo/wiki/Add-the-repo) for details.
 
 ## Mirrors and Proxies
 
