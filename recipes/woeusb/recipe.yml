@@ -1,0 +1,9 @@
+
+name: woeusb
+license: GPL-3.0
+
+source:
+  host: github
+  repo: slacka/WoeUSB
+  method: build
+
