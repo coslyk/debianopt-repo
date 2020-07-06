@@ -1,0 +1,9 @@
+
+name: gamehub
+license: GPL-3.0
+
+source:
+  host: github
+  repo: tkashkin/GameHub
+  method: build
+
