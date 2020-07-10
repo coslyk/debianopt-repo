@@ -1,0 +1,9 @@
+
+name: opentoonz
+license: BSD
+
+source:
+  host: github
+  repo: opentoonz/opentoonz
+  method: build
+
