@@ -1,0 +1,10 @@
+
+name: chiaki
+license: GPL-3.0
+
+source:
+  host: github
+  repo: thestr4ng3r/chiaki
+  method: build
+  git: true
+
