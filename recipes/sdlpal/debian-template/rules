@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+
+ifeq (##ARCH, i386)
+    HOST = i686-linux-gnu-
+else ifeq (##ARCH, arm64)
+    HOST = aarch64-linux-gnu-
+else ifeq (##ARCH, armhf)
+    HOST = arm-linux-gnueabihf-
+else ifeq (##ARCH, mips64el)
+    HOST = mips64el-linux-gnuabi64-
+endif
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	cd unix && make clean
+
+override_dh_auto_build:
+	# Build
+	cd unix && make HOST=$(HOST)
+

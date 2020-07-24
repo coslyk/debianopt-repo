@@ -1,0 +1,12 @@
+Source: sdlpal
+Section: games
+Priority: optional
+Maintainer: coslyk <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 9), libsdl2-dev, libfltk1.3-dev
+Standards-Version: 3.9.5
+Homepage: https://github.com/sdlpal/sdlpal
+
+Package: sdlpal
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: SDL-based reimplementation of the classic Chinese-language RPG "Xian jian Qi Xia Zhuan" (also known as PAL).

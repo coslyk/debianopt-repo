@@ -1,0 +1,11 @@
+
+name: sdlpal
+license: GPL-3.0
+
+source:
+  host: github
+  repo: sdlpal/sdlpal
+  get_version_from: prerelease
+  method: build
+  git: true
+
