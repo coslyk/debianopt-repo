@@ -1,0 +1,6 @@
+out /opt/chord
+node_modules /opt/chord
+package.json /opt/chord
+debian/extras/chord /usr/bin
+debian/extras/chord.png /usr/share/icons
+debian/extras/chord.desktop /usr/share/applications

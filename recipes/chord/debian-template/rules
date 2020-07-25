@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+
+ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
+
+ifeq (##ARCH, amd64)
+	_arch = x64
+endif
+ifeq (##ARCH, i386)
+	_arch = ia32
+endif
+ifeq (##ARCH, arm64)
+	_arch = arm64
+endif
+ifeq (##ARCH, armhf)
+	_arch = arm
+endif
+
+%:
+	dh ${@}
+
+
+override_dh_auto_build:
+	# Remove electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	sed -i '/"electron-rebuild":/d' package.json
+	sed -i 's|--dir",|--dir"|g' package.json
+	
+	# Do not rebuild node modules
+	sed -i '/"postinstall":/d' package.json
+	
+	# Set Electron version for building native modules
+	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
+	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
+	echo "runtime \"electron\"" >> .yarnrc
+	
+	
+	# Build
+	yarn install --arch=$(_arch)
+	yarn run compile
+	yarn install --arch=$(_arch) --production --ignore-scripts --prefer-offline
+	
+	# Delete unused files
+	rm -f `find out -name *.ts`
+	rm -f node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}
+	rm -rf node_modules/**/build/Release/obj.target
+	rm -rf node_modules/.cache
+

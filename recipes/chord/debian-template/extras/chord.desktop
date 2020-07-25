@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=chord
+Exec=/usr/bin/chord %U
+Terminal=false
+Type=Application
+Icon=chord
+StartupWMClass=chord
+Comment=Chord - A Modern Music Player
+Categories=Music;
