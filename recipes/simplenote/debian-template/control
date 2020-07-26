@@ -1,0 +1,12 @@
+Source: simplenote
+Section: text
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/Automattic/simplenote-electron
+Build-Depends: debhelper (>= 9), npm, git
+
+Package: simplenote
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, electron
+Description: Simplenote for Web, Windows, and Linux.
+

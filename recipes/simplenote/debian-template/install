@@ -1,0 +1,7 @@
+dist /opt/simplenote
+desktop /opt/simplenote
+node_modules /opt/simplenote
+package.json /opt/simplenote
+simplenote.png /usr/share/icons
+debian/extras/simplenote /usr/bin
+debian/extras/simplenote.desktop /usr/share/applications

@@ -1,0 +1,14 @@
+
+name: simplenote
+license: GPL-2.0
+
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
+source:
+  host: github
+  repo: Automattic/simplenote-electron
+  method: build
