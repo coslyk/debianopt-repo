@@ -1,0 +1,10 @@
+Source: bingle
+Section: net
+Priority: optional
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper, valac, meson, libgtk-3-dev, libjson-glib-dev, libsoup2.4-dev
+
+Package: bingle
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Download and manage wallpapers from Bing.

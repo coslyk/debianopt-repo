@@ -1,0 +1,8 @@
+
+name: bingle
+license: MIT
+
+source:
+  host: github
+  repo: coslyk/bingle
+  method: build
