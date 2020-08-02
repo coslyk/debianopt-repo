@@ -1,0 +1,9 @@
+
+name: komorebi
+license: GPL-3.0
+
+source:
+  host: github
+  repo: Komorebi-Fork/komorebi
+  get_version_from: latest_tag
+  method: build
