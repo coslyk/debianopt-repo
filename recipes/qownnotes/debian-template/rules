@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+export QT_SELECT=qt5
+
+%:
+	dh $@ --buildsystem=qmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- src/QOwnNotes.pro
+
+override_dh_auto_build:
+	lrelease src/QOwnNotes.pro
+	dh_auto_build
+
+override_dh_auto_install:
+	echo "Skip auto install"

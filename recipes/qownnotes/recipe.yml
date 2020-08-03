@@ -1,0 +1,10 @@
+
+name: qownnotes
+license: GPL-2.0
+
+source:
+  host: github
+  repo: pbek/QOwnNotes
+  method: build
+  git: true
+

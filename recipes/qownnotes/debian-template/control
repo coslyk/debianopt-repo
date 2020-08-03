@@ -1,0 +1,14 @@
+Source: qownnotes
+Section: text
+Priority: extra
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 8.0.0),
+ qt5-qmake, qtbase5-dev, qtdeclarative5-dev, qttools5-dev, libqt5svg5-dev, libqt5xmlpatterns5-dev, libqt5websockets5-dev, libqt5x11extras5-dev
+Standards-Version: 3.9.2
+Homepage: https://github.com/pbek/QOwnNotes
+
+Package: qownnotes
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, aspell
+Description: Text Editor
+ QOwnNotes is a plain-text file notepad and todo-list manager with markdown support and Nextcloud / ownCloud integration.
