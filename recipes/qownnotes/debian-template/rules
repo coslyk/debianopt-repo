@@ -12,7 +12,7 @@ override_dh_auto_configure:
 	dh_auto_configure -- src/QOwnNotes.pro
 
 override_dh_auto_build:
-	lrelease src/QOwnNotes.pro
+	cd src/languages && lrelease *.ts
 	dh_auto_build
 
 override_dh_auto_install:
