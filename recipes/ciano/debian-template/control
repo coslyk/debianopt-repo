@@ -1,0 +1,10 @@
+Source: ciano
+Section: video
+Priority: optional
+Maintainer: YK Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper, valac, meson, libgtk-3-dev, libgranite-dev
+
+Package: ciano
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, ffmpeg, imagemagick
+Description: A multimedia file converter focused on simplicity.
