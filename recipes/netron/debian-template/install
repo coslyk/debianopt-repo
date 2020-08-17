@@ -1,4 +1,4 @@
-src /opt/netron
+source /opt/netron
 node_modules /opt/netron
 package.json /opt/netron
 netron.svg /usr/share/icons/hicolor/scalable/apps
