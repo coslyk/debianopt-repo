@@ -1,0 +1,8 @@
+
+name: alohomora
+license: GPL-3.0
+
+source:
+  host: github
+  repo: z0o0p/alohomora
+  method: build
