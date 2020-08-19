@@ -1,0 +1,2 @@
+fix-compilation-with-old-libgranite.patch
+skip-granite-version-check.patch
