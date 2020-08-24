@@ -1,0 +1,8 @@
+
+name: easyssh
+license: GPL-3.0
+
+source:
+  host: github
+  repo: muriloventuroso/easyssh
+  method: build
