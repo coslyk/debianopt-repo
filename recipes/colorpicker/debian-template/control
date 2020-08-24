@@ -1,0 +1,17 @@
+
+Source: colorpicker
+Section: x11
+Priority: extra
+Maintainer: Ronny Dobra <ronnydobra@arcor.de>
+Build-Depends: debhelper (>= 9),
+               libgranite-dev,
+               libgtk-3-dev,
+               meson,
+               valac
+Standards-Version: 3.9.3
+
+Package: colorpicker
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: An intuitive Color Picker
+ The most intuitive Color Picker to speed up your workflow
