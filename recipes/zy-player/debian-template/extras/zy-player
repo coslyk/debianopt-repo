@@ -1,5 +1,13 @@
-#!/bin/sh
-
+#!/usr/bin/env bash
+ELECTRON_APP='/opt/zy-player/app.asar'
 export ELECTRON_IS_DEV=0
-
-electron /opt/zy-player/app.asar
+case "$(id -u)" in
+0) electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+*)
+    electron ${ELECTRON_APP} "$@"
+    case "$?" in
+    0) ;;
+    *) electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+    esac
+    ;;
+esac

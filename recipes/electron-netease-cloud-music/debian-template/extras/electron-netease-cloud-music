@@ -1,2 +1,13 @@
-#!/bin/bash
-exec electron /opt/electron-netease-cloud-music/app.asar
+#!/usr/bin/env bash
+ELECTRON_APP='/opt/electron-netease-cloud-music/app.asar'
+export ELECTRON_IS_DEV=0
+case "$(id -u)" in
+0) exec electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+*)
+    exec electron ${ELECTRON_APP} "$@"
+    case "$?" in
+    0) ;;
+    *) exec electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+    esac
+    ;;
+esac

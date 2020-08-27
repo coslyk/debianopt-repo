@@ -1,6 +1,19 @@
 #!/bin/bash
 
 # Link to the binary
-echo '#!/bin/sh' > /opt/draw.io/drawio
-echo 'electron /opt/draw.io/app.asar "$@"' >> /opt/draw.io/drawio
+cat >/opt/draw.io/drawio <<-'EOF'
+#!/usr/bin/env bash
+ELECTRON_APP='/opt/draw.io/app.asar'
+export ELECTRON_IS_DEV=0
+case "$(id -u)" in
+0) electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+*)
+    electron ${ELECTRON_APP} "$@"
+    case "$?" in
+    0) ;;
+    *) electron ${ELECTRON_APP} --no-sandbox "$@" ;;
+    esac
+    ;;
+esac
+EOF
 chmod a+x /opt/draw.io/drawio

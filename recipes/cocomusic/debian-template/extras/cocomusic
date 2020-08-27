@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 export ELECTRON_IS_DEV=0
 cd /opt/CocoMusic/dist/electron
-electron main.js "$@"
+case "$(id -u)" in
+0) electron main.js --no-sandbox "$@" ;;
+*)
+    electron main.js "$@"
+    case "$?" in
+    0) ;;
+    *) electron main.js --no-sandbox "$@" ;;
+    esac
+    ;;
+esac
