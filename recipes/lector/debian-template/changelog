@@ -1,0 +1,5 @@
+lector (##VERSION-1~##RELEASE) ##RELEASE; urgency=medium
+
+  * Auto update to ##VERSION
+
+ -- coslyk <cos.lyk@gmail.com>  ##DATE

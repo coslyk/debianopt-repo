@@ -1,0 +1,9 @@
+
+name: lector
+license: GPL-3.0
+
+source:
+  host: github
+  repo: BasioMeusPuga/Lector
+  method: build
+
