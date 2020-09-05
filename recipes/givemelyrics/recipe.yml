@@ -1,0 +1,8 @@
+
+name: givemelyrics
+license: GPL-3.0
+
+source:
+  host: github
+  repo: muriloventuroso/givemelyrics
+  method: build
