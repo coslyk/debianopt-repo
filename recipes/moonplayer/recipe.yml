@@ -6,4 +6,5 @@ source:
   host: github
   repo: coslyk/moonplayer
   method: build
+  git: true
 
