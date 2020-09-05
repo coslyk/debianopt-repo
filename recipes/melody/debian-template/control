@@ -1,0 +1,23 @@
+Source: melody
+Section: x11
+Priority: optional
+Maintainer: Artem Anufrij <artem.anufrij@live.de>
+Build-Depends: appstream,
+               debhelper (>= 9),
+               gettext,
+               desktop-file-utils,
+               libgranite-dev,
+               libjson-glib-dev,
+               libsoup2.4-dev,
+               libsqlite3-dev,
+               libgstreamer-plugins-base1.0-dev,
+               libtagc0-dev,
+               meson,
+               valac (>= 0.26)
+Standards-Version: 4.1.1
+
+Package: melody
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Simple music player
+ A music player for listening local music files and online radios, written especially for elementary OS
