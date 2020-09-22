@@ -14,7 +14,7 @@ override_dh_auto_build:
 	# Build
 	npm_config_cache=./npm_cache npm install
 	npm prune --production
-	cp setup/icon.svg netron.svg
+	cp publish/icon.svg netron.svg
 	
 	# Delete unused files
 	rm -f node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}
