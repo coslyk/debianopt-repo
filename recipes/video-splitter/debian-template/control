@@ -1,0 +1,13 @@
+Source: video-splitter
+Section: utils
+Priority: optional
+Maintainer: Yikun Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 9), libepoxy-dev, libgtk-3-dev, libjson-glib-dev, libmpv-dev, meson, valac
+
+Standards-Version: 3.9.6
+Package: video-splitter
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, ffmpeg
+Pre-Depends: dpkg (>= 1.15.6)
+Description: A simple tool to split videos
+ Split your videos losslessly and conveniently.
