@@ -1,0 +1,10 @@
+--- a/src/main/ui/WindowManager.js
++++ b/src/main/ui/WindowManager.js
+@@ -13,6 +13,7 @@
+   height: 768,
+   webPreferences: {
+     nodeIntegration: true,
++    enableRemoteModule: true,
+     webviewTag: true
+   }
+ }
