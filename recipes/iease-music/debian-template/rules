@@ -13,7 +13,6 @@ override_dh_auto_build:
 	# Remove Electron bundle
 	sed -i '/"electron":/d' package.json
 	sed -i '/"electron-builder":/d' package.json
-	rm -vf package-lock.json
 	
 	# Reduce output of webpack
 	sed -i 's|webpack |webpack --display minimal |g' package.json
