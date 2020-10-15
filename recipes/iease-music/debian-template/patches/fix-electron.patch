@@ -1,11 +1,12 @@
 --- a/main.js
 +++ b/main.js
-@@ -484,6 +484,9 @@
+@@ -484,6 +484,10 @@
          fullscreenable: false,
          backgroundColor: 'none',
          titleBarStyle: 'hiddenInset',
 +        webPreferences: {
-+            nodeIntegration: true
++            nodeIntegration: true,
++            enableRemoteModule: true
 +        }
      });
  
