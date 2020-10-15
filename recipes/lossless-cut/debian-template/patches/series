@@ -1,2 +1,2 @@
 fix-ffmpeg-path.patch
-process-argv.patch
+fix-electron.patch
