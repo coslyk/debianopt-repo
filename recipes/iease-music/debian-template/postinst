@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ln -sf /opt/iease-music/dist/NeteaseCloudMusicApi /opt/iease-music/

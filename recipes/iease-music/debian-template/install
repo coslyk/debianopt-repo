@@ -1,4 +1,0 @@
-dist /opt/iease-music
-iease-music.png /usr/share/icons
-debian/extras/iease-music /usr/bin
-debian/extras/iease-music.desktop /usr/share/applications
