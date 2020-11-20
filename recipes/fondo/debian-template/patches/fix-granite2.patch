@@ -1,0 +1,16 @@
+--- a/src/Windows/PreviewWindow.vala
++++ b/src/Windows/PreviewWindow.vala
+@@ -179,13 +179,6 @@
+             bar.set_fraction (progress);
+             print ("\n\nProgreso: ");
+             print (progress.to_string ());
+-            Granite.Services.Application.set_progress.begin (progress, (obj, res) => {
+-                try {
+-                    Granite.Services.Application.set_progress.end (res);
+-                } catch (GLib.Error e) {
+-                    critical (e.message);
+-                }
+-            });
+         }
+ 
+         /***************************

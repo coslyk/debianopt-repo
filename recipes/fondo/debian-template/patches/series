@@ -1,1 +1,2 @@
-fix-compilation-with-old-libgranite.patch
+fix-granite.patch
+fix-granite2.patch
