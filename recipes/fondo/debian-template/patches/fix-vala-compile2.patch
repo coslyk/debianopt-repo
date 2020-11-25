@@ -1,0 +1,14 @@
+--- a/src/Views/MultipleWallpaperView.vala
++++ b/src/Views/MultipleWallpaperView.vala
+@@ -131,9 +131,8 @@
+                 halign = Gtk.Align.CENTER,
+                 tooltip_text = S.GREETER_DESCRIPTION_CONTAINER
+             };
+-            var greeter_description_icon = new Gtk.Image () {
+-                gicon = new ThemedIcon ("user-available")
+-            };
++            var greeter_description_icon = new Gtk.Image ();
++            greeter_description_icon.gicon = new ThemedIcon ("user-available");
+             var greeter_description_lbl = new Gtk.Label (S.USER_IN_GREETER);
+             greeter_description_lbl.get_style_context ().add_class ("help");
+ 
