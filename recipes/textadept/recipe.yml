@@ -4,6 +4,6 @@ license: MIT
 
 source:
   host: other
-  get_version: curl -s 'https://foicica.com/textadept/' | grep '<h2>Download' | sed 's/.*v\([0-9\.]*\).*/\1/g'
+  get_version: curl -s 'https://orbitalquark.github.io/textadept/' | grep '<h2>Download' | sed 's/.*v\([0-9\.]*\).*/\1/g'
   method: build
-  source_url: https://foicica.com/textadept/download/textadept_LATEST.x86_64.tgz
+  source_url: https://github.com/orbitalquark/textadept/archive/textadept_##VERSION.tar.gz

@@ -28,22 +28,20 @@ override_dh_auto_clean:
 
 override_dh_auto_build:
 	# Build
-	cd src && make CROSS=$(CROSS) deps && make CROSS=$(CROSS) && make CROSS=$(CROSS) curses
+	cd src && make CROSS=$(CROSS) GTK3=1 deps && make CROSS=$(CROSS) GTK3=1 && make CROSS=$(CROSS) GTK3=1 curses
 	
 	# Download modules
-	wget https://foicica.com/textadept/download/textadept_LATEST.modules.zip
-	unzip textadept_LATEST.modules.zip
-	mv textadept_##VERSION.modules/modules/* modules/
+	wget https://github.com/orbitalquark/textadept/releases/download/textadept_##VERSION/textadept_##VERSION.modules.zip
+	unzip textadept_##VERSION.modules.zip
+	mv textadept-modules/* modules/
 	
-	# Rebuild yaml modules
-	rm -f modules/yaml/libyaml*
-	sed -i -e 's|ta_src = .*/src|ta_src = ../../../src|g' modules/yaml/src/Makefile
-	cd modules/yaml/src && make CROSS=$(CROSS)
-	cd modules/yaml && ln -s libyaml.so libyaml64.so && rm -rf src
-	
+	# Remove native modules on non-x86 platforms
+	[ "##ARCH" = "amd64" ] || rm -rf modules/yaml modules/spellcheck modules/file_diff
+	find modules -name *.dll -delete
+	find modules -name *osx.so -delete
 
 override_dh_auto_install:
-	cd src && make CROSS=$(CROSS) PREFIX=/usr DESTDIR=../debian/textadept install
+	cd src && make CROSS=$(CROSS) GTK3=1 PREFIX=/usr DESTDIR=../debian/textadept install
 	rm ./debian/textadept/usr/share/pixmaps/textadept*
-	cd src && make curses CROSS=$(CROSS) PREFIX=/usr DESTDIR=../debian/textadept install
+	cd src && make curses CROSS=$(CROSS) GTK3=1 PREFIX=/usr DESTDIR=../debian/textadept install
 
