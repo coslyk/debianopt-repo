@@ -1,8 +1,8 @@
 
-name: video-splitter
+name: vidbox
 license: GPL-3.0
 
 source:
   host: github
-  repo: coslyk/VideoSplitter
+  repo: coslyk/VidBox
   method: build
