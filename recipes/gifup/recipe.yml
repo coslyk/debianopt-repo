@@ -1,0 +1,8 @@
+
+name: gifup
+license: GPL-3.0
+
+source:
+  host: github
+  repo: bharatkalluri/gifup
+  method: build
