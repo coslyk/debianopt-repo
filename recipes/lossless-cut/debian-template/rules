@@ -11,8 +11,7 @@ override_dh_auto_build:
 	sed -i '/"electron-notarize":/d' package.json
 	
 	# Remove ffmpeg dependencies, use the system one
-	sed -i '/"ffmpeg-static":/d' package.json
-	sed -i '/"ffprobe-static":/d' package.json
+	sed -i '/"ffmpeg-ffprobe-static":/d' package.json
 	
 	# Do not generate png icon because system supports svg one
 	sed -i 's/yarn icon-gen && //g' package.json
