@@ -1,0 +1,9 @@
+
+name: nasc
+license: GPL-3.0
+
+source:
+  host: github
+  repo: parnold-x/nasc
+  method: build
+  git: true
