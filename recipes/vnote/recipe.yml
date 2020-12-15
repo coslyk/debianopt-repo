@@ -10,7 +10,7 @@ only_arches:
 
 source:
   host: github
-  repo: tamlok/vnote
+  repo: vnotex/vnote
   method: build
   git: true
 
