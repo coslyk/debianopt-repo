@@ -15,6 +15,16 @@ if [ -z "${DEBIAN_ARCH}" ]; then
     export DEBIAN_ARCH=amd64
 fi
 
+# Set DEBIAN_VERSION_SUFFIX
+case ${DEBIAN_RELEASE} in
+buster)
+    export DEBIAN_VERSION_SUFFIX=buster
+    ;;
+bullseye)
+    export DEBIAN_VERSION_SUFFIX=opt11
+    ;;
+esac
+
 ## Step 1: Enter directory
 HERE="$(dirname "$(readlink -f "${0}")")"
 cd $1
@@ -49,6 +59,19 @@ if [ -n "${_only_arches}" ]; then
     SKIP_BUILD=true
     for BUILD_ARCH in "${_only_arches[@]}" ; do
         if [ "$BUILD_ARCH" = "$DEBIAN_ARCH" ]; then
+            SKIP_BUILD=false
+        fi
+    done
+    if [ "$SKIP_BUILD" = "true" ]; then
+        echo -e "\e[32m *** Skip build for $_name *** \e[0m"
+        exit 0
+    fi
+fi
+
+if [ -n "${_only_releases}" ]; then
+    SKIP_BUILD=true
+    for BUILD_RELEASE in "${_only_releases[@]}" ; do
+        if [ "$BUILD_RELEASE" = "$DEBIAN_RELEASE" ]; then
             SKIP_BUILD=false
         fi
     done
@@ -159,7 +182,7 @@ if [ -z "$LATEST_VERSION" ]; then
 fi
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
-    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb"
+    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
     if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
         exit 0
@@ -212,7 +235,7 @@ if [ "$_source_method" = "build" ]; then
     [ -d $SOURCE_DIR/debian ] || mkdir $SOURCE_DIR/debian
     cp -rf debian-template/* $SOURCE_DIR/debian/
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##VERSION|$LATEST_VERSION|g" {} \;
-    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_RELEASE|g" {} \;
+    find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##RELEASE|$DEBIAN_VERSION_SUFFIX|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##ARCH|$DEBIAN_ARCH|g" {} \;
     find $SOURCE_DIR/debian -type f -exec sed -i -e "s|##DATE|$BUILD_DATE|g" {} \;
     
@@ -249,7 +272,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
     # Upload files
     echo "Uploading package file ..."
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_RELEASE}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
+    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
     printf "\n\n"
 
     # Delete old versions
