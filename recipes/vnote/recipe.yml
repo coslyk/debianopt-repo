@@ -8,6 +8,9 @@ only_arches:
   - arm64
   - armhf
 
+only_releases:
+  - bullseye
+
 source:
   host: github
   repo: vnotex/vnote
