@@ -1,2 +1,3 @@
 fix-electron9.patch
 fix-electron10.patch
+use-system-ripgrep.patch

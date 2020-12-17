@@ -1,4 +1,0 @@
-#!/bin/bash
-
-
-rm -f /opt/marktext/node_modules/vscode-ripgrep/bin/rg

@@ -23,6 +23,9 @@ override_dh_auto_build:
 	# Do not rebuild node modules
 	sed -i '/"postinstall":/d' package.json
 	
+	# Use system ripgrep
+	sed -i '/"vscode-ripgrep":/d' package.json
+	
 	# Reduce output of webpack
 	sed -i 's|webpack |webpack --display minimal |g' package.json
 	sed -i 's| --progress||g' package.json
@@ -68,7 +71,4 @@ override_dh_auto_build:
 	rm -rf node_modules/**/build/Release/obj.target
 	rm -rf node_modules/@hfelix/spellchecker/build/Release/obj.target
 	rm -rf node_modules/.cache
-	
-	# Use system's ripgrep
-	rm -f node_modules/vscode-ripgrep/bin/rg
 
