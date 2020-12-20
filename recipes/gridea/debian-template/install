@@ -1,4 +1,0 @@
-opt/Gridea/resources/app /opt/Gridea
-debian/extras/gridea /opt/Gridea
-usr/share/icons/hicolor/0x0/apps/gridea.png /usr/share/icons
-usr/share/applications /usr/share

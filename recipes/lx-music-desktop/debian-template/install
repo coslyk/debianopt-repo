@@ -1,6 +1,0 @@
-dist /opt/lx-music-desktop
-node_modules /opt/lx-music-desktop
-package.json /opt/lx-music-desktop
-lx-music-desktop.png /usr/share/icons
-debian/extras/lx-music-desktop /usr/bin
-debian/extras/lx-music-desktop.desktop /usr/share/applications

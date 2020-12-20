@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=PicGo
-Exec=picgo %U
-Terminal=false
-Type=Application
-Icon=picgo
-StartupWMClass=picgo
-Comment=A simple & beautiful tool for pictures uploading
-Categories=Network;

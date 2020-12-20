@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Simplenote
-Exec=simplenote %U
-Terminal=false
-Type=Application
-Icon=simplenote
-StartupWMClass=simplenote
-Comment=Simplenote for Web, Windows, and Linux
-Categories=Office;
