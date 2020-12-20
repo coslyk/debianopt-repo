@@ -7,10 +7,4 @@ assignees: ''
 
 ---
 
-The weather is good. Let's go for a walk!
-
-又是个大晴天呢，出去散步吧！
-
-天気がいいから、散歩しましょう！
-
-Das Wetter ist prima. Lass uns spazieren gehen!
+Please be polite.  No illegal / discrimination / violence / eroticisom / politics / other unrelated topics.
