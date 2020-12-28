@@ -1,0 +1,8 @@
+
+name: vdrive
+license: GPL-3.0
+
+source:
+  host: github
+  repo: bcedu/VGrive
+  method: build
