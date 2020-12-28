@@ -198,7 +198,7 @@ if [ "$_source_method" = "build" ]; then
     echo "Downloading source code from $SOURCE_URL"
 
     if [ "$_source_git" = "true" ]; then
-        git clone --recursive --branch "$TAG_NAME" "$GIT_CLONE_URL"
+        git clone --recursive --branch "$TAG_NAME" --depth 1 "$GIT_CLONE_URL"
 
     elif [[ "$SOURCE_URL" == *.tar.gz ]] || [[ "$SOURCE_URL" == *.tgz ]]; then
         curl -L -o source.tar.gz "$SOURCE_URL" || exit 1
