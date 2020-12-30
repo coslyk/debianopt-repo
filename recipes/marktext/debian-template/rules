@@ -35,14 +35,8 @@ override_dh_auto_build:
 	echo "target \"$(ELECTRON_VERSION)\"" >> .yarnrc
 	echo "runtime \"electron\"" >> .yarnrc
 	
-	
 	# Build
 	yarn install --arch=$(_arch)
-	
-	# Temporary fix for building on Node 12.16
-	yarn upgrade @babel/core
-	yarn upgrade @babel/preset-env
-	
 	yarn run pack
 	yarn install --arch=$(_arch) --production --ignore-scripts --prefer-offline
 	
