@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-ELECTRON_VERSION = `curl -s 'https://www.archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
+ELECTRON_VERSION = `curl -s 'https://archlinux.org/packages/community/x86_64/electron/json/' | python3 -c "import sys, json; print(json.load(sys.stdin)['pkgver'])"`
 
 ifeq (##ARCH, amd64)
 	_arch = x64
