@@ -1,0 +1,19 @@
+Source: remotely
+Section: net
+Priority: extra
+Maintainer: Yikun Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 9),
+               libgtk-3-dev,
+               libgtk-vnc-2.0-dev,
+               meson (>= 0.40),
+               valac (>= 0.26)
+Standards-Version: 4.14
+
+Package: remotely
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: A simple VNC viewer
+ Remotely is a simple VNC viewer for the GNOME desktop environment. It
+ supports common authentication methods. The display can be adjusted with
+ three different modes so that the most optimal presentation is always
+ possible, regardless of the remote display size.

@@ -1,0 +1,8 @@
+
+name: remotely
+license: GPL-3.0
+
+source:
+  host: gitlab
+  repo: https://gitlab.gnome.org/World/Remotely
+  method: build
