@@ -2,6 +2,9 @@
 name: quilter
 license: GPL-3.0
 
+only_releases:
+  - bullseye
+
 source:
   host: github
   repo: lainsce/quilter
