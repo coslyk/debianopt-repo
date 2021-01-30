@@ -44,9 +44,19 @@ jobs:
         
 
 before_install:
-  - if [ "$DEBIAN_ARCH" != amd64 ]; then docker run --rm --privileged multiarch/qemu-user-static:register --reset; fi
-  - docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
+  - |-
+      if [ -f docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz ]; then
+        gzip -dc docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz | docker load
+      else
+        docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
+      fi
 
+before_cache:
+  - docker save docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} | gzip > docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz
+
+cache:
+  directories:
+    - docker_images
   
 install:
   - ./scan-and-build.sh
