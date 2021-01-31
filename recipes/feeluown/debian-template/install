@@ -1,4 +1,4 @@
 opt/feeluown /opt
-opt/feeluown/lib/python3/feeluown/feeluown.png /usr/share/icons
+feeluown/icons/feeluown.png /usr/share/icons
 debian/extras/feeluown.desktop /usr/share/applications
 debian/extras/feeluown-launcher /usr/bin
