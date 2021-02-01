@@ -52,7 +52,10 @@ before_install:
       fi
 
 before_cache:
-  - docker save docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} | gzip > docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz
+  - |-
+      if [ ! -f docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz ]; then
+        docker save docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} | gzip > docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz
+      fi
 
 cache:
   directories:
