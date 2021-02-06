@@ -1,4 +1,0 @@
-#!/bin/sh
-export ELECTRON_IS_DEV=0
-cd /opt/CocoMusic/dist/electron
-electron main.js "$@"

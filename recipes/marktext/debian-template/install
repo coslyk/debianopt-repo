@@ -1,7 +1,0 @@
-dist /opt/marktext
-node_modules /opt/marktext
-package.json /opt/marktext
-debian/extras/marktext /usr/bin
-resources/icons/256x256/marktext.png /usr/share/icons
-resources/linux/marktext.desktop /usr/share/applications
-resources/linux/marktext.appdata.xml /usr/share/metainfo

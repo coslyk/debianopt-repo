@@ -1,4 +1,0 @@
-electron /opt
-debian/extras/electron.png /usr/share/icons
-debian/extras/electron.desktop /usr/share/applications
-

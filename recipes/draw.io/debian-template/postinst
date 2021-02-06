@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Link to the binary
-echo '#!/bin/sh' > /opt/draw.io/drawio
-echo 'electron /opt/draw.io/app.asar "$@"' >> /opt/draw.io/drawio
-chmod a+x /opt/draw.io/drawio

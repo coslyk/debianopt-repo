@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Netron
-Exec=netron %U
-Terminal=false
-Type=Application
-Icon=netron
-StartupWMClass=netron
-Comment=Visualizer for neural network, deep learning and machine learning models
-Categories=Development;
