@@ -26,7 +26,8 @@ RUN set -ex \
         qemu                                                   \
         qemu-user-static                                       \
     && apt-get install -y libc6:mips64el  libstdc++6:mips64el  \
-    && apt-get clean
+    && apt-get clean                                           \
+    && rm -rf /tmp/* /var/tmp/*
 
 
 # Create symlinks for triple and set default CROSS_TRIPLE

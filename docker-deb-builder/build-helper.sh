@@ -19,18 +19,12 @@ if [ -n "${CROSS_TRIPLE}" ]; then
     case "${CROSS_TRIPLE}" in
         i686-linux-gnu)
             CROSS_ARGS="--host-arch i386"
-            export npm_config_arch=ia32
-            export npm_config_target_arch=ia32
             ;;
         arm-linux-gnueabihf)
             CROSS_ARGS="--host-arch armhf"
-            export npm_config_arch=armv7l
-            export npm_config_target_arch=armv7l
             ;;
         aarch64-linux-gnu)
             CROSS_ARGS="--host-arch arm64"
-            export npm_config_arch=arm64
-            export npm_config_target_arch=arm64
             ;;
         mipsel-linux-gnu)
             CROSS_ARGS="--host-arch mipsel"
@@ -44,42 +38,6 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         *)
             echo "${CROSS_TRIPLE} not yet implemented." && exit 1 ;;
     esac
-
-    # dpkg cannot resolve cross dependency for npm, workaround:
-    if cat debian/control | grep npm > /dev/null; then
-	    sed -i 's/,*\s*npm\s*//g' debian/control
-	    sed -i 's/:,/:/g' debian/control
-        # (npm in Docker image pre-installed)
-        # set CC, CXX for npm to cross compile
-        export AR=/usr/bin/${CROSS_TRIPLE}-ar
-        export CC=/usr/bin/${CROSS_TRIPLE}-gcc
-        export CXX=/usr/bin/${CROSS_TRIPLE}-g++
-        export LINK="${CXX}"
-        export RANLIB=/usr/bin/${CROSS_TRIPLE}-ranlib
-        if [ "${CROSS_TRIPLE}" = "i686-linux-gnu" ]; then
-            export PKG_CONFIG_PATH=/usr/lib/i386-linux-gnu/pkgconfig
-        else
-            export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
-        fi
-    fi
-
-    # dpkg cannot resolve cross dependency for yarn, workaround:
-    if cat debian/control | grep yarn > /dev/null; then
-	    sed -i 's/,*\s*yarn\s*//g' debian/control
-	    sed -i 's/:,/:/g' debian/control
-        # (yarn in Docker image pre-installed)
-        # set CC, CXX for yarn to cross compile
-        export AR=/usr/bin/${CROSS_TRIPLE}-ar
-        export CC=/usr/bin/${CROSS_TRIPLE}-gcc
-        export CXX=/usr/bin/${CROSS_TRIPLE}-g++
-        export LINK="${CXX}"
-        export RANLIB=/usr/bin/${CROSS_TRIPLE}-ranlib
-        if [ "${CROSS_TRIPLE}" = "i686-linux-gnu" ]; then
-            export PKG_CONFIG_PATH=/usr/lib/i386-linux-gnu/pkgconfig
-        else
-            export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
-        fi
-    fi
 fi
 
 # Install build dependencies
