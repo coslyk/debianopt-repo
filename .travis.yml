@@ -1,5 +1,10 @@
 language: shell
 
+addons:
+  apt:
+    packages:
+      - reprepro
+
 jobs:
   include:
     - name: Debian 10 buster (amd64)
