@@ -1,0 +1,31 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Codename: buster
+Date: Sat, 13 Feb 2021 16:04:53 UTC
+Architectures: amd64
+Components: main
+Description: DebianOpt repository
+MD5Sum:
+ 4e34aba3512ed5615b297b5e9f4923e9 1078 main/binary-amd64/Packages
+ 3f8e033d2c374da7d2e1576fb799b48d 623 main/binary-amd64/Packages.gz
+ 9274c3e8d00f5e724377d18d230ef2d0 70 main/binary-amd64/Release
+SHA1:
+ 3bc7c61f2df9c8ca40e86c4a3389a6c954a9d9aa 1078 main/binary-amd64/Packages
+ 2fbf5f67da0618615e8a408127bd16f33cf99651 623 main/binary-amd64/Packages.gz
+ 64a6c40f3bd6647cd9a590ab5d82c8d5c66c2a21 70 main/binary-amd64/Release
+SHA256:
+ 936d4ba904afb47a440ff5a2570d743de62d7c8bc98feb0faa726d7d632c42f1 1078 main/binary-amd64/Packages
+ 13d11dad177d0e7abcefcb10fd21ffcb2bdaa88ea990634720de8470c3e8a82d 623 main/binary-amd64/Packages.gz
+ 898e8b1118f0fec9ade8fb799cf8468e09a40043afb1f058f430cbe1b1d35dcc 70 main/binary-amd64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEKzKk5kdM7hiaP1hnumSwRyEJwzAFAmAn+KUACgkQumSwRyEJ
+wzBGCgf+IZnt7TIk+WVeF/e2nGvzs8vuTnT3n+5eITOyWbJ5J5ZYFl2HO7rTl653
+TKGv71/TLhuFygpiBVCVi7P38rYsZB2azGcvmKDJAsNKL1nZ3Bmf5mwLkZJOVuBS
+P8H2/c9a9Y6iYhnErOatgi5BhTsdhBoEUGXBCxj6MDjQ71eS1gdkV1O+0CMMENB7
+cKgmY1qn4zfDQ6lGYSue6bSwX4J6pWnbOmCD9KzTNRUvCAZuNLBU2pF6dAjf+f2h
+GGDgJHbvT30ja/bWNJm7t1jQC/EiFxue5c1uEA6UujLtvjmCMrH52PYH5W+MJ28r
++0KpqVvDuoIreMTCYNsPLEBaxiqI8A==
+=Ngkh
+-----END PGP SIGNATURE-----

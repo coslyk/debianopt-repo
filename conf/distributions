@@ -1,0 +1,5 @@
+Codename: buster
+Architectures: amd64
+Components: main
+Description: DebianOpt repository
+SignWith: default
