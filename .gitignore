@@ -4,3 +4,4 @@ failure.txt
 recipes/*/*
 !recipes/*/debian-template
 !recipes/*/recipe.yml
+debianopt

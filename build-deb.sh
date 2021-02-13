@@ -15,6 +15,11 @@ if [ -z "${DEBIAN_ARCH}" ]; then
     export DEBIAN_ARCH=amd64
 fi
 
+# If no BUILD_MODE is set, use "test"
+if [ -z "${BUILD_MODE}" ]; then
+    export BUILD_MODE=test
+fi
+
 # Set DEBIAN_VERSION_SUFFIX
 case ${DEBIAN_RELEASE} in
 buster)
@@ -181,9 +186,11 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 0
 fi
 
-if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
-    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
-    if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
+PACKAGE_FILEPATH="$HERE/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
+PACKAGE_FILEPATH_ALL_ARCH="$HERE/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_all.deb"
+
+if [ "$BUILD_MODE" = "deploy" ]; then  # Normal commit, check if there is an update
+    if [ -f "$PACKAGE_FILEPATH" ] || [ -f "$PACKAGE_FILEPATH_ALL_ARCH" ]; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
         exit 0
     else
@@ -255,40 +262,16 @@ elif [ -d "debian-template" ]; then
     rm -f package.deb
 fi
 
-## Step 8: Upload
-PACKAGE_INFO="{
-  \"name\": \"${_name}\",
-  \"licenses\": [\"${_license}\"],
-  \"vcs_url\": \"https://github.com/debianopt/debianopt-repo.git\",
-  \"public_download_numbers\": false
-}"
-
-if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-
-    # Create package folder on server
-    echo "Uploading package info ..."
-    curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt"
-    printf "\n\n"
-
-    # Upload files
-    echo "Uploading package file ..."
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
-    printf "\n\n"
-
-    # Delete old versions
-    VERSIONS=`curl -s "https://api.bintray.com/packages/debianopt/debianopt/${_name}" | \
-    python3 -c "import sys, json; print('\n'.join(json.load(sys.stdin)['versions']))"`
-
-    for VERSION in $VERSIONS; do
-        if [ "$VERSION" != "$LATEST_VERSION" ]; then
-            echo "Remove old version: $VERSION"
-            curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt/${_name}/versions/${VERSION}"
-            printf "\n\n"
-        fi
-    done
+## Step 8: Upload package file to repository
+if [ "$BUILD_MODE" = "deploy" ]; then
+    reprepro --basedir ${HERE}/debianopt includedeb ${DEBIAN_RELEASE} *.deb
+    cd ${HERE}/debianopt
+    git add --all
+    git commit -a -m "Automatic update: $_name"
+    git push
 fi
 
 ## Step 9: Write log
-echo "$_name" >> $HERE/success.txt
-
+cd $HERE
+echo "$_name" >> success.txt
 printf "\n\n"
