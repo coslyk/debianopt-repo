@@ -10,40 +10,9 @@ jobs:
       services:
         - docker
 
-    - name: Debian 10 buster (i386)
-      os: linux
-      env:
-        - DEBIAN_RELEASE: buster
-        - DEBIAN_ARCH: i386
-      services:
-        - docker
-
-    - name: Debian 10 buster (arm64)
-      os: linux
-      env:
-        - DEBIAN_RELEASE: buster
-        - DEBIAN_ARCH: arm64
-      services:
-        - docker
-
-    - name: Debian 10 buster (armhf)
-      os: linux
-      env:
-        - DEBIAN_RELEASE: buster
-        - DEBIAN_ARCH: armhf
-      services:
-        - docker
-
-    - name: Debian 10 buster (mips64el)
-      os: linux
-      env:
-        - DEBIAN_RELEASE: buster
-        - DEBIAN_ARCH: mips64el
-      services:
-        - docker
-        
-
 before_install:
+  - openssl aes-256-cbc -K $encrypted_68f59263d310_key -iv $encrypted_68f59263d310_iv -in mysec.gpg.enc -out mysec.gpg -d
+  - gpg --allow-secret-key-import --import mysec.key
   - |-
       if [ -f docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz ]; then
         gzip -dc docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz | docker load
@@ -60,7 +29,7 @@ before_cache:
 cache:
   directories:
     - docker_images
-  
+
 install:
   - ./scan-and-build.sh
 
