@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=FeelUOwn
-Comment=FeelUOwn Launcher
-Exec=feeluown-launcher
-Icon=feeluown
-Categories=AudioVideo;Audio;Player;Qt;
-Terminal=false
-StartupNotify=true
