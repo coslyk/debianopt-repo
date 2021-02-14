@@ -1,21 +1,20 @@
 # DebianOpt Repository
 
-Package build status: [![Build Status](https://travis-ci.org/coslyk/debianopt-repo.svg?branch=master)](https://travis-ci.org/coslyk/debianopt-repo)
+Package build status: [![Build Status](https://travis-ci.org/coslyk/debianopt-repo.svg?branch=main)](https://travis-ci.org/coslyk/debianopt-repo)
 
 ## Description
 
 DebianOpt is an additional repository for Debian users. It provides packages of many interesting open-source softwares. It aims to make it easier to install softwares in Debian as well as providing a way for developers to distribute their awesome projects.
 
-This repository focuses on the latest stable Debian version. Currently `Debian 10 (Buster)` is supported. Supported CPU architectures are: `amd64` `i386` `arm64` `armhf` `mips64el`.
+This repository focuses on the latest stable Debian version. Currently `Debian 10 (Buster)` is supported.
 
 It uses scripts to check updates and build packages automatically, so we can ensure that all packages here are up-to-date!
 
 ## Add this repo
 
 ```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/master/add-repo.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/main/add-repo.sh)"
 ```
-
 
 ## Mirrors and Proxies
 
@@ -23,7 +22,7 @@ Use mirrors or proxies to speed up the downloads. See [Mirrors and Proxies](http
 
 ## Package list
 
-You can obtain a list of packages from [package list](https://github.com/coslyk/debianopt-repo/wiki/Package-list) as well as [recipes](https://github.com/coslyk/debianopt-repo/tree/master/recipes).
+You can obtain a list of packages from [package list](https://github.com/coslyk/debianopt-repo/wiki/Package-list) as well as [recipes](https://github.com/coslyk/debianopt-repo/tree/main/recipes).
 
 ## FAQ
 
