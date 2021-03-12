@@ -8,6 +8,6 @@ Homepage: https://gitlab.gnome.org/somas/apostrophe
 
 Package: apostrophe
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3-regex, python3-levenshtein, python3-enchant, python3-gi, python3-cairo, python3-pypandoc, gir1.2-webkit2-4.0, gir1.2-gspell-1, gettext
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-regex, python3-levenshtein, python3-enchant, python3-gi, python3-cairo, python3-pypandoc, gir1.2-webkit2-4.0, gir1.2-gspell-1, gir1.2-handy-1, gettext
 Recommends: texlive, texlie-latex-extra, libjs-mathjax
 Description: A distraction free Markdown editor for GNU/Linux made with GTK+.

@@ -265,10 +265,6 @@ fi
 ## Step 8: Upload package file to repository
 if [ "$BUILD_MODE" = "deploy" ]; then
     reprepro --basedir ${HERE}/debianopt includedeb ${DEBIAN_RELEASE} *.deb
-    cd ${HERE}/debianopt
-    git add --all
-    git commit -a -m "Automatic update: $_name"
-    git push
 fi
 
 ## Step 9: Write log
