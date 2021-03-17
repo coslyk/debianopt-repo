@@ -20,7 +20,7 @@ if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]; then    # Normal commit or cron job
         # Travis CI allows maximum 1h
         END=`date +%s`
         RUNTIME=$((END-START))
-        if [ $RUNTIME -gt 3000  ]; then
+        if [ $RUNTIME -gt 2400  ]; then
             break
         fi
     done
