@@ -1,0 +1,18 @@
+--- a/vapi/libmarkdown.vapi
++++ b/vapi/libmarkdown.vapi
+@@ -41,7 +41,7 @@
+ 	public void initialize ();
+ 	public void with_html5_tags ();
+ 	public void shlib_destructor ();
+-	public char markdown_version[];
++	public char markdown_version[512];
+ 
+ 	[Compact]
+ 	[CCode (cname = "MMIOT", cprefix = "mkd_", free_function = "mkd_cleanup")]
+@@ -125,4 +125,4 @@
+ 		NOSTYLE,
+ 		EMBED
+ 	}
+-}
+\ 文件尾没有换行符
++}
