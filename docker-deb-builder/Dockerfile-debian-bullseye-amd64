@@ -1,0 +1,22 @@
+FROM debian:bullseye
+
+RUN set -ex \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+               autoconf \
+               automake \
+               build-essential \
+               cdbs \
+               cmake \
+               curl \
+               devscripts \
+               equivs \
+               fakeroot \
+               meson \
+               libgtk-3-dev \
+               qtbase5-dev \
+    && apt-get clean \
+    # Install Rust toolchains
+    && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
+    && cp $HOME/.cargo/bin/* /usr/bin/ \
+    && rm -rf /tmp/* /var/tmp/*

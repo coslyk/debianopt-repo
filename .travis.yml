@@ -7,10 +7,10 @@ addons:
 
 jobs:
   include:
-    - name: Debian 10 buster (amd64)
+    - name: Debian 10 bullseye (amd64)
       os: linux
       env:
-        - DEBIAN_RELEASE: buster
+        - DEBIAN_RELEASE: bullseye
         - DEBIAN_ARCH: amd64
       services:
         - docker
