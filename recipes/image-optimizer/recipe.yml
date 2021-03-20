@@ -1,8 +1,0 @@
-
-name: image-optimizer
-license: MIT
-
-source:
-  host: github
-  repo: GijsGoudzwaard/Image-Optimizer
-  method: build
