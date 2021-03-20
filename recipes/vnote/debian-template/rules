@@ -8,3 +8,6 @@ export QT_SELECT=qt5
 
 %:
 	dh $@
+
+override_dh_auto_test:
+	echo "Temporarily skip test phase."
