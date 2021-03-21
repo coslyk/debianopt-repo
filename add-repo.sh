@@ -2,8 +2,8 @@
 
 # Get release codename
 RELEASE=`lsb_release -sc`
-if [ "$RELEASE" != "buster" ]; then
-    echo "Sorry! Currently only Debian 10 buster is supported."
+if [ "$RELEASE" != "bullseye" ]; then
+    echo "Sorry! Currently only Debian 11 (bullseye) is supported."
     exit 1
 fi
 
@@ -17,7 +17,7 @@ echo "deb $MIRROR $RELEASE main" > /etc/apt/sources.list.d/debianopt.list
 
 # Add key
 which curl > /dev/null || apt-get install -y curl
-curl -L $MIRROR/PUBLIC.KEY | apt-key add -
+curl -L $MIRROR/public.key | apt-key add -
 
 # Update
 apt-get update

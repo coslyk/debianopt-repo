@@ -6,19 +6,23 @@ Package build status: [![Build Status](https://travis-ci.org/coslyk/debianopt-re
 
 DebianOpt is an additional repository for Debian users. It provides packages of many interesting open-source softwares. It aims to make it easier to install softwares in Debian as well as providing a way for developers to distribute their awesome projects.
 
-This repository focuses on the latest stable Debian version. Currently `Debian 10 (Buster)` is supported.
+This repository focuses on the latest stable Debian version. Currently `Debian 11 (bullseye)` `Debian 10 (Buster)` is supported.
 
 It uses scripts to check updates and build packages automatically, so we can ensure that all packages here are up-to-date!
 
 ## Add this repo
 
-```bash
+Debian 11: (hosted on Github Page)
+
+```shell
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/main/add-repo.sh)"
 ```
 
-## Mirrors and Proxies
+Debian 10: (hosted on Bintray and will be shut down in May 31)
 
-Use mirrors or proxies to speed up the downloads. See [Mirrors and Proxies](https://github.com/coslyk/debianopt-repo/wiki/Mirrors-and-Proxies) for details.
+```shell
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/master/add-repo.sh)"
+```
 
 ## Package list
 
