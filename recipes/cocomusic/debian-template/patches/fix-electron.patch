@@ -1,6 +1,6 @@
 --- a/src/main/index.js
 +++ b/src/main/index.js
-@@ -39,7 +39,11 @@
+@@ -39,7 +39,12 @@
      resizable: true,
      icon: '../../build/icons/256x256.png',
      darkTheme: true,
@@ -8,7 +8,8 @@
 +    frame: isSide,
 +    webPreferences: {
 +      nodeIntegration: true,
-+      enableRemoteModule: true
++      enableRemoteModule: true,
++      contextIsolation: false
 +    }
    })
    mainWindow.loadURL(winURL)
