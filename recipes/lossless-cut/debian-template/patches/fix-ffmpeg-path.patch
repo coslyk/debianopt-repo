@@ -1,6 +1,6 @@
 --- a/src/ffmpeg.js
 +++ b/src/ffmpeg.js
-@@ -26,16 +26,7 @@
+@@ -22,16 +22,7 @@
  }
  
  function getFfPath(cmd) {
@@ -17,4 +17,4 @@
 +  return cmd;
  }
  
- const getFfmpegPath = () => getFfPath('ffmpeg');
+ export const getFfmpegPath = () => getFfPath('ffmpeg');
