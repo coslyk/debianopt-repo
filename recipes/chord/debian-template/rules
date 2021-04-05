@@ -26,6 +26,9 @@ override_dh_auto_build:
 	sed -i '/"electron-rebuild":/d' package.json
 	sed -i 's|--dir",|--dir"|g' package.json
 	
+	# Temporary fix for Debian 10
+	sed -i 's|"better-sqlite3": "^|"better-sqlite3": "|g' package.json
+	
 	# Do not rebuild node modules
 	sed -i '/"postinstall":/d' package.json
 	
