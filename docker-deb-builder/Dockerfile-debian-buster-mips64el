@@ -25,7 +25,9 @@ RUN set -ex \
         multistrap                                             \
         qemu                                                   \
         qemu-user-static                                       \
+        valac                                                  \
     && apt-get install -y libc6:mips64el  libstdc++6:mips64el  \
+                  libqt5widgets5:mips64el libgtk-3-0:mips64el  \
     && apt-get clean
 
 
