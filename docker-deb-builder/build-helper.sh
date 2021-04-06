@@ -47,8 +47,8 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 
     # dpkg cannot resolve cross dependency for npm, workaround:
     if cat debian/control | grep npm > /dev/null; then
-	    sed -i 's/,*\s*npm\s*//g' debian/control
-	    sed -i 's/:,/:/g' debian/control
+        sed -i 's/,*\s*npm\s*//g' debian/control
+        sed -i 's/:,/:/g' debian/control
         # (npm in Docker image pre-installed)
         # set CC, CXX for npm to cross compile
         export AR=/usr/bin/${CROSS_TRIPLE}-ar
@@ -65,8 +65,8 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 
     # dpkg cannot resolve cross dependency for yarn, workaround:
     if cat debian/control | grep yarn > /dev/null; then
-	    sed -i 's/,*\s*yarn\s*//g' debian/control
-	    sed -i 's/:,/:/g' debian/control
+        sed -i 's/,*\s*yarn\s*//g' debian/control
+        sed -i 's/:,/:/g' debian/control
         # (yarn in Docker image pre-installed)
         # set CC, CXX for yarn to cross compile
         export AR=/usr/bin/${CROSS_TRIPLE}-ar
@@ -79,6 +79,13 @@ if [ -n "${CROSS_TRIPLE}" ]; then
         else
             export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
         fi
+    fi
+    
+    # dpkg cannot resolve cross dependency for valac, workaround:
+    if cat debian/control | grep yarn > /dev/null; then
+        # (valac in Docker image pre-installed)
+        sed -i 's/,*\s*valac\s*//g' debian/control
+        sed -i 's/:,/:/g' debian/control
     fi
 fi
 
