@@ -1,14 +1,5 @@
 --- a/meson.build
 +++ b/meson.build
-@@ -1,7 +1,6 @@
- project(
-   'apostrophe',
--  version: '2.3',
--  meson_version: '>= 0.50.0'
-+  version: '2.3'
- )
- 
- # Importing modules
 @@ -41,11 +40,6 @@
  
  # Dependencies
