@@ -1,8 +1,0 @@
-#!/usr/bin/make -f
-# -*- makefile -*-
-
-export DH_QUIET=1
-
-%:
-	dh $@ --buildsystem=meson
-

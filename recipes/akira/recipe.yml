@@ -1,9 +1,0 @@
-
-name: akira
-license: GPL-3.0
-
-source:
-  host: github
-  repo: akiraux/Akira
-  get_version_from: prerelease
-  method: build
