@@ -3,7 +3,7 @@
 
 if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]; then    # Normal commit or cron job
     # Create file lists on the server
-    cloudsmith list packages debianopt/debianopt -F pretty_json | \
+    cloudsmith list packages debianopt/debianopt -F json -l 1000 | \
         python3 -c "import sys, json; print('\n'.join([i['filename'] for i in json.load(sys.stdin)['data']]))" > filelist.txt
 
     # Scan and build
