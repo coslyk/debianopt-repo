@@ -182,13 +182,20 @@ if [ -z "$LATEST_VERSION" ]; then
 fi
 
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
-    REMOTE_URL="https://dl.bintray.com/debianopt/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
-    if curl --output /dev/null --silent --head --fail "$REMOTE_URL"; then
+    FILENAME="${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
+    if cat $HERE/filelist.txt | grep "$FILENAME" > /dev/null; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
         exit 0
-    else
-        echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
     fi
+
+    FILENAME="${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_all.deb"
+    if cat $HERE/filelist.txt | grep "$FILENAME" > /dev/null; then
+        echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
+        exit 0
+    fi
+    
+    echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
+
 else   # Pull request, always build
     echo -e "\e[32m *** Test build for $_name $LATEST_VERSION *** \e[0m"
 fi
@@ -256,36 +263,8 @@ elif [ -d "debian-template" ]; then
 fi
 
 ## Step 8: Upload
-PACKAGE_INFO="{
-  \"name\": \"${_name}\",
-  \"licenses\": [\"${_license}\"],
-  \"vcs_url\": \"https://github.com/debianopt/debianopt-repo.git\",
-  \"public_download_numbers\": false
-}"
-
 if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-
-    # Create package folder on server
-    echo "Uploading package info ..."
-    curl -X POST -H "Content-type: application/json" -d "$PACKAGE_INFO" -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt"
-    printf "\n\n"
-
-    # Upload files
-    echo "Uploading package file ..."
-    curl -X PUT -T *.deb -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/content/debianopt/debianopt/${_name}/${LATEST_VERSION}/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb;deb_distribution=${DEBIAN_RELEASE};deb_component=main;deb_architecture=${DEBIAN_ARCH};publish=1"
-    printf "\n\n"
-
-    # Delete old versions
-    VERSIONS=`curl -s "https://api.bintray.com/packages/debianopt/debianopt/${_name}" | \
-    python3 -c "import sys, json; print('\n'.join(json.load(sys.stdin)['versions']))"`
-
-    for VERSION in $VERSIONS; do
-        if [ "$VERSION" != "$LATEST_VERSION" ]; then
-            echo "Remove old version: $VERSION"
-            curl -X DELETE -ucoslyk:$BINTRAY_APIKEY "https://api.bintray.com/packages/debianopt/debianopt/${_name}/versions/${VERSION}"
-            printf "\n\n"
-        fi
-    done
+    cloudsmith push deb debianopt/debianopt/debian/$DEBIAN_RELEASE *.deb
 fi
 
 ## Step 9: Write log
