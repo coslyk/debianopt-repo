@@ -1,0 +1,26 @@
+--- a/meson.build
++++ b/meson.build
+@@ -1,23 +1,6 @@
+ project('wxformbuilder', 'cpp', default_options : ['cpp_std=c++17'])
+ 
+ cxx = meson.get_compiler('cpp')
+-add_project_arguments(cxx.get_supported_arguments([
+-	'-Wall',
+-	'-Wextra',
+-	'-Winit-self',
+-	'-Wimplicit-fallthrough',
+-	'-Wpedantic',
+-	'-Wdelete-non-virtual-dtor',
+-	'-Wlogical-op',
+-	'-Wduplicated-cond',
+-	'-Wduplicated-branches',
+-	'-Wno-overloaded-virtual',
+-	'-Wtautological-compare',
+-	'-Wno-inconsistent-missing-override',
+-	'-Wno-ignored-qualifiers',
+-	'-Wno-unused-parameter',
+-	'-Wno-cast-function-type',
+-]), language : 'cpp')
+ 
+ if get_option('buildtype') == 'debug'
+ 	add_project_arguments('-D__WXFB_DEBUG__', language : 'cpp')
