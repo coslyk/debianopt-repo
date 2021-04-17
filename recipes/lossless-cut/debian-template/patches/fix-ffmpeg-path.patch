@@ -1,16 +1,17 @@
 --- a/src/ffmpeg.js
 +++ b/src/ffmpeg.js
-@@ -22,16 +22,7 @@
+@@ -21,17 +21,7 @@
  }
  
  function getFfPath(cmd) {
--  const platform = os.platform();
+-  // Testing non-mac setup on mac:
+-  // return `node_modules/ffmpeg-ffprobe-static/${cmd}`;
 -
--  if (platform === 'darwin') {
+-  if (isMac) {
 -    return isDev ? `ffmpeg-mac/${cmd}` : join(window.process.resourcesPath, cmd);
 -  }
 -
--  const exeName = platform === 'win32' ? `${cmd}.exe` : cmd;
+-  const exeName = isWindows ? `${cmd}.exe` : cmd;
 -  return isDev
 -    ? `node_modules/ffmpeg-ffprobe-static/${exeName}`
 -    : join(window.process.resourcesPath, `node_modules/ffmpeg-ffprobe-static/${exeName}`);
