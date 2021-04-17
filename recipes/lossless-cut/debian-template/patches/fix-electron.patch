@@ -1,15 +1,6 @@
 --- a/public/electron.js
 +++ b/public/electron.js
-@@ -34,6 +34,8 @@
-       nodeIntegration: true,
-       // https://github.com/electron/electron/issues/5107
-       webSecurity: !isDev,
-+      enableRemoteModule: true,
-+      contextIsolation: false
-     },
-   });
- 
-@@ -110,7 +112,7 @@
+@@ -132,7 +132,7 @@
  
  electron.ipcMain.on('renderer-ready', () => {
    rendererReady = true;
