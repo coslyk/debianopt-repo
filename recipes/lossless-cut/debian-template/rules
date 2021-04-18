@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-export TSC_COMPILE_ON_ERROR=true
-
 %:
 	dh ${@}
 
