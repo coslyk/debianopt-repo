@@ -32,6 +32,7 @@ cache:
   
 install:
   - ./scan-and-build.sh
+  - ./remove-outdated.sh
 
 script:
   - ./summary.sh
