@@ -80,13 +80,6 @@ if [ -n "${CROSS_TRIPLE}" ]; then
             export PKG_CONFIG_PATH=/usr/lib/${CROSS_TRIPLE}/pkgconfig
         fi
     fi
-    
-    # dpkg cannot resolve cross dependency for valac, workaround:
-    if cat debian/control | grep yarn > /dev/null; then
-        # (valac in Docker image pre-installed)
-        sed -i 's/,*\s*valac\s*//g' debian/control
-        sed -i 's/:,/:/g' debian/control
-    fi
 fi
 
 # Install build dependencies

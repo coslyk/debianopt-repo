@@ -9,6 +9,14 @@ jobs:
         - DEBIAN_ARCH: amd64
       services:
         - docker
+
+    - name: Debian 11 bullseye (arm64)
+      os: linux
+      env:
+        - DEBIAN_RELEASE: bullseye
+        - DEBIAN_ARCH: arm64
+      services:
+        - docker
         
 
 before_install:
