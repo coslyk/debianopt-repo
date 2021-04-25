@@ -32,6 +32,7 @@ RUN set -ex \
     && echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list \
     && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs yarn                          \
+    && apt-mark auto nodejs yarn                               \
     && apt-get clean
 
 
