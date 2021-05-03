@@ -47,6 +47,7 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 
     # dpkg cannot resolve cross dependency for npm, workaround:
     if cat debian/control | grep npm > /dev/null; then
+        apt-get install -y nodejs
         sed -i 's/,*\s*npm\s*//g' debian/control
         sed -i 's/:,/:/g' debian/control
         # (npm in Docker image pre-installed)
@@ -65,6 +66,7 @@ if [ -n "${CROSS_TRIPLE}" ]; then
 
     # dpkg cannot resolve cross dependency for yarn, workaround:
     if cat debian/control | grep yarn > /dev/null; then
+        apt-get install -y nodejs yarn
         sed -i 's/,*\s*yarn\s*//g' debian/control
         sed -i 's/:,/:/g' debian/control
         # (yarn in Docker image pre-installed)
