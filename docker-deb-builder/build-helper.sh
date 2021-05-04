@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # This script is executed within the container as root.  It assumes
 # that source code with debian packaging files can be found at
@@ -93,7 +93,7 @@ done
 printf "\n"
 
 # Build packages
-dpkg-buildpackage -b -uc -us $CROSS_ARGS
+dpkg-buildpackage -b -uc -us $CROSS_ARGS || exit 1
 
 # Copy packages to output dir with user's permissions
 chown -R $USER:$GROUP /build
