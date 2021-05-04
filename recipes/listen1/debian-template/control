@@ -3,7 +3,7 @@ Section: sound
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/listen1/listen1_desktop
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9), npm
 
 Package: listen1
 Architecture: any
