@@ -20,6 +20,7 @@ jobs:
         
 
 before_install:
+  - if [ "$DEBIAN_ARCH" != amd64 ]; then docker run --rm --privileged multiarch/qemu-user-static:register --reset; fi
   - |-
       if [ -f docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz ]; then
         gzip -dc docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz | docker load
