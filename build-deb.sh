@@ -5,9 +5,9 @@
 # Make sure the Date format is English
 export LANG=en
 
-# If no DEBIAN_RELEASE is set, use "buster"
+# If no DEBIAN_RELEASE is set, use "bullseye"
 if [ -z "${DEBIAN_RELEASE}" ]; then
-    export DEBIAN_RELEASE=buster
+    export DEBIAN_RELEASE=bullseye
 fi
 
 # If no DEBIAN_ARCH is set, use "amd64"
