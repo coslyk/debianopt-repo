@@ -7,6 +7,6 @@ Build-Depends: debhelper (>= 9)
 
 Package: draw.io
 Architecture: any
-Depends: electron, libappindicator3-1, libindicator3-7
+Depends: electron
 Description: drawio-desktop is a draw.io desktop app based on Electron.
 
