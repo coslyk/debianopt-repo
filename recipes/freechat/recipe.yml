@@ -1,0 +1,15 @@
+
+name: freechat
+license: MIT
+
+only_arches:
+  - amd64
+  - i386
+  - arm64
+  - armhf
+
+source:
+  host: other
+  get_version: echo 1.0.0-patch1
+  method: build
+  source_url: https://github.com/eNkru/freechat/archive/ea675e43c3f0c26741137e005412c019f0a9c9a8.zip

@@ -1,0 +1,12 @@
+Source: freechat
+Section: net
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/eNkru/freechat
+Build-Depends: debhelper (>= 9), npm
+
+Package: freechat
+Architecture: all
+Depends: electron
+Description: Wechat client for macOS and Linux.
+
