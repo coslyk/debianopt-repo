@@ -1,0 +1,16 @@
+Source: qgnomeplatform
+Section: gnome
+Priority: optional
+Maintainer: Jan Grulich <jgrulich@redhat.com>
+Build-Depends: debhelper (>=9), qtbase5-dev, qtbase5-private-dev, libqt5waylandclient5-dev, libqt5waylandcompositor5-dev, qtwayland5-private-dev, libadwaitaqt-dev, libgtk-3-dev
+Standards-Version: 3.9.6
+Homepage: https://github.com/FedoraQt/QGnomePlatform
+Vcs-Browser: https://github.com/FedoraQt/QGnomePlatform
+
+Package: qgnomeplatform
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, adwaita-qt
+Description: QPlatformTheme for a better Qt application inclusion in GNOME
+ QGnomePlatform is a Qt Platform Theme designed to use as many of the GNOME 
+ settings as possible in unmodified Qt applications. It allows Qt applications 
+ to fit into the environment as well as possible.

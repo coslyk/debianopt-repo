@@ -1,0 +1,9 @@
+
+name: qgnomeplatform
+license: LGPL-2.1
+
+source:
+  host: github
+  repo: FedoraQt/QGnomePlatform
+  method: build
+
