@@ -1,3 +1,5 @@
+assets /opt/freechat
+build /opt/freechat
 src /opt/freechat
 package.json /opt/freechat
 hicolor /usr/share/icons

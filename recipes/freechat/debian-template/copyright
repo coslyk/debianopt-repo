@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: freechat
-Upstream-Contact: Howard J
+Upstream-Contact: Howard J <howard.ju@outlook.com>
 Source: https://github.com/eNkru/freechat
 
 Files: *
-Copyright: 2018-2021, Howard J
+Copyright: 2018-2021, Howard J <howard.ju@outlook.com>
 License: Expat
 
 License: Expat
