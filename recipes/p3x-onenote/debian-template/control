@@ -1,0 +1,13 @@
+Source: p3x-onenote
+Section: net
+Priority: extra
+Maintainer: coslyk <cos.lyk@gmail.com>
+Homepage: https://github.com/patrikx3/onenote
+Build-Depends: debhelper (>= 9), npm, jq
+
+Package: p3x-onenote
+Architecture: all
+Depends: electron
+Description: Linux Electron Onenote
+ A Linux compatible version of OneNote.
+

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=P3X Onenote
+Comment=A Linux compatible version of OneNote
+Exec="p3x-onenote" %U
+Terminal=false
+Type=Application
+Icon=p3x-onenote
+StartupWMClass=P3XOneNote
+Categories=Office;
