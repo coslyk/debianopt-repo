@@ -1,0 +1,8 @@
+
+name: vala-language-server
+license: LGPL-2.1
+
+source:
+  host: github
+  repo: Prince781/vala-language-server
+  method: build

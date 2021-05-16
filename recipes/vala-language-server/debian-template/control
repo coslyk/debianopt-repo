@@ -1,0 +1,12 @@
+Source: vala-language-server
+Section: devel
+Priority: optional
+Maintainer: Yikun Liu <cos.lyk@gmail.com>
+Build-Depends: debhelper (>= 9), libvala-0.48-dev, libglib2.0-dev, libgee-0.8-dev, libjson-glib-dev, libjsonrpc-glib-1.0-dev
+
+Standards-Version: 3.9.6
+Package: vala-language-server
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}, ffmpeg
+Pre-Depends: dpkg (>= 1.15.6)
+Description: Code Intelligence for Vala & Genie.
