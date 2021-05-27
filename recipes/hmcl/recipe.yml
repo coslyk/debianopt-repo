@@ -3,8 +3,8 @@ name: hmcl
 license: GPL-3.0
 
 source:
-  host: github
-  repo: huanghongxun/HMCL
+  host: other
+  get_version: curl -s 'https://hmcl.huangyuhui.net/api/update_link?channel=stable' | jq -j .version
   method: build
   source_url: empty
 

@@ -3,7 +3,7 @@ Section: games
 Priority: extra
 Maintainer: coslyk <cos.lyk@gmail.com>
 Homepage: https://github.com/huanghongxun/HMCL
-Build-Depends: debhelper (>= 9), curl
+Build-Depends: debhelper (>= 9), curl, jq
 
 Package: hmcl
 Architecture: any
