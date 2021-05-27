@@ -5,10 +5,15 @@ DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
 export DH_QUIET=1
 
+# Glib version on Debian Bullseye
+GLIB_VERSION = 2.66
+
 %:
 	dh $@
 
 override_dh_auto_configure:
+	# Valac cannot detect glib version for cross compling, set it manually
+	sed -i "s|--target-glib=auto|--target-glib=$(GLIB_VERSION)|g" meson.build
 	dh_auto_configure -- --buildtype=release
 
 
