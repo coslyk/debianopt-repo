@@ -1,7 +1,5 @@
 # DebianOpt Repository
 
-Package build status: [![Build Status](https://travis-ci.org/coslyk/debianopt-repo.svg?branch=master)](https://travis-ci.org/coslyk/debianopt-repo)
-
 ## Description
 
 DebianOpt is an additional repository for Debian users. It provides packages of many interesting open-source softwares. It aims to make it easier to install softwares in Debian as well as providing a way for developers to distribute their awesome projects.

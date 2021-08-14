@@ -181,7 +181,7 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 0
 fi
 
-if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then  # Normal commit, check if there is an update
+if [ "$UPLOAD_AFTER_BUILD" = "true" ]; then  # Normal commit, check if there is an update
     FILENAME="${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
     if cat $HERE/filelist.txt | grep "$FILENAME" > /dev/null; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
@@ -263,7 +263,7 @@ elif [ -d "debian-template" ]; then
 fi
 
 ## Step 8: Upload
-if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+if [ "$UPLOAD_AFTER_BUILD" = "true" ]; then
     cloudsmith push deb debianopt/debianopt/debian/$DEBIAN_RELEASE *.deb
 fi
 
