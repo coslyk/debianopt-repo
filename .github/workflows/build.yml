@@ -4,20 +4,39 @@ name: Build
 on:
   push:
     branches: [ master ]
+  schedule:
+    # Run on UTC 5:30 everyday
+    - cron: '30 5 * * *'
+
+
 
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
       DEBIAN_RELEASE: bullseye
       DEBIAN_ARCH: amd64
       CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache docker image
+        uses: actions/cache@v2
+        with:
+          path: docker_images
+          key: ${{ runner.os }}-build
+          
+
       - name: Build docker image
-        run: docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
+        run: |-
+          if [ -f docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz ]; then
+            gzip -dc docker_images/${DEBIAN_RELEASE}-${DEBIAN_ARCH}.tar.gz | docker load
+          else
+            docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
+          fi
 
       - name: Install Cloudsmith Cli
         run: pip3 install cloudsmith-cli
