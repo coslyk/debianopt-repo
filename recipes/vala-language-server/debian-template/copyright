@@ -3,7 +3,7 @@ Upstream-Name: vala-language-server
 Source: https://github.com/Prince781/vala-language-server
 
 Files: *
-Copyright: 2020, Sergii Fesenko <s.fesenko@outlook.com>
+Copyright: 2021, Sergii Fesenko <s.fesenko@outlook.com>
 License: LGPL-2.1
 
 License: LGPL-2.1
