@@ -2,7 +2,7 @@ Source: apostrophe
 Section: text
 Priority: optional
 Maintainer: coslyk <cos.lyk@gmail.com>
-Build-Depends: git, meson, pkg-config, libglib2.0-dev, gtk-update-icon-cache, desktop-file-utils
+Build-Depends: git, meson, pkg-config, libglib2.0-dev, gtk-update-icon-cache, desktop-file-utils, sassc
 Standards-Version: 4.4.0
 Homepage: https://gitlab.gnome.org/somas/apostrophe
 
