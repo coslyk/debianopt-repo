@@ -1,6 +1,6 @@
 --- a/meson.build
 +++ b/meson.build
-@@ -1,23 +1,6 @@
+@@ -1,24 +1,6 @@
  project('wxformbuilder', 'cpp', default_options : ['cpp_std=c++17'])
  
  cxx = meson.get_compiler('cpp')
@@ -16,6 +16,7 @@
 -	'-Wduplicated-branches',
 -	'-Wno-overloaded-virtual',
 -	'-Wtautological-compare',
+-	'-Wextra-semi',
 -	'-Wno-inconsistent-missing-override',
 -	'-Wno-ignored-qualifiers',
 -	'-Wno-unused-parameter',
