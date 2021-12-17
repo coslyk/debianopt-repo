@@ -10,10 +10,12 @@ Build-Depends: meson,
                libjson-glib-dev,
                libgee-0.8-dev,
                duktape-dev,
-               libgtksourceview-3.0-dev,
+               libgtksourceview-4-dev,
                libwebkit2gtk-4.0-dev,
                libxml2-dev,
-               libsqlite3-dev
+               libsqlite3-dev,
+               libhandy-1-dev,
+               duktape-dev
 Standards-Version: 4.1.1
 
 Package: spectator
