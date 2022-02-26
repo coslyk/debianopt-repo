@@ -37,7 +37,10 @@ override_dh_auto_build:
 	sed -i 's| --progress||g' package.json
 
 	# Set Electron version in babel.config.js
-	sed -i "s|require('electron/package.json').version|\"$(ELECTRON_VERSION)\"|g" babel.config.js
+	sed -i "s|require('electron/package.json').version|'$(ELECTRON_VERSION)'|g" babel.config.js
+
+	# Disable no-unresolved check
+	sed -i "s|'no-console': 'off'|'no-console': 'off', 'import/no-unresolved': 'off'|g" .eslintrc.js
 	
 	# Set Electron version for building native modules
 	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
