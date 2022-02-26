@@ -27,7 +27,7 @@ override_dh_auto_build:
 	sed -i '/"vscode-ripgrep":/d' package.json
 	
 	# Reduce output of webpack
-	sed -i 's|webpack |webpack --display minimal |g' package.json
+	sed -i 's|webpack |webpack --stats minimal |g' package.json
 	sed -i 's| --progress||g' package.json
 	
 	# Set Electron version for building native modules
