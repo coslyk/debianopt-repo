@@ -20,6 +20,12 @@ endif
 
 
 override_dh_auto_build:
+	# Remove Electron bundle
+	sed -i '/"electron":/d' package.json
+	sed -i '/"electron-builder":/d' package.json
+	sed -i '/"electron-rebuild":/d' package.json
+	sed -i '/"electron-devtools-installer":/d' package.json
+
 	# Do not rebuild node modules
 	sed -i '/"postinstall":/d' package.json
 	
