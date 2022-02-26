@@ -35,6 +35,9 @@ override_dh_auto_build:
 	# Reduce output of webpack
 	sed -i 's|webpack |webpack --stats minimal |g' package.json
 	sed -i 's| --progress||g' package.json
+
+	# Set Electron version in babel.config.js
+	sed -i "s|require('electron/package.json').version|\"$(ELECTRON_VERSION)\"|g" babel.config.js
 	
 	# Set Electron version for building native modules
 	echo "disturl \"https://atom.io/download/electron\"" > .yarnrc
