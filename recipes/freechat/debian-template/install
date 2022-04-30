@@ -1,7 +1,0 @@
-assets /opt/freechat
-build /opt/freechat
-src /opt/freechat
-package.json /opt/freechat
-hicolor /usr/share/icons
-debian/extras/freechat /usr/bin
-debian/extras/freechat.desktop /usr/share/applications
