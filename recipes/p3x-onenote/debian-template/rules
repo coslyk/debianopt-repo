@@ -10,7 +10,7 @@ override_dh_auto_build:
 	jq 'del(.devDependencies."electron-builder")' package.json > package.json.tmp && mv package.json.tmp package.json
 	
 	# Build
-	npm install
+	npm_config_cache=./npm_cache npm install
 	npm prune --production
 	cp artifacts/onenote-icon-2019/1024x1024.png p3x-onenote.png
 	
