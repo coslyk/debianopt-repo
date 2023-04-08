@@ -1,7 +1,13 @@
 #!/bin/sh
 
 # Clone repository for binary packages
-git clone --depth 1 "https://${GITHUB_TOKEN}@github.com/coslyk/debianopt.git"
+SSHPATH="$HOME/.ssh"
+rm -rf "$SSHPATH"
+mkdir -p "$SSHPATH"
+echo "${{ secrets.ACCESS_KEY }}" > "$SSHPATH/id_rsa"
+chmod 600 "$SSHPATH/id_rsa"
+sudo sh -c "echo StrictHostKeyChecking no >>/etc/ssh/ssh_config"
+git clone --depth 1 "git@github.com:coslyk/debianopt.git"
 
 # Scan and build
 export UPLOAD_AFTER_BUILD=true
@@ -10,6 +16,8 @@ ls recipes | while read SUBDIR; do
 done
 
 # Upload packages
+git config --global user.name 'YK Liu'
+git config --global user.email 'cos.lyk@gmail.com'
 cd debianopt
 git add --all
 git commit -a -m "Automatic update: $(date "+%D %T")"
