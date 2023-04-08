@@ -1,9 +1,0 @@
-
-name: foliate
-license: GPL-3.0
-
-source:
-  host: github
-  repo: johnfactotum/foliate
-  method: build
-

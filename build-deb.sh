@@ -5,9 +5,9 @@
 # Make sure the Date format is English
 export LANG=en
 
-# If no DEBIAN_RELEASE is set, use "bullseye"
+# If no DEBIAN_RELEASE is set, use "bookworm"
 if [ -z "${DEBIAN_RELEASE}" ]; then
-    export DEBIAN_RELEASE=bullseye
+    export DEBIAN_RELEASE=bookworm
 fi
 
 # If no DEBIAN_ARCH is set, use "amd64"
@@ -22,6 +22,9 @@ buster)
     ;;
 bullseye)
     export DEBIAN_VERSION_SUFFIX=opt11
+    ;;
+bookworm)
+    export DEBIAN_VERSION_SUFFIX=opt12
     ;;
 esac
 
@@ -181,24 +184,20 @@ if [ -z "$LATEST_VERSION" ]; then
     exit 0
 fi
 
+PACKAGE_FILEPATH="$HERE/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
+PACKAGE_FILEPATH_ALL_ARCH="$HERE/debianopt/pool/main/${_name:0:1}/${_name}/${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_all.deb"
+
 if [ "$UPLOAD_AFTER_BUILD" = "true" ]; then  # Normal commit, check if there is an update
-    FILENAME="${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_${DEBIAN_ARCH}.deb"
-    if cat $HERE/filelist.txt | grep "$FILENAME" > /dev/null; then
+    if [ -f "$PACKAGE_FILEPATH" ] || [ -f "$PACKAGE_FILEPATH_ALL_ARCH" ]; then
         echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
         exit 0
+    else
+        echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
     fi
-
-    FILENAME="${_name}_${LATEST_VERSION}-1~${DEBIAN_VERSION_SUFFIX}_all.deb"
-    if cat $HERE/filelist.txt | grep "$FILENAME" > /dev/null; then
-        echo -e "\e[32m *** No update for $_name, skip. *** \e[0m"
-        exit 0
-    fi
-    
-    echo -e "\e[32m *** Detected update for $_name: $LATEST_VERSION *** \e[0m"
-
 else   # Pull request, always build
     echo -e "\e[32m *** Test build for $_name $LATEST_VERSION *** \e[0m"
 fi
+
 
 ## Step 6: Download source code or package
 if [ "$_source_method" = "build" ]; then
@@ -264,7 +263,7 @@ fi
 
 ## Step 8: Upload
 if [ "$UPLOAD_AFTER_BUILD" = "true" ]; then
-    cloudsmith push deb debianopt/debianopt/debian/$DEBIAN_RELEASE *.deb
+    reprepro --basedir ${HERE}/debianopt includedeb ${DEBIAN_RELEASE} *.deb
 fi
 
 ## Step 9: Write log

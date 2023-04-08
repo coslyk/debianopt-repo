@@ -1,5 +1,0 @@
-bookworm (##VERSION-1~##RELEASE) ##RELEASE; urgency=medium
-
-  * Auto update to ##VERSION
-
- -- Siddhartha Das <bablu.boy@gmail.com>  ##DATE

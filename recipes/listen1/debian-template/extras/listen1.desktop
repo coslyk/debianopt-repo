@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Listen1
-Comment=One for all free music in China.
-Exec=listen1 %U
-Terminal=false
-Type=Application
-Icon=Listen1
-StartupWMClass=Listen1
-Categories=AudioVideo;Audio;Player;Music;

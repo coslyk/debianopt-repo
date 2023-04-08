@@ -1,9 +1,0 @@
-
-name: go-for-it
-license: GPL-3.0
-
-source:
-  host: github
-  repo: mank319/Go-For-It
-  method: build
-

@@ -6,7 +6,7 @@ include /usr/share/dpkg/default.mk
 export DH_QUIET=1
 
 # Glib version on Debian Bullseye
-GLIB_VERSION = 2.66
+GLIB_VERSION = 2.74
 
 %:
 	dh $@

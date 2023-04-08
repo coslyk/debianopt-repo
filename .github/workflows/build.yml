@@ -3,7 +3,7 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   schedule:
     # Run on UTC 5:30 everyday
     - cron: '30 5 * * *'
@@ -16,12 +16,16 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DEBIAN_RELEASE: bullseye
+      DEBIAN_RELEASE: bookworm
       DEBIAN_ARCH: amd64
       CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+      ENCRYPT_PASSWORD: ${{ secrets.ENCRYPT_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Decrypt gpg key
+        run: openssl enc -des3 -d -in mysec.gpg.encrypted -out mysec.gpg -k ${ENCRYPT_PASSWORD}
 
       - name: Cache docker image
         uses: actions/cache@v2
@@ -38,14 +42,11 @@ jobs:
             docker build -t docker-deb-builder:${DEBIAN_RELEASE}-${DEBIAN_ARCH} -f docker-deb-builder/Dockerfile-debian-${DEBIAN_RELEASE}-${DEBIAN_ARCH} .
           fi
 
-      - name: Install Cloudsmith Cli
-        run: pip3 install cloudsmith-cli
+      - name: Install reprepro
+        run: sudo apt-get install reprepro
 
       - name: Build and upload packages
         run: ./scan-and-build.sh
-
-      - name: Remove outdated packages
-        run: ./remove-outdated.sh
 
       - name: Summary
         run: ./summary.sh

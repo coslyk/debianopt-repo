@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Link to the binary
-ln -sf '/opt/electron/electron' '/usr/bin/electron'
-
-# Fix permission for SUID sandbox
-chown root /opt/electron/chrome-sandbox
-chmod 4755 /opt/electron/chrome-sandbox

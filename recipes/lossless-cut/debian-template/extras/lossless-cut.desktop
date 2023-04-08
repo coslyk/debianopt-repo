@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=LosslessCut
-Exec=lossless-cut
-Terminal=false
-Type=Application
-Icon=lossless-cut
-StartupWMClass=LosslessCut
-Comment=Lossless video editor
-Categories=Utility;

@@ -1,9 +1,0 @@
-#!/usr/bin/make -f
-
-export DH_QUIET=1
-
-%:
-	dh ${@}
-
-override_dh_auto_build:
-	curl -Lo app.asar https://github.com/Rocket1184/electron-netease-cloud-music/releases/download/v##VERSION/electron-netease-cloud-music_v##VERSION.asar

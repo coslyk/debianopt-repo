@@ -1,7 +1,0 @@
-bin /opt/p3x-onenote
-src /opt/p3x-onenote
-node_modules /opt/p3x-onenote
-package.json /opt/p3x-onenote
-p3x-onenote.png /usr/share/icons
-debian/extras/p3x-onenote /usr/bin
-debian/extras/p3x-onenote.desktop /usr/share/applications
