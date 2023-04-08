@@ -263,7 +263,7 @@ fi
 
 ## Step 8: Upload
 if [ "$UPLOAD_AFTER_BUILD" = "true" ]; then
-    reprepro --basedir ${HERE}/debianopt includedeb ${DEBIAN_RELEASE} *.deb
+    reprepro --ignore=wrongdistribution --basedir ${HERE}/debianopt includedeb ${DEBIAN_RELEASE} *.deb
 fi
 
 ## Step 9: Write log
