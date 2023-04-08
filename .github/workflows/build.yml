@@ -26,6 +26,7 @@ jobs:
 
       - name: Decrypt gpg key
         run: |-
+          export GPG_TTY=$(tty)
           openssl enc -des3 -d -in mysec.gpg.encrypted -out mysec.gpg -k ${ENCRYPT_PASSWORD}
           gpg --allow-secret-key-import --import mysec.gpg
 
