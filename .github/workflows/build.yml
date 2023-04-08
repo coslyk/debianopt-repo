@@ -20,6 +20,7 @@ jobs:
       DEBIAN_ARCH: amd64
       CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
       ENCRYPT_PASSWORD: ${{ secrets.ENCRYPT_PASSWORD }}
+      ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
 
     steps:
       - uses: actions/checkout@v2

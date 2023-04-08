@@ -4,7 +4,7 @@
 SSHPATH="$HOME/.ssh"
 rm -rf "$SSHPATH"
 mkdir -p "$SSHPATH"
-echo "${{ secrets.ACCESS_KEY }}" > "$SSHPATH/id_rsa"
+echo "$ACCESS_KEY" > "$SSHPATH/id_rsa"
 chmod 600 "$SSHPATH/id_rsa"
 sudo sh -c "echo StrictHostKeyChecking no >>/etc/ssh/ssh_config"
 git clone --depth 1 "git@github.com:coslyk/debianopt.git"
