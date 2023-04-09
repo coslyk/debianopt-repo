@@ -1,3 +1,0 @@
-target/release/netease-cloud-music-gtk /usr/bin
-netease-cloud-music-gtk.desktop usr/share/applications
-icons/netease-cloud-music-gtk.svg usr/share/pixmaps

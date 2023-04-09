@@ -3,13 +3,13 @@ Section: utils
 Priority: extra
 Maintainer: YK Liu <cos.lyk@gmail.com>
 Build-Depends: debhelper (>= 8.0.0),
- cmake, libmuparser-dev, libqt5charts5-dev, libqalculate-dev, libqt5svg5-dev, libqt5x11extras5-dev, python3-dev, qtbase5-dev, qtdeclarative5-dev
+ cmake, libmuparser-dev, qt6-charts-dev, libqalculate-dev, qt6-svg-dev, python3-dev, qt6-base-dev, qt6-declarative-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/ManuelSchneid3r/albert
 
 Package: albert
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5-sqlite
-Recommends: qml-module-qtgraphicaleffects, qml-module-qtquick-controls
+Depends: ${shlibs:Depends}, ${misc:Depends}, libqt6sql6-sqlite
+Recommends: qml6-module-qtquick-controls
 Description: Albert Launcher
  An amazing, desktop environment agnostic omnilauncher.

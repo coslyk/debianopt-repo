@@ -9,6 +9,4 @@ export DH_QUIET=1
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- --buildtype=release -Dlibunity=false -Dubuntu-bionic-patched-vte=false
-
-
+	dh_auto_configure -- --buildtype=release

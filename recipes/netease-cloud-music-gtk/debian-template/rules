@@ -1,12 +1,12 @@
 #!/usr/bin/make -f
 
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
 export DH_QUIET=1
 
 %:
-	dh ${@}
+	dh $@ --buildsystem=meson
 
-override_dh_auto_clean:
-	cargo clean
+override_dh_auto_configure:
+	dh_auto_configure -- --buildtype=release
 
-override_dh_auto_build:
-	cargo build --release

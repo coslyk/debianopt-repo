@@ -2,9 +2,6 @@
 name: nasc
 license: GPL-3.0
 
-only_releases:
-  - bullseye
-
 source:
   host: github
   repo: parnold-x/nasc

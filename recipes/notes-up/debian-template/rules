@@ -1,19 +1,12 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
 
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
 export DH_QUIET=1
 
 %:
-	dh $@ 
+	dh $@ --buildsystem=meson
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -Dnoele=1
+	dh_auto_configure -- --buildtype=release
 
-override_dh_builddeb:
-	dh_builddeb -- -Zxz
-
-
-override_dh_install:
-	dh_install --fail-missing
