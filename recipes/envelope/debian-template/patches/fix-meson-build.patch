@@ -1,6 +1,17 @@
+From 7cccf391b1ef678f4aa96e75f6fb0fcd487d3adf Mon Sep 17 00:00:00 2001
+From: YK Liu <cos.lyk@gmail.com>
+Date: Sun, 16 Apr 2023 12:31:24 +0800
+Subject: [PATCH] fix meson
+
+---
+ data/meson.build | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/data/meson.build b/data/meson.build
+index 45a3b85..c2702f1 100644
 --- a/data/meson.build
 +++ b/data/meson.build
-@@ -12,7 +12,6 @@
+@@ -12,7 +12,6 @@ install_data (
  )
  
  i18n.merge_file (
@@ -8,7 +19,7 @@
    input: meson.project_name () + '.desktop.in',
    output: meson.project_name () + '.desktop',
    install: true,
-@@ -22,7 +21,6 @@
+@@ -22,7 +21,6 @@ i18n.merge_file (
  )
  
  i18n.merge_file (
@@ -16,10 +27,12 @@
    input: meson.project_name () + '.appdata.xml.in',
    output: meson.project_name () + '.appdata.xml',
    install: true,
-@@ -55,4 +53,4 @@
+@@ -55,4 +53,4 @@ test (
    vala_lint,
    args: ['-d', join_paths (meson.source_root (), 'src')]
  )
 -endif
-\ 文件尾没有换行符
+\ No newline at end of file
 +endif
+-- 
+2.39.2

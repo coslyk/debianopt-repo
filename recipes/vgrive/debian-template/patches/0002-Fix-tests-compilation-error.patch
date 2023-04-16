@@ -1,0 +1,25 @@
+From 79b7f19440b84b9d90384bafb7c4d6c78d5283da Mon Sep 17 00:00:00 2001
+From: ichramm <jramirez.uy@gmail.com>
+Date: Sun, 7 Mar 2021 12:01:47 -0300
+Subject: [PATCH 2/3] Fix tests compilation error
+
+---
+ tests/test.vala | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/test.vala b/tests/test.vala
+index 93c8813..f8a2ed3 100644
+--- a/tests/test.vala
++++ b/tests/test.vala
+@@ -5,7 +5,7 @@ public abstract class Gee.TestCase : Object {
+ 
+ 	public delegate void TestMethod ();
+ 
+-	public TestCase (string name) {
++	protected TestCase (string name) {
+ 		this.suite = new GLib.TestSuite (name);
+ 	}
+ 
+-- 
+2.39.2
+
