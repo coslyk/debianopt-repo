@@ -6,6 +6,6 @@ export DH_QUIET=1
 	dh ${@}
 
 override_dh_auto_build:
-	pip3 install --ignore-installed --system --prefix=./opt/feeluown feeluown[battery]
+	pip3 install --ignore-installed --prefix=./opt/feeluown feeluown[battery]
 	mkdir ./opt/feeluown/lib/python3
 	mv ./opt/feeluown/lib/python3.*/site-packages/* ./opt/feeluown/lib/python3/

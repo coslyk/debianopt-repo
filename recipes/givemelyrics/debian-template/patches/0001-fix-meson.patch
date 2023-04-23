@@ -1,0 +1,32 @@
+From 2f665c9c5095e5080154991f7adf75ca998aab24 Mon Sep 17 00:00:00 2001
+From: YK Liu <cos.lyk@gmail.com>
+Date: Sun, 23 Apr 2023 23:53:00 +0800
+Subject: [PATCH] fix meson
+
+---
+ data/meson.build | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/data/meson.build b/data/meson.build
+index 4149bf3..0c40952 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -13,7 +13,6 @@ foreach i : icon_sizes
+ endforeach
+ 
+ i18n.merge_file (
+-    'desktop',
+     input: meson.project_name() + '.desktop.in',
+     output: meson.project_name() + '.desktop',
+     install: true,
+@@ -24,7 +23,6 @@ i18n.merge_file (
+ 
+ 
+ i18n.merge_file (
+-    'appdata',
+     input: meson.project_name() + '.appdata.xml.in',
+     output: meson.project_name() + '.appdata.xml',
+     install: true,
+-- 
+2.39.2
+

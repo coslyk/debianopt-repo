@@ -1,0 +1,34 @@
+From 05093c673a8c7d503b2e1ab9dc583e60cab23e59 Mon Sep 17 00:00:00 2001
+From: YK Liu <cos.lyk@gmail.com>
+Date: Sun, 23 Apr 2023 23:42:52 +0800
+Subject: [PATCH] Fix vala typo
+
+---
+ src/database/DatabaseManager.vala | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/database/DatabaseManager.vala b/src/database/DatabaseManager.vala
+index 8a10f29..763ed4b 100644
+--- a/src/database/DatabaseManager.vala
++++ b/src/database/DatabaseManager.vala
+@@ -366,7 +366,7 @@ namespace Envelope.Database {
+         }
+ 
+         public void insert_transaction (Transaction transaction) throws DatabaseError {
+-            GLib.Value[8] args = {
++            GLib.Value[] args = {
+                 transaction.label,
+                 transaction.description,
+                 transaction.amount,
+@@ -408,7 +408,7 @@ namespace Envelope.Database {
+ 
+ 
+         public void update_transaction (Transaction transaction) throws DatabaseError {
+-            GLib.Value[9] args = {
++            GLib.Value[] args = {
+                 transaction.label,
+                 transaction.description,
+                 (int) transaction.direction,
+-- 
+2.39.2
+
