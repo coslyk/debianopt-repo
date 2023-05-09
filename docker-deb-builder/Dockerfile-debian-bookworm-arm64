@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN set -ex \
     && dpkg --add-architecture arm64                           \
@@ -27,10 +27,6 @@ RUN set -ex \
         qemu-user-static                                       \
     && apt-get install -y libc6:arm64 libstdc++6:arm64         \
                        libqt5widgets5:arm64 libgtk-3-0:arm64   \
-    # Install the same Node.js version as the latest Electron uses
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb [arch=amd64] https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.list \
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get clean
 
 
