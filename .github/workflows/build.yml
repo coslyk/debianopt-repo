@@ -16,6 +16,8 @@ jobs:
     strategy:
       matrix:
         debian-arch: ['amd64', 'arm64']
+      max-parallel: 1
+      fail-fast: false
 
     runs-on: ubuntu-latest
 
