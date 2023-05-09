@@ -23,8 +23,6 @@ RUN set -ex \
         llvm                                                   \
         meson                                                  \
         multistrap                                             \
-        qemu                                                   \
-        qemu-user-static                                       \
     && apt-get install -y libc6:arm64 libstdc++6:arm64         \
                        libqt5widgets5:arm64 libgtk-3-0:arm64   \
     && apt-get clean
