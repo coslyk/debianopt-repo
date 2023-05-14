@@ -17,7 +17,7 @@ echo "deb $MIRROR $RELEASE main" > /etc/apt/sources.list.d/debianopt.list
 
 # Add key
 which curl > /dev/null || apt-get install -y curl
-curl -L $MIRROR/public.key | apt-key add -
+curl -L $MIRROR/public.key -o /etc/apt/trusted.gpg.d/debianopt.asc
 
 # Update
 apt-get update

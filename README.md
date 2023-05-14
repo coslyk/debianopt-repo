@@ -4,14 +4,14 @@
 
 DebianOpt is an additional repository for Debian users. It provides packages of many interesting open-source softwares. It aims to make it easier to install softwares in Debian as well as providing a way for developers to distribute their awesome projects.
 
-This repository focuses on the latest stable Debian version. Currently `Debian 11 (Bullseye)` is supported. Supported CPU architectures are: `amd64`.
+This repository focuses on the latest stable Debian version. Currently `Debian 12 (Bookworm)` is supported. Supported CPU architectures are: `amd64` `arm64`.
 
 It uses scripts to check updates and build packages automatically, so we can ensure that all packages here are up-to-date!
 
 ## Add this repo
 
 ```bash
-curl -1sLf 'https://dl.cloudsmith.io/public/debianopt/debianopt/setup.deb.sh' | sudo -E bash
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/coslyk/debianopt-repo/develop/add-repo.sh)"
 ```
 
 
