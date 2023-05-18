@@ -3,7 +3,7 @@ Section: sound
 Priority: extra
 Maintainer: YK Liu <cos.lyk@gmail.com>
 Homepage: https://github.com/gmg137/netease-cloud-music-gtk
-Build-Depends: debhelper (>= 9), libssl-dev, meson, libgtk-4-dev, libadwaita-1-dev, libgstreamer-plugins-bad1.0-dev, desktop-file-utils
+Build-Depends: debhelper (>= 9), libssl-dev, meson, libadwaita-1-dev, libgstreamer-plugins-bad1.0-dev, desktop-file-utils
 
 Package: netease-cloud-music-gtk
 Architecture: any
