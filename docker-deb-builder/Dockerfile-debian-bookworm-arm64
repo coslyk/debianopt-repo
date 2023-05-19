@@ -25,7 +25,7 @@ RUN set -ex \
         multistrap                                             \
     && apt-get install -y libc6:arm64 libstdc++6:arm64         \
         libqt5widgets5:arm64 libgtk-3-0:arm64 libgtk-4-1:arm64 \
-        libgtk-4-dev                                           \
+        libgtk-4-dev libadwaita-1-dev libadwaita-1-0:arm64     \
     # Install Rust toolchains
     && curl https://sh.rustup.rs -s | sh -s -- --default-toolchain stable -y \
     && cp $HOME/.cargo/bin/* /usr/bin/                         \
