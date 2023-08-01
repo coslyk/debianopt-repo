@@ -3,7 +3,7 @@ Section: utils
 Priority: extra
 Maintainer: YK Liu <cos.lyk@gmail.com>
 Build-Depends: debhelper (>= 8.0.0),
- cmake, libmuparser-dev, qt6-charts-dev, libqalculate-dev, qt6-svg-dev, python3-dev, qt6-base-dev, qt6-declarative-dev, qt6-scxml-dev, pybind11-dev
+ cmake, libarchive-dev, libmuparser-dev, qt6-charts-dev, libqalculate-dev, qt6-svg-dev, python3-dev, qt6-base-dev, qt6-declarative-dev, qt6-scxml-dev, pybind11-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/ManuelSchneid3r/albert
 
